@@ -3,13 +3,14 @@ package br.com.schumaker.bs.impl;
 import br.com.schumaker.bs.UnidadeBs;
 import br.com.schumaker.dao.impl.UnidadeDaoImpl;
 import br.com.schumaker.model.Unidade;
+import br.com.schumaker.util.HsMessage;
 import java.util.List;
-import javax.faces.application.FacesMessage;
-import org.primefaces.context.RequestContext;
+import javax.swing.JOptionPane;
+
 
 /**
  *
- * @author hudson schumaker HStudio - @BomRango 24/01/2015
+ * @author hudson schumaker HStudio - @BomRango 06/06/2015
  * @version 1.0.0
  * @since 1.0.0
  */
@@ -42,20 +43,16 @@ public class UnidadeBsImpl implements UnidadeBs{
 
     @Override
     public void cadastrar(Unidade cidade) {
-       mostrarMensagem(FacesMessage.SEVERITY_WARN, "Cadastro - Unidade", "Ação não suportada.");
+       HsMessage.mostrarMensagem(JOptionPane.WARNING_MESSAGE, "Cadastro - Unidade", "Ação não suportada.");
     }
 
     @Override
     public void atualizar(Unidade cidade) {
-        mostrarMensagem(FacesMessage.SEVERITY_WARN, "Atualizar - Unidade", "Ação não suportada.");
+        HsMessage.mostrarMensagem(JOptionPane.WARNING_MESSAGE, "Atualizar - Unidade", "Ação não suportada.");
     }
 
     @Override
     public void deletar(Unidade cidade) {
-        mostrarMensagem(FacesMessage.SEVERITY_WARN, "Atualizar - Unidade", "Ação não suportada.");
-    }
-    
-    private void mostrarMensagem(FacesMessage.Severity sev, String titulo, String mensagem) {
-        RequestContext.getCurrentInstance().showMessageInDialog(new FacesMessage(sev, titulo, mensagem));
+        HsMessage.mostrarMensagem(JOptionPane.WARNING_MESSAGE, "Atualizar - Unidade", "Ação não suportada.");
     }
 }

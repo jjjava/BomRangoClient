@@ -3,13 +3,13 @@ package br.com.schumaker.bs.impl;
 import br.com.schumaker.bs.FabricanteBs;
 import br.com.schumaker.dao.impl.FabricanteDaoImpl;
 import br.com.schumaker.model.Fabricante;
+import br.com.schumaker.util.HsMessage;
 import java.util.List;
-import javax.faces.application.FacesMessage;
-import org.primefaces.context.RequestContext;
+import javax.swing.JOptionPane;
 
 /**
  *
- * @author hudson schumaker HStudio - @BomRango 17/01/2015
+ * @author hudson schumaker HStudio - @BomRango 06/06/2015
  * @version 1.0.0
  * @since 1.0.0
  */
@@ -43,27 +43,24 @@ public class FabricanteBsImpl implements FabricanteBs {
     @Override
     public void cadastrar(Fabricante fabricante) {
        if(verificarNome(fabricante.getNome())){
-           mostrarMensagem(FacesMessage.SEVERITY_WARN, "Cadastro - Fabricante", "Fabricante já cadastrado.");
+           HsMessage.mostrarMensagem(JOptionPane.WARNING_MESSAGE, "Cadastro - Fabricante", "Fabricante já cadastrado.");
        }else{
            if(new FabricanteDaoImpl().cadastrar(fabricante)){
-               mostrarMensagem(FacesMessage.SEVERITY_INFO, "Cadastro - Fabricante", "Fabricante cadastrado com sucesso.");
+               HsMessage.mostrarMensagem(JOptionPane.INFORMATION_MESSAGE, "Cadastro - Fabricante", "Fabricante cadastrado com sucesso.");
            }else{
-               mostrarMensagem(FacesMessage.SEVERITY_ERROR, "Cadastro - Fabricante", "Erro ao cadastrar fabricante.");
+               HsMessage.mostrarMensagem(JOptionPane.ERROR_MESSAGE, "Cadastro - Fabricante", "Erro ao cadastrar fabricante.");
            }
        }
     }
 
     @Override
     public void atualizar(Fabricante fabricante) {
-        mostrarMensagem(FacesMessage.SEVERITY_WARN, "Fabricante", "Ação não suportada.");
+        HsMessage.mostrarMensagem(JOptionPane.WARNING_MESSAGE, "Fabricante", "Ação não suportada.");
     }
 
     @Override
     public void deletar(Fabricante fabricante) {
-        mostrarMensagem(FacesMessage.SEVERITY_WARN, "Fabricante", "Ação não suportada.");
+        HsMessage.mostrarMensagem(JOptionPane.WARNING_MESSAGE, "Fabricante", "Ação não suportada.");
     }
     
-    private void mostrarMensagem(FacesMessage.Severity sev, String titulo, String mensagem) {
-        RequestContext.getCurrentInstance().showMessageInDialog(new FacesMessage(sev, titulo, mensagem));
-    }
 }

@@ -4,7 +4,9 @@ import br.com.schumaker.bs.EstadoBs;
 import br.com.schumaker.dao.impl.EstadoDaoImpl;
 import br.com.schumaker.model.Cidade;
 import br.com.schumaker.model.Estado;
+import br.com.schumaker.util.HsMessage;
 import java.util.List;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -42,12 +44,12 @@ public class EstadoBsImpl implements EstadoBs {
     @Override
     public void cadastrar(Estado estado) {
         if (verificarNome(estado.getNome())) {
-            mostrarMensagem(FacesMessage.SEVERITY_WARN, "Cadastro - Estado", "Já existe um estado com esse nome.");
+            HsMessage.mostrarMensagem(JOptionPane.WARNING_MESSAGE, "Cadastro - Estado", "Já existe um estado com esse nome.");
         } else {
             if (new EstadoDaoImpl().cadastrar(estado)) {
-                mostrarMensagem(FacesMessage.SEVERITY_INFO, "Cadastro - Estado", "Estado cadastrado com sucesso.");
+                HsMessage.mostrarMensagem(JOptionPane.INFORMATION_MESSAGE, "Cadastro - Estado", "Estado cadastrado com sucesso.");
             } else {
-                mostrarMensagem(FacesMessage.SEVERITY_ERROR, "Cadastro - Estado", "Erro ao cadastrar o estado.");
+                HsMessage.mostrarMensagem(JOptionPane.ERROR_MESSAGE, "Cadastro - Estado", "Erro ao cadastrar o estado.");
             }
         }
     }
@@ -55,24 +57,21 @@ public class EstadoBsImpl implements EstadoBs {
     @Override
     public void atualizar(Estado estado) {
         if (new EstadoDaoImpl().verificarNome(estado.getNome())) {
-            mostrarMensagem(FacesMessage.SEVERITY_WARN, "Cadastro - Estado", "Já existe um estado com esse nome.");
+            HsMessage.mostrarMensagem(JOptionPane.WARNING_MESSAGE, "Cadastro - Estado", "Já existe um estado com esse nome.");
         } else if (new EstadoDaoImpl().verificarUf(estado.getUf())) {
-            mostrarMensagem(FacesMessage.SEVERITY_WARN, "Cadastro - Estado", "Já existe um estado com essa UF.");
+            HsMessage.mostrarMensagem(JOptionPane.WARNING_MESSAGE, "Cadastro - Estado", "Já existe um estado com essa UF.");
         } else {
             if (new EstadoDaoImpl().atualizar(estado)) {
-                mostrarMensagem(FacesMessage.SEVERITY_WARN, "Cadastro - Estado", "Estado atualizado com sucesso.");
+                HsMessage.mostrarMensagem(JOptionPane.WARNING_MESSAGE, "Cadastro - Estado", "Estado atualizado com sucesso.");
             } else {
-                mostrarMensagem(FacesMessage.SEVERITY_WARN, "Cadastro - Estado", "Erro ao atualizar estado.");
+                HsMessage.mostrarMensagem(JOptionPane.WARNING_MESSAGE, "Cadastro - Estado", "Erro ao atualizar estado.");
             }
         }
     }
 
     @Override
     public void deletar(Estado estado) {
-        mostrarMensagem(FacesMessage.SEVERITY_WARN, "Cadastro - Estado", "Ação não suportada.");
+        HsMessage.mostrarMensagem(JOptionPane.WARNING_MESSAGE, "Cadastro - Estado", "Ação não suportada.");
     }
 
-    private void mostrarMensagem(FacesMessage.Severity sev, String titulo, String mensagem) {
-        RequestContext.getCurrentInstance().showMessageInDialog(new FacesMessage(sev, titulo, mensagem));
-    }
 }

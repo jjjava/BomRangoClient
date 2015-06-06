@@ -3,13 +3,13 @@ package br.com.schumaker.bs.impl;
 import br.com.schumaker.bs.SetorBs;
 import br.com.schumaker.dao.impl.SetorDaoImpl;
 import br.com.schumaker.model.Setor;
+import br.com.schumaker.util.HsMessage;
 import java.util.List;
-import javax.faces.application.FacesMessage;
-import org.primefaces.context.RequestContext;
+import javax.swing.JOptionPane;
 
 /**
  *
- * @author hudson schumaker HStudio - @BomRango 19/01/2015
+ * @author hudson schumaker HStudio - @BomRango 06/06/2015
  * @version 1.0.0
  * @since 1.0.0
  */
@@ -43,27 +43,23 @@ public class SetorBsImpl implements SetorBs {
     @Override
     public void cadastrar(Setor setor) {
         if (verificarNome(setor.getNome())) {
-            mostrarMensagem(FacesMessage.SEVERITY_WARN, "Cadastro - Setor", "Já existe um setor com esse nome.");
+            HsMessage.mostrarMensagem(JOptionPane.WARNING_MESSAGE, "Cadastro - Setor", "Já existe um setor com esse nome.");
         } else {
             if (new SetorDaoImpl().cadastrar(setor)) {
-                mostrarMensagem(FacesMessage.SEVERITY_INFO, "Cadastro - Setor", "Setor cadastrado com sucesso.");
+                HsMessage.mostrarMensagem(JOptionPane.INFORMATION_MESSAGE, "Cadastro - Setor", "Setor cadastrado com sucesso.");
             } else {
-                mostrarMensagem(FacesMessage.SEVERITY_ERROR, "Cadastro - Setor", "Erro ao cadastrar o setor.");
+                HsMessage.mostrarMensagem(JOptionPane.ERROR_MESSAGE, "Cadastro - Setor", "Erro ao cadastrar o setor.");
             }
         }
     }
 
     @Override
     public void atualizar(Setor setor) {
-        mostrarMensagem(FacesMessage.SEVERITY_WARN, "Setor", "Não suportado ainda");
+        HsMessage.mostrarMensagem(JOptionPane.WARNING_MESSAGE, "Setor", "Não suportado ainda");
     }
 
     @Override
     public void deletar(Setor setor) {
-        mostrarMensagem(FacesMessage.SEVERITY_WARN, "Setor", "Não suportado ainda");
-    }
-
-    private void mostrarMensagem(FacesMessage.Severity sev, String titulo, String mensagem) {
-        RequestContext.getCurrentInstance().showMessageInDialog(new FacesMessage(sev, titulo, mensagem));
+        HsMessage.mostrarMensagem(JOptionPane.WARNING_MESSAGE, "Setor", "Não suportado ainda");
     }
 }

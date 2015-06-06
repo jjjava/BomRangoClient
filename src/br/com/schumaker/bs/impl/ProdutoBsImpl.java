@@ -7,12 +7,10 @@ import br.com.schumaker.model.Fabricante;
 import br.com.schumaker.model.Produto;
 import br.com.schumaker.model.Setor;
 import br.com.schumaker.model.Unidade;
+import br.com.schumaker.util.HsMessage;
 import java.io.IOException;
 import java.util.List;
-import javax.faces.application.FacesMessage;
-import javax.faces.context.FacesContext;
-import javax.servlet.http.HttpSession;
-import org.primefaces.context.RequestContext;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -91,24 +89,24 @@ public class ProdutoBsImpl implements ProdutoBs {
     public void cadastrar(Produto produto) {
         Fabricante fabricante = new FabricanteDaoImpl().obter(produto.getIdFabricante());
         if (verificarNome(produto.getNome()) && verificarFabricante(fabricante.getNome())) {
-            mostrarMensagem(FacesMessage.SEVERITY_WARN, "Cadastro - Produto", "Produto já existente.");
+            HsMessage.mostrarMensagem(JOptionPane.WARNING_MESSAGE, "Cadastro - Produto", "Produto já existente.");
         } else {
             if (new ProdutoDaoImpl().cadastrar(produto)) {
-                mostrarMensagem(FacesMessage.SEVERITY_INFO, "Cadastro - Produto", "Produto cadastrado com sucesso.");
+                HsMessage.mostrarMensagem(JOptionPane.INFORMATION_MESSAGE, "Cadastro - Produto", "Produto cadastrado com sucesso.");
             } else {
-                mostrarMensagem(FacesMessage.SEVERITY_ERROR, "Cadastro - Produto", "Erro ao cadastrar produto.");
+                HsMessage.mostrarMensagem(JOptionPane.ERROR_MESSAGE, "Cadastro - Produto", "Erro ao cadastrar produto.");
             }
         }
     }
 
     @Override
     public void atualizar(Produto produto) {
-        mostrarMensagem(FacesMessage.SEVERITY_WARN, "Produto", "Não suportado ainda");
+        HsMessage.mostrarMensagem(JOptionPane.WARNING_MESSAGE, "Produto", "Não suportado ainda");
     }
 
     @Override
     public void deletar(Produto produto) {
-        mostrarMensagem(FacesMessage.SEVERITY_WARN, "Produto", "Não suportado ainda");
+        HsMessage.mostrarMensagem(JOptionPane.WARNING_MESSAGE, "Produto", "Não suportado ainda");
     }
 
     public void primeiraEtapaCadastro(Produto p, Setor s, Fabricante f, Unidade u) {
@@ -143,7 +141,7 @@ public class ProdutoBsImpl implements ProdutoBs {
         return (Produto) session.getAttribute("CadProduto");
     }
 
-    private void mostrarMensagem(FacesMessage.Severity sev, String titulo, String mensagem) {
+    private void HsMessage.mostrarMensagem(FacesMessage.Severity sev, String titulo, String mensagem) {
         RequestContext.getCurrentInstance().showMessageInDialog(new FacesMessage(sev, titulo, mensagem));
     }
 }

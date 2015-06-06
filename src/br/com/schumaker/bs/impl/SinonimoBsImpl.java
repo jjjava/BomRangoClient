@@ -3,13 +3,14 @@ package br.com.schumaker.bs.impl;
 import br.com.schumaker.bs.SinonimoBs;
 import br.com.schumaker.dao.impl.SinonimoDaoImpl;
 import br.com.schumaker.model.Sinonimo;
+import br.com.schumaker.util.HsMessage;
 import java.util.List;
-import javax.faces.application.FacesMessage;
-import org.primefaces.context.RequestContext;
+import javax.swing.JOptionPane;
+
 
 /**
  *
- * @author hudson schumaker HStudio - @BomRango 21/01/2015
+ * @author hudson schumaker HStudio - @BomRango 06/06/2015
  * @version 1.0.0
  * @since 1.0.0
  */
@@ -42,20 +43,17 @@ public class SinonimoBsImpl implements SinonimoBs {
 
     @Override
     public void cadastrar(Sinonimo sin) {
-        mostrarMensagem(FacesMessage.SEVERITY_WARN, "Sinonimo", "Não suportado ainda");
+        HsMessage.mostrarMensagem(JOptionPane.WARNING_MESSAGE, "Sinonimo", "Não suportado ainda");
     }
 
     @Override
     public void atualizar(Sinonimo sin) {
-        mostrarMensagem(FacesMessage.SEVERITY_WARN, "Sinonimo", "Não suportado ainda");
+        HsMessage.mostrarMensagem(JOptionPane.WARNING_MESSAGE, "Sinonimo", "Não suportado ainda");
     }
 
     @Override
     public void deletar(Sinonimo sin) {
-       mostrarMensagem(FacesMessage.SEVERITY_WARN, "Sinonimo", "Não suportado ainda");
+       HsMessage.mostrarMensagem(JOptionPane.WARNING_MESSAGE, "Sinonimo", "Não suportado ainda");
     }
     
-    private void mostrarMensagem(FacesMessage.Severity sev, String titulo, String mensagem) {
-        RequestContext.getCurrentInstance().showMessageInDialog(new FacesMessage(sev, titulo, mensagem));
-    }
 }
