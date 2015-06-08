@@ -19,7 +19,7 @@ public class FabricanteBsImpl implements FabricanteBs {
     public Fabricante obter(Integer id) {
         return new FabricanteDaoImpl().obter(id);
     }
-    
+
     @Override
     public Fabricante obter(String nome) {
         return new FabricanteDaoImpl().obter(nome);
@@ -37,20 +37,29 @@ public class FabricanteBsImpl implements FabricanteBs {
 
     @Override
     public boolean verificarNome(String nome) {
-      return new FabricanteDaoImpl().verificarNome(nome);
+        return new FabricanteDaoImpl().verificarNome(nome);
+    }
+
+    public String[] getNomesToArray() {
+        List<Fabricante> lista = listar();
+        String nomes[] = new String[lista.size()];
+        for (int k = 0; k < lista.size(); k++) {
+            nomes[k] = lista.get(k).getNome();
+        }
+        return nomes;
     }
 
     @Override
     public void cadastrar(Fabricante fabricante) {
-       if(verificarNome(fabricante.getNome())){
-           HsMessage.mostrarMensagem(JOptionPane.WARNING_MESSAGE, "Cadastro - Fabricante", "Fabricante já cadastrado.");
-       }else{
-           if(new FabricanteDaoImpl().cadastrar(fabricante)){
-               HsMessage.mostrarMensagem(JOptionPane.INFORMATION_MESSAGE, "Cadastro - Fabricante", "Fabricante cadastrado com sucesso.");
-           }else{
-               HsMessage.mostrarMensagem(JOptionPane.ERROR_MESSAGE, "Cadastro - Fabricante", "Erro ao cadastrar fabricante.");
-           }
-       }
+        if (verificarNome(fabricante.getNome())) {
+            HsMessage.mostrarMensagem(JOptionPane.WARNING_MESSAGE, "Cadastro - Fabricante", "Fabricante já cadastrado.");
+        } else {
+            if (new FabricanteDaoImpl().cadastrar(fabricante)) {
+                HsMessage.mostrarMensagem(JOptionPane.INFORMATION_MESSAGE, "Cadastro - Fabricante", "Fabricante cadastrado com sucesso.");
+            } else {
+                HsMessage.mostrarMensagem(JOptionPane.ERROR_MESSAGE, "Cadastro - Fabricante", "Erro ao cadastrar fabricante.");
+            }
+        }
     }
 
     @Override
@@ -62,5 +71,4 @@ public class FabricanteBsImpl implements FabricanteBs {
     public void deletar(Fabricante fabricante) {
         HsMessage.mostrarMensagem(JOptionPane.WARNING_MESSAGE, "Fabricante", "Ação não suportada.");
     }
-    
 }

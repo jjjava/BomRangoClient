@@ -40,6 +40,15 @@ public class UnidadeBsImpl implements UnidadeBs{
     public boolean verificarNome(String nome) {
         return new UnidadeDaoImpl().verificarNome(nome);
     }
+    
+    public String [] getNomesToArray(){
+        List<Unidade> lista = listar();
+        String nomes[] = new String[lista.size()];
+        for(int k=0;k<lista.size();k++){
+            nomes[k] = lista.get(k).getNome();
+        }
+        return nomes;
+    }
 
     @Override
     public void cadastrar(Unidade cidade) {
