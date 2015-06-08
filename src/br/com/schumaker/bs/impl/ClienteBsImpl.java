@@ -2,12 +2,14 @@ package br.com.schumaker.bs.impl;
 
 import br.com.schumaker.bs.ClienteBs;
 import br.com.schumaker.dao.impl.ClienteDaoImpl;
+import br.com.schumaker.gfx.FrLogin;
+import br.com.schumaker.gfx.FrMain;
 import br.com.schumaker.model.Cliente;
+import br.com.schumaker.model.HsSession;
 import br.com.schumaker.util.HsMessage;
-import java.io.IOException;
+import java.awt.Cursor;
 import java.util.List;
 import javax.swing.JOptionPane;
-
 
 /**
  *
@@ -43,23 +45,20 @@ public class ClienteBsImpl implements ClienteBs {
     }
 
     @Override
-    public void validar(Cliente cliente) {
+    public void validar(Cliente cliente, FrLogin frLogin) {
+        frLogin.setCursor(new Cursor(Cursor.WAIT_CURSOR));
         ClienteDaoImpl clienteDaoImpl = new ClienteDaoImpl();
         //
         //criptografar aqui
         //
         if (clienteDaoImpl.validar(cliente.getEmail(), cliente.getSenha())) {//usar senha criptografada
-            try {
-                cliente = clienteDaoImpl.obter(cliente.getEmail());
-                FacesContext fc = FacesContext.getCurrentInstance();
-                HttpSession session = (HttpSession) fc.getExternalContext().getSession(false);
-                session.setAttribute("Cliente", cliente);
-                FacesContext.getCurrentInstance().getExternalContext().redirect("gerenciador/gerenciarmercado.xhtml");
-            } catch (IOException ex) {
-                System.out.println(ex);
-                LogBsImpl.getInstance().inserirLog(this.getClass().getSimpleName(), ex.getMessage());
-            }
+            HsSession.getInstance().setCliente(clienteDaoImpl.obter(cliente.getEmail()));
+            HsSession.getInstance().setMercado(new MercadoBsImpl().obter(HsSession.getInstance().getCliente().getIdMercado()));
+            
+            frLogin.dispose();
+            new FrMain().setVisible(true);
         } else {
+            frLogin.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
             HsMessage.mostrarMensagem(JOptionPane.WARNING_MESSAGE, "Login", "Email ou Senha incorretos.");
         }
     }
@@ -98,6 +97,5 @@ public class ClienteBsImpl implements ClienteBs {
 
     @Override
     public void invalidarSessao() {
-       
     }
 }

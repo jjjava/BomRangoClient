@@ -1,47 +1,49 @@
 package br.com.schumaker.gfx;
 
+import br.com.schumaker.model.HsSession;
 import javax.swing.JFrame;
 import javax.swing.tree.DefaultMutableTreeNode;
 
 /**
  *
- * @author hudsonschumaker
+ * @author hudson schumaker HStudio - @BomRango 06/06/2015
+ * @version 1.0.0
+ * @since 1.0.0
  */
 public class FrMain extends javax.swing.JFrame {
-    
+
     private DefaultMutableTreeNode root;
     private DefaultMutableTreeNode cadastro;
     private DefaultMutableTreeNode manutencao;
-    
-    private DefaultMutableTreeNode bebidas;
-    private DefaultMutableTreeNode cereais;
+
+    private DefaultMutableTreeNode produtos;
+    private DefaultMutableTreeNode func;
     private DefaultMutableTreeNode precos;
-    
+
     public FrMain() {
+        super("Bom Rango");
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         this.createTree();
         this.initComponents();
         this.setLocationRelativeTo(null);
     }
-    
+
     private void createTree() {
-        root = new DefaultMutableTreeNode("Bom Rango");
-        
+        root = new DefaultMutableTreeNode(HsSession.getInstance().getMercado().getNome());
+
         cadastro = new DefaultMutableTreeNode("Cadastro");
         root.add(cadastro);
-        
-        bebidas = new DefaultMutableTreeNode("Bebidas");
-        cadastro.add(bebidas);
-        cereais = new DefaultMutableTreeNode("Cereais");
-        cadastro.add(cereais);
-        
+
+        produtos = new DefaultMutableTreeNode("Produtos");
+        cadastro.add(produtos);
+
         manutencao = new DefaultMutableTreeNode("Manutenção");
         root.add(manutencao);
-        
+
         precos = new DefaultMutableTreeNode("Preços");
         manutencao.add(precos);
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -50,8 +52,9 @@ public class FrMain extends javax.swing.JFrame {
         jSplitPane1 = new javax.swing.JSplitPane();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jtMenu = new javax.swing.JTree(root);
+        jtMenuTree = new javax.swing.JTree(root);
         jPanel3 = new javax.swing.JPanel();
+        jDesktop = new javax.swing.JDesktopPane();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
@@ -60,7 +63,12 @@ public class FrMain extends javax.swing.JFrame {
 
         jSplitPane1.setDividerLocation(240);
 
-        jScrollPane1.setViewportView(jtMenu);
+        jtMenuTree.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jtMenuTreeMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(jtMenuTree);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -79,11 +87,11 @@ public class FrMain extends javax.swing.JFrame {
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 447, Short.MAX_VALUE)
+            .addComponent(jDesktop)
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 409, Short.MAX_VALUE)
+            .addComponent(jDesktop)
         );
 
         jSplitPane1.setRightComponent(jPanel3);
@@ -121,8 +129,25 @@ public class FrMain extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jtMenuTreeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtMenuTreeMouseClicked
+
+        if (evt.getClickCount() == 2) {
+            DefaultMutableTreeNode node = (DefaultMutableTreeNode) jtMenuTree.getLastSelectedPathComponent();
+            Object nodeInfo = node.getUserObject();
+            if (node.isLeaf()) {
+                 if (nodeInfo.equals("Produtos")) {
+                    IfCadProduto ifCadProd = new IfCadProduto();
+                    ifCadProd.setSize(jDesktop.getWidth(), jDesktop.getHeight() - 40);
+                    jDesktop.add(ifCadProd);
+                    ifCadProd.toFront();
+                }
+            }
+        }
+    }//GEN-LAST:event_jtMenuTreeMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JDesktopPane jDesktop;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
@@ -131,6 +156,6 @@ public class FrMain extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSplitPane jSplitPane1;
-    private javax.swing.JTree jtMenu;
+    private javax.swing.JTree jtMenuTree;
     // End of variables declaration//GEN-END:variables
 }

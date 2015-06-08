@@ -115,7 +115,7 @@ public class ClienteDaoImpl implements ClienteDao {
     public List<Cliente> like(String nome) {
         String sql = "select * from compras.cliente where cliente.nome like '%" + nome + "%' order by cliente.nome";
         Connection conn = HsConnection.getConnection();
-        List<Cliente> clientes = new ArrayList<Cliente>();
+        List<Cliente> clientes = new ArrayList<>();
         try {
             PreparedStatement pst = conn.prepareStatement(sql);
             ResultSet rs = pst.executeQuery();

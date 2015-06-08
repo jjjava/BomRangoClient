@@ -8,7 +8,7 @@ import javax.swing.JOptionPane;
  */
 public class HsMessage {
 
-    public static void mostrarMensagem(int type, String message, String title) {
+    public static void mostrarMensagem(int type, String title, String message) {
         JOptionPane.showMessageDialog(null, message, title, type);
     }
 }

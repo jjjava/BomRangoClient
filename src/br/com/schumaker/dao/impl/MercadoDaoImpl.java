@@ -15,7 +15,7 @@ import java.util.List;
 
 /**
  *
- * @author hudson schumaker HStudio - @BomRango 07/01/2015
+ * @author hudson schumaker HStudio - @BomRango 06/06/2015
  * @version 1.0.0
  * @since 1.0.0
  */
@@ -62,7 +62,7 @@ public class MercadoDaoImpl implements MercadoDao {
 
     @Override
     public List<Mercado> listar() {
-        List<Mercado> mercados = new ArrayList<Mercado>();
+        List<Mercado> mercados = new ArrayList<>();
         String sql = "select * from compras.mercado";
         Connection conn = HsConnection.getConnection();
         try {
@@ -104,7 +104,7 @@ public class MercadoDaoImpl implements MercadoDao {
 
     @Override
     public List<Mercado> like(String s) {
-        List<Mercado> mercados = new ArrayList<Mercado>();
+        List<Mercado> mercados = new ArrayList<>();
         String sql = "select * from compras.mercado where mercado.nome like '%" + s + "%'";
         Connection conn = HsConnection.getConnection();
         try {
@@ -146,7 +146,7 @@ public class MercadoDaoImpl implements MercadoDao {
 
     @Override
     public List<Mercado> listarPorDensidade(int idDensidade) {
-        List<Mercado> mercados = new ArrayList<Mercado>();
+        List<Mercado> mercados = new ArrayList<>();
         String sql = "select * from compras.mercado where mercado.iddensidade =" + idDensidade + " order by mercado.nome";
         Connection conn = HsConnection.getConnection();
         try {

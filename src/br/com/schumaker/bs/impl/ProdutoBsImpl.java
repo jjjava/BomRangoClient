@@ -14,7 +14,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author hudson schumaker HStudio - @BomRango 16/01/2015
+ * @author hudson schumaker HStudio - @BomRango 06/06/2015
  * @version 1.0.0
  * @since 1.0.0
  */
@@ -124,24 +124,12 @@ public class ProdutoBsImpl implements ProdutoBs {
     }
 
     private void setCadProdutoSessao(Produto produto) {
-        FacesContext fc = FacesContext.getCurrentInstance();
-        HttpSession session = (HttpSession) fc.getExternalContext().getSession(false);
-        session.setAttribute("CadProduto", produto);
-        try {
-            FacesContext.getCurrentInstance().getExternalContext().redirect("carregafotoproduto.xhtml");
-        } catch (IOException ex) {
-            System.out.println(ex);
-            LogBsImpl.getInstance().inserirLog(this.getClass().getSimpleName(), ex.getMessage());
-        }
+       
     }
 
     public Produto getCadProdutoSessao() {
-        FacesContext fc = FacesContext.getCurrentInstance();
-        HttpSession session = (HttpSession) fc.getExternalContext().getSession(false);
-        return (Produto) session.getAttribute("CadProduto");
+      return null; //voltar aqui
+      
     }
-
-    private void HsMessage.mostrarMensagem(FacesMessage.Severity sev, String titulo, String mensagem) {
-        RequestContext.getCurrentInstance().showMessageInDialog(new FacesMessage(sev, titulo, mensagem));
-    }
+   
 }
