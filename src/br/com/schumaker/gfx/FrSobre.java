@@ -66,7 +66,7 @@ public class FrSobre extends javax.swing.JFrame {
         bt_ok = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Hefesto 4.0");
+        setTitle("BomRango");
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("BomRango "  + versao));
 
@@ -123,9 +123,12 @@ public class FrSobre extends javax.swing.JFrame {
                     .addComponent(host_name)
                     .addComponent(host_ip)
                     .addComponent(memory_ram)
-                    .addComponent(processor_num)
-                    .addComponent(bt_ok, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(processor_num))
                 .addContainerGap(635, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(bt_ok, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -156,8 +159,9 @@ public class FrSobre extends javax.swing.JFrame {
                 .addComponent(memory_ram)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(processor_num)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
-                .addComponent(bt_ok))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
+                .addComponent(bt_ok)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

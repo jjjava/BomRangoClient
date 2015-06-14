@@ -4,6 +4,7 @@ import br.com.schumaker.bs.FrMainBs;
 import br.com.schumaker.gfx.FrAlterarSenha;
 import br.com.schumaker.gfx.FrLogin;
 import br.com.schumaker.gfx.FrMain;
+import br.com.schumaker.gfx.FrMensagem;
 import br.com.schumaker.gfx.FrSobre;
 import javax.swing.JOptionPane;
 
@@ -41,7 +42,7 @@ public class FrMainBsImpl implements FrMainBs {
 
     @Override
     public void showEnviarMensagem() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        new FrMensagem().setVisible(true);
     }
 
     @Override

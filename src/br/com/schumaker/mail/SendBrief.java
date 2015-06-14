@@ -12,7 +12,7 @@ import javax.mail.internet.MimeMessage;
 
 /**
  *
- * @author Hudson Schumaker 
+ * @author Hudson Schumaker
  */
 public class SendBrief {
 
@@ -28,6 +28,21 @@ public class SendBrief {
     }
 
     public Boolean sendMessage() {
+
+        if (getTo().contains(";")) {
+            String auxTo[] = getTo().split(";");
+            boolean res[] = new boolean[auxTo.length];
+            for (int k = 0; k < auxTo.length; k++) {
+                setTo(auxTo[k]);
+                res[k] = send();
+            }
+            return res[res.length-1];
+        } else {
+            return send();
+        }
+    }
+
+    private boolean send() {
         boolean res = false;
         try {
             Properties props = new Properties();
