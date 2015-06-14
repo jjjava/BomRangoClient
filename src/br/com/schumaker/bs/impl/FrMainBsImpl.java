@@ -1,9 +1,9 @@
 package br.com.schumaker.bs.impl;
 
 import br.com.schumaker.bs.FrMainBs;
+import br.com.schumaker.gfx.FrAlterarSenha;
 import br.com.schumaker.gfx.FrLogin;
 import br.com.schumaker.gfx.FrMain;
-import br.com.schumaker.model.HsSession;
 import javax.swing.JOptionPane;
 
 /**
@@ -51,7 +51,7 @@ public class FrMainBsImpl implements FrMainBs {
 
     @Override
     public void doLogoff(FrMain main) {
-        HsSession.getInstance().cleanSession();
+        new ClienteBsImpl().invalidarSessao();
         main.dispose();
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
@@ -71,7 +71,6 @@ public class FrMainBsImpl implements FrMainBs {
 
     @Override
     public void alterarSenha() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        new FrAlterarSenha().setVisible(true);
     }
-
 }

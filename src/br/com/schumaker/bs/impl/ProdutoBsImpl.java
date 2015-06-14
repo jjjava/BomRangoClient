@@ -8,7 +8,6 @@ import br.com.schumaker.model.Produto;
 import br.com.schumaker.model.Setor;
 import br.com.schumaker.model.Unidade;
 import br.com.schumaker.util.HsMessage;
-import java.io.IOException;
 import java.util.List;
 import javax.swing.JOptionPane;
 

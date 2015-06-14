@@ -141,6 +141,11 @@ public class FrMain extends javax.swing.JFrame {
         jMenu2.setText("Editar");
 
         jMenuItem4.setText("Alterar Senha");
+        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem4ActionPerformed(evt);
+            }
+        });
         jMenu2.add(jMenuItem4);
 
         jMenuBar1.add(jMenu2);
@@ -213,13 +218,19 @@ public class FrMain extends javax.swing.JFrame {
     }//GEN-LAST:event_jtMenuTreeMouseClicked
 
     private void jmLogoffActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmLogoffActionPerformed
-       FrMainBsImpl.getInstance().doLogoff(this);
+
+        FrMainBsImpl.getInstance().doLogoff(this);
     }//GEN-LAST:event_jmLogoffActionPerformed
 
     private void jmFecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmFecharActionPerformed
-     
+
         FrMainBsImpl.getInstance().fechar();
     }//GEN-LAST:event_jmFecharActionPerformed
+
+    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+
+        FrMainBsImpl.getInstance().alterarSenha();
+    }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     private DefaultMutableTreeNode root;
     private DefaultMutableTreeNode cadastro;

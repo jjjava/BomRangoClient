@@ -54,7 +54,7 @@ public class ClienteBsImpl implements ClienteBs {
         if (clienteDaoImpl.validar(cliente.getEmail(), cliente.getSenha())) {//usar senha criptografada
             HsSession.getInstance().setCliente(clienteDaoImpl.obter(cliente.getEmail()));
             HsSession.getInstance().setMercado(new MercadoBsImpl().obter(HsSession.getInstance().getCliente().getIdMercado()));
-            
+
             frLogin.dispose();
             new FrMain().setVisible(true);
         } else {
@@ -66,6 +66,21 @@ public class ClienteBsImpl implements ClienteBs {
     @Override
     public boolean verificarNome(String nome) {
         return new ClienteDaoImpl().verificarNome(nome);
+    }
+
+    @Override
+    public void alterarSenha(String senhaAtual, String senhaNova) {
+        Cliente cliente = HsSession.getInstance().getCliente();
+        if (cliente.getSenha().equals(senhaAtual)) {
+            cliente.setSenha(senhaNova);
+            if (new ClienteDaoImpl().atualizar(cliente)) {
+                HsMessage.mostrarMensagem(JOptionPane.INFORMATION_MESSAGE, "Atualizar - Cliente", "Senha alterada com sucesso.");
+            } else {
+                HsMessage.mostrarMensagem(JOptionPane.ERROR_MESSAGE, "Atualizar - Cliente", "Erro ao atualizar senha.");
+            }
+        } else {
+            HsMessage.mostrarMensagem(JOptionPane.ERROR_MESSAGE, "Atualizar - Cliente", "Senha atual errada.");
+        }
     }
 
     @Override
@@ -97,5 +112,6 @@ public class ClienteBsImpl implements ClienteBs {
 
     @Override
     public void invalidarSessao() {
+        HsSession.getInstance().cleanSession();
     }
 }

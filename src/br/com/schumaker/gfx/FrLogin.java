@@ -5,7 +5,9 @@ import br.com.schumaker.model.Cliente;
 
 /**
  *
- * @author hudsonschumaker
+ * @author hudson schumaker HStudio - @BomRango 07/06/2015
+ * @version 1.0.0
+ * @since 1.0.0
  */
 public class FrLogin extends javax.swing.JFrame {
 

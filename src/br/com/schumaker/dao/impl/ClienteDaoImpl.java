@@ -83,7 +83,7 @@ public class ClienteDaoImpl implements ClienteDao {
     public List<Cliente> listar() {
         String sql = "select * from compras.cliente order by cliente.nome";
         Connection conn = HsConnection.getConnection();
-        List<Cliente> clientes = new ArrayList<Cliente>();
+        List<Cliente> clientes = new ArrayList<>();
         try {
             PreparedStatement pst = conn.prepareStatement(sql);
             ResultSet rs = pst.executeQuery();

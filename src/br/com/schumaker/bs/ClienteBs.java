@@ -19,6 +19,7 @@ public interface ClienteBs {
     void validar(Cliente cliente, FrLogin login);
     void invalidarSessao();
     boolean verificarNome(String nome);
+    void alterarSenha(String senhaAtual, String senhaNova);
     void cadastrar(Cliente cliente);
     void atualizar(Cliente cliente);
     void deletar(Cliente cliente);
