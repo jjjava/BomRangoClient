@@ -13,7 +13,6 @@ public class Run {
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
-              //  new FrMain().setVisible(true);
               new FrLogin().setVisible(true);
             }
         });

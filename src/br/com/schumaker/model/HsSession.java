@@ -7,15 +7,22 @@ package br.com.schumaker.model;
  * @since 1.0.0
  */
 public class HsSession {
+
     private static final HsSession instance = new HsSession();
     private Cliente cliente;
     private Mercado mercado;
-    
-    private HsSession(){
+
+    private HsSession() {
     }
-    
-    public static HsSession getInstance(){
+
+    public static HsSession getInstance() {
         return instance;
+    }
+
+    public boolean cleanSession() {
+        cliente = null;
+        mercado = null;
+        return (cliente == null && mercado == null);
     }
 
     public Cliente getCliente() {
