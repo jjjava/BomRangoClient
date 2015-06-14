@@ -2,6 +2,7 @@ package br.com.schumaker.bs.impl;
 
 import br.com.schumaker.bs.ClienteBs;
 import br.com.schumaker.dao.impl.ClienteDaoImpl;
+import br.com.schumaker.gfx.FrAlterarSenha;
 import br.com.schumaker.gfx.FrLogin;
 import br.com.schumaker.gfx.FrMain;
 import br.com.schumaker.model.Cliente;
@@ -69,12 +70,13 @@ public class ClienteBsImpl implements ClienteBs {
     }
 
     @Override
-    public void alterarSenha(String senhaAtual, String senhaNova) {
+    public void alterarSenha(FrAlterarSenha fr, String senhaAtual, String senhaNova) {
         Cliente cliente = HsSession.getInstance().getCliente();
         if (cliente.getSenha().equals(senhaAtual)) {
             cliente.setSenha(senhaNova);
             if (new ClienteDaoImpl().atualizar(cliente)) {
                 HsMessage.mostrarMensagem(JOptionPane.INFORMATION_MESSAGE, "Atualizar - Cliente", "Senha alterada com sucesso.");
+                fr.dispose();//fecha JFrame alterar senha
             } else {
                 HsMessage.mostrarMensagem(JOptionPane.ERROR_MESSAGE, "Atualizar - Cliente", "Erro ao atualizar senha.");
             }

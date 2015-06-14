@@ -108,11 +108,11 @@ public class FrAlterarSenha extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAlterarActionPerformed
-        new ClienteBsImpl().alterarSenha(jtSenhaAtual.getText(), jtSenhaNova.getText());
+        new ClienteBsImpl().alterarSenha(this, jtSenhaAtual.getText(), jtSenhaNova.getText());
     }//GEN-LAST:event_btAlterarActionPerformed
 
     private void btCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCancelarActionPerformed
-       this.dispose();
+        this.dispose();
     }//GEN-LAST:event_btCancelarActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

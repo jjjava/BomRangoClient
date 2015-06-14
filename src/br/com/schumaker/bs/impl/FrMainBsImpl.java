@@ -4,6 +4,7 @@ import br.com.schumaker.bs.FrMainBs;
 import br.com.schumaker.gfx.FrAlterarSenha;
 import br.com.schumaker.gfx.FrLogin;
 import br.com.schumaker.gfx.FrMain;
+import br.com.schumaker.gfx.FrSobre;
 import javax.swing.JOptionPane;
 
 /**
@@ -17,7 +18,6 @@ public class FrMainBsImpl implements FrMainBs {
     private static final FrMainBsImpl instance = new FrMainBsImpl();
 
     private FrMainBsImpl() {
-
     }
 
     public static FrMainBsImpl getInstance() {
@@ -46,7 +46,7 @@ public class FrMainBsImpl implements FrMainBs {
 
     @Override
     public void showSobre() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        new FrSobre().setVisible(true);
     }
 
     @Override

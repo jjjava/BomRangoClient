@@ -1,5 +1,6 @@
 package br.com.schumaker.bs;
 
+import br.com.schumaker.gfx.FrAlterarSenha;
 import br.com.schumaker.gfx.FrLogin;
 import br.com.schumaker.model.Cliente;
 import java.util.List;
@@ -19,7 +20,7 @@ public interface ClienteBs {
     void validar(Cliente cliente, FrLogin login);
     void invalidarSessao();
     boolean verificarNome(String nome);
-    void alterarSenha(String senhaAtual, String senhaNova);
+    void alterarSenha(FrAlterarSenha fr, String senhaAtual, String senhaNova);
     void cadastrar(Cliente cliente);
     void atualizar(Cliente cliente);
     void deletar(Cliente cliente);

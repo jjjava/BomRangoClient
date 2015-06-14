@@ -232,11 +232,11 @@ public class ClienteDaoImpl implements ClienteDao {
         PreparedStatement pst = null;
         try {
             pst = conn.prepareStatement(sql);
-            pst.setString(2, cliente.getNome());
+            pst.setString(1, cliente.getNome());
             pst.setString(2, cliente.getEmail());
-            pst.setString(2, cliente.getSenha());
+            pst.setString(3, cliente.getSenha());
             //where
-            pst.setInt(3, cliente.getId());
+            pst.setInt(4, cliente.getId());
             pst.executeUpdate();
             atualizado = true;
         } catch (SQLException ex) {

@@ -26,7 +26,6 @@ public class FrMain extends javax.swing.JFrame {
 
         cadastro = new DefaultMutableTreeNode("Cadastro");//menu
         root.add(cadastro);
-
         produtos = new DefaultMutableTreeNode("Produtos");
         cadastro.add(produtos);
         fabricantes = new DefaultMutableTreeNode("Fabricantes");
@@ -57,18 +56,18 @@ public class FrMain extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         jDesktop = new javax.swing.JDesktopPane();
         jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
+        jmArquivo = new javax.swing.JMenu();
         jmLogoff = new javax.swing.JMenuItem();
         jmFechar = new javax.swing.JMenuItem();
-        jMenu2 = new javax.swing.JMenu();
-        jMenuItem4 = new javax.swing.JMenuItem();
-        jMenu3 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem5 = new javax.swing.JMenuItem();
-        jMenu4 = new javax.swing.JMenu();
-        jMenuItem6 = new javax.swing.JMenuItem();
-        jMenuItem8 = new javax.swing.JMenuItem();
-        jMenuItem7 = new javax.swing.JMenuItem();
+        jmEditar = new javax.swing.JMenu();
+        jmAlterarSenha = new javax.swing.JMenuItem();
+        jmExibir = new javax.swing.JMenu();
+        jmPerfilUsuario = new javax.swing.JMenuItem();
+        jmMostrarPerfilMercado = new javax.swing.JMenuItem();
+        jmAjuda = new javax.swing.JMenu();
+        jmTopicosDeAjuda = new javax.swing.JMenuItem();
+        jmEnviarMensagem = new javax.swing.JMenuItem();
+        jmSobre = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -111,14 +110,16 @@ public class FrMain extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jSplitPane1)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(jSplitPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 715, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jSplitPane1)
         );
 
-        jMenu1.setText("Arquivo");
+        jmArquivo.setText("Arquivo");
 
         jmLogoff.setText("Logoff");
         jmLogoff.addActionListener(new java.awt.event.ActionListener() {
@@ -126,7 +127,7 @@ public class FrMain extends javax.swing.JFrame {
                 jmLogoffActionPerformed(evt);
             }
         });
-        jMenu1.add(jmLogoff);
+        jmArquivo.add(jmLogoff);
 
         jmFechar.setText("Fechar");
         jmFechar.addActionListener(new java.awt.event.ActionListener() {
@@ -134,44 +135,69 @@ public class FrMain extends javax.swing.JFrame {
                 jmFecharActionPerformed(evt);
             }
         });
-        jMenu1.add(jmFechar);
+        jmArquivo.add(jmFechar);
 
-        jMenuBar1.add(jMenu1);
+        jMenuBar1.add(jmArquivo);
 
-        jMenu2.setText("Editar");
+        jmEditar.setText("Editar");
 
-        jMenuItem4.setText("Alterar Senha");
-        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+        jmAlterarSenha.setText("Alterar Senha");
+        jmAlterarSenha.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem4ActionPerformed(evt);
+                jmAlterarSenhaActionPerformed(evt);
             }
         });
-        jMenu2.add(jMenuItem4);
+        jmEditar.add(jmAlterarSenha);
 
-        jMenuBar1.add(jMenu2);
+        jMenuBar1.add(jmEditar);
 
-        jMenu3.setText("Exibir");
+        jmExibir.setText("Exibir");
 
-        jMenuItem1.setText("Perfil Usuário");
-        jMenu3.add(jMenuItem1);
+        jmPerfilUsuario.setText("Perfil Usuário");
+        jmPerfilUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmPerfilUsuarioActionPerformed(evt);
+            }
+        });
+        jmExibir.add(jmPerfilUsuario);
 
-        jMenuItem5.setText("Perfil Mercado");
-        jMenu3.add(jMenuItem5);
+        jmMostrarPerfilMercado.setText("Perfil Mercado");
+        jmMostrarPerfilMercado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmMostrarPerfilMercadoActionPerformed(evt);
+            }
+        });
+        jmExibir.add(jmMostrarPerfilMercado);
 
-        jMenuBar1.add(jMenu3);
+        jMenuBar1.add(jmExibir);
 
-        jMenu4.setText("Ajuda");
+        jmAjuda.setText("Ajuda");
 
-        jMenuItem6.setText("Tópicos de Ajuda");
-        jMenu4.add(jMenuItem6);
+        jmTopicosDeAjuda.setText("Tópicos de Ajuda");
+        jmTopicosDeAjuda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmTopicosDeAjudaActionPerformed(evt);
+            }
+        });
+        jmAjuda.add(jmTopicosDeAjuda);
 
-        jMenuItem8.setText("Enviar Mensagem");
-        jMenu4.add(jMenuItem8);
+        jmEnviarMensagem.setText("Enviar Mensagem");
+        jmEnviarMensagem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmEnviarMensagemActionPerformed(evt);
+            }
+        });
+        jmAjuda.add(jmEnviarMensagem);
 
-        jMenuItem7.setText("Sobre");
-        jMenu4.add(jMenuItem7);
+        jmSobre.setText("Sobre");
+        jmSobre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmSobreActionPerformed(evt);
+            }
+        });
+        jmAjuda.add(jmSobre);
 
-        jMenuBar1.add(jMenu4);
+        jMenuBar1.add(jmAjuda);
 
         setJMenuBar(jMenuBar1);
 
@@ -218,19 +244,36 @@ public class FrMain extends javax.swing.JFrame {
     }//GEN-LAST:event_jtMenuTreeMouseClicked
 
     private void jmLogoffActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmLogoffActionPerformed
-
         FrMainBsImpl.getInstance().doLogoff(this);
     }//GEN-LAST:event_jmLogoffActionPerformed
 
     private void jmFecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmFecharActionPerformed
-
         FrMainBsImpl.getInstance().fechar();
     }//GEN-LAST:event_jmFecharActionPerformed
 
-    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
-
+    private void jmAlterarSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmAlterarSenhaActionPerformed
         FrMainBsImpl.getInstance().alterarSenha();
-    }//GEN-LAST:event_jMenuItem4ActionPerformed
+    }//GEN-LAST:event_jmAlterarSenhaActionPerformed
+
+    private void jmPerfilUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmPerfilUsuarioActionPerformed
+        FrMainBsImpl.getInstance().showPerfilUsuario();
+    }//GEN-LAST:event_jmPerfilUsuarioActionPerformed
+
+    private void jmMostrarPerfilMercadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmMostrarPerfilMercadoActionPerformed
+        FrMainBsImpl.getInstance().showPerfilMercado();
+    }//GEN-LAST:event_jmMostrarPerfilMercadoActionPerformed
+
+    private void jmTopicosDeAjudaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmTopicosDeAjudaActionPerformed
+        FrMainBsImpl.getInstance().showTopicosAjuda();
+    }//GEN-LAST:event_jmTopicosDeAjudaActionPerformed
+
+    private void jmEnviarMensagemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmEnviarMensagemActionPerformed
+        FrMainBsImpl.getInstance().showEnviarMensagem();
+    }//GEN-LAST:event_jmEnviarMensagemActionPerformed
+
+    private void jmSobreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmSobreActionPerformed
+        FrMainBsImpl.getInstance().showSobre();
+    }//GEN-LAST:event_jmSobreActionPerformed
 
     private DefaultMutableTreeNode root;
     private DefaultMutableTreeNode cadastro;
@@ -245,24 +288,24 @@ public class FrMain extends javax.swing.JFrame {
     private DefaultMutableTreeNode precos;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane jDesktop;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenu jMenu3;
-    private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem4;
-    private javax.swing.JMenuItem jMenuItem5;
-    private javax.swing.JMenuItem jMenuItem6;
-    private javax.swing.JMenuItem jMenuItem7;
-    private javax.swing.JMenuItem jMenuItem8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSplitPane jSplitPane1;
+    private javax.swing.JMenu jmAjuda;
+    private javax.swing.JMenuItem jmAlterarSenha;
+    private javax.swing.JMenu jmArquivo;
+    private javax.swing.JMenu jmEditar;
+    private javax.swing.JMenuItem jmEnviarMensagem;
+    private javax.swing.JMenu jmExibir;
     private javax.swing.JMenuItem jmFechar;
     private javax.swing.JMenuItem jmLogoff;
+    private javax.swing.JMenuItem jmMostrarPerfilMercado;
+    private javax.swing.JMenuItem jmPerfilUsuario;
+    private javax.swing.JMenuItem jmSobre;
+    private javax.swing.JMenuItem jmTopicosDeAjuda;
     private javax.swing.JTree jtMenuTree;
     // End of variables declaration//GEN-END:variables
 }
