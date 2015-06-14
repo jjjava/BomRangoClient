@@ -12,7 +12,9 @@ import javax.mail.internet.MimeMessage;
 
 /**
  *
- * @author Hudson Schumaker
+ * @author hudson schumaker HStudio - @BomRango 14/06/2015
+ * @version 1.0.0
+ * @since 1.0.0
  */
 public class SendBrief {
 
@@ -28,7 +30,6 @@ public class SendBrief {
     }
 
     public Boolean sendMessage() {
-
         if (getTo().contains(";")) {
             String auxTo[] = getTo().split(";");
             boolean res[] = new boolean[auxTo.length];
@@ -36,7 +37,7 @@ public class SendBrief {
                 setTo(auxTo[k]);
                 res[k] = send();
             }
-            return res[res.length-1];
+            return res[0];
         } else {
             return send();
         }

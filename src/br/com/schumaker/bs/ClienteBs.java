@@ -21,6 +21,7 @@ public interface ClienteBs {
     void invalidarSessao();
     boolean verificarNome(String nome);
     void alterarSenha(FrAlterarSenha fr, String senhaAtual, String senhaNova);
+    void esqueceuSenha(String email);
     void cadastrar(Cliente cliente);
     void atualizar(Cliente cliente);
     void deletar(Cliente cliente);

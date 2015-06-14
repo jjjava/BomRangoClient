@@ -5,6 +5,7 @@ import br.com.schumaker.dao.impl.ClienteDaoImpl;
 import br.com.schumaker.gfx.FrAlterarSenha;
 import br.com.schumaker.gfx.FrLogin;
 import br.com.schumaker.gfx.FrMain;
+import br.com.schumaker.mail.SendBrief;
 import br.com.schumaker.model.Cliente;
 import br.com.schumaker.model.HsSession;
 import br.com.schumaker.util.HsMessage;
@@ -115,5 +116,26 @@ public class ClienteBsImpl implements ClienteBs {
     @Override
     public void invalidarSessao() {
         HsSession.getInstance().cleanSession();
+    }
+
+    @Override
+    public void esqueceuSenha(String email) {
+        if (verificarEmail(email)) {
+            Cliente cliente = obter(email);
+            SendBrief send = new SendBrief();
+            send.setTo(email);
+            send.setSubject("Esqueci minha senha @BOMRAGO");
+            send.setMessage("Olá, "+cliente.getNome()+"\n"
+            +"Sua senha de acesso é\n:"+cliente.getSenha()+"\n\n\n"
+            +"Equipe BomRango");
+
+            if (send.sendMessage()) {
+                HsMessage.mostrarMensagem(JOptionPane.INFORMATION_MESSAGE, "Enviar Mensagem", "Mensagem enviada com sucesso.");
+            } else {
+                HsMessage.mostrarMensagem(JOptionPane.ERROR_MESSAGE, "Enviar Mensagem", "Erro ao enviar mensagem.");
+            }
+        } else {
+            HsMessage.mostrarMensagem(JOptionPane.WARNING_MESSAGE, "Enviar Mensagem", "Email não cadastrado.");
+        }
     }
 }

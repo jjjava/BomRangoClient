@@ -17,6 +17,11 @@ public class HsConnection {
         Connection conn = null;
         try {
             Driver drv = (Driver) Class.forName("com.mysql.jdbc.Driver").newInstance();
+
+            //t
+            
+            
+            
             
         } catch(SQLException | ClassNotFoundException | InstantiationException | IllegalAccessException ex){
             System.err.println(ex);
