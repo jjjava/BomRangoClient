@@ -38,18 +38,24 @@ public class FrSplash extends JFrame implements Runnable {
     public void run() {
         HsDriverChecker hsDriverChecker = new HsDriverChecker();
         jProgressBar.setValue(20);
+        this.jProgressBar.setString("Verificando MySQL Drivers...");
         if (hsDriverChecker.testMySqlDriver()) {
             jProgressBar.setValue(40);
+            this.jProgressBar.setString("Verificando Email Drivers...");
             hsDriverChecker.testMailDriver();
             jProgressBar.setValue(60);
+            this.jProgressBar.setString("Verificando Core...");
             new ServerBsImpl().getStatus();
+            this.jProgressBar.setString("Verificando Conectividade...");
             jProgressBar.setValue(80);
+            this.jProgressBar.setString("Carregando Interface Gráfica...");
             FrLogin frLogin = new FrLogin();
             jProgressBar.setValue(100);
+            this.jProgressBar.setString("Pronto...");
             frLogin.setVisible(true);
             this.dispose();
         } else {
-            HsMessage.mostrarMensagem(JOptionPane.ERROR_MESSAGE, "BOM RANGO", "Impossível acessar servidor");
+            HsMessage.mostrarMensagem(JOptionPane.ERROR_MESSAGE, "BOMRANGO", "Impossível acessar servidor");
         }
     }
 
@@ -62,8 +68,10 @@ public class FrSplash extends JFrame implements Runnable {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setFont(new java.awt.Font("Georgia", 3, 36)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("HanziPen SC", 3, 36)); // NOI18N
         jLabel1.setText("Bom Rango");
+
+        jProgressBar.setStringPainted(true);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -74,7 +82,7 @@ public class FrSplash extends JFrame implements Runnable {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
-                        .addGap(0, 169, Short.MAX_VALUE))
+                        .addGap(0, 232, Short.MAX_VALUE))
                     .addComponent(jProgressBar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -83,7 +91,7 @@ public class FrSplash extends JFrame implements Runnable {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 168, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 157, Short.MAX_VALUE)
                 .addComponent(jProgressBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );

@@ -28,7 +28,7 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
                       <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="0" pref="169" max="32767" attributes="0"/>
+                      <EmptySpace min="0" pref="232" max="32767" attributes="0"/>
                   </Group>
                   <Component id="jProgressBar" max="32767" attributes="0"/>
               </Group>
@@ -41,7 +41,7 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="168" max="32767" attributes="0"/>
+              <EmptySpace pref="157" max="32767" attributes="0"/>
               <Component id="jProgressBar" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -52,12 +52,15 @@
     <Component class="javax.swing.JLabel" name="jLabel1">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Georgia" size="36" style="3"/>
+          <Font name="HanziPen SC" size="36" style="3"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Bom Rango"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JProgressBar" name="jProgressBar">
+      <Properties>
+        <Property name="stringPainted" type="boolean" value="true"/>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>
