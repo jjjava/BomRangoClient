@@ -126,7 +126,7 @@ public class ClienteBsImpl implements ClienteBs {
             send.setTo(email);
             send.setSubject("Esqueci minha senha @BOMRAGO");
             send.setMessage("Olá, "+cliente.getNome()+"\n"
-            +"Sua senha de acesso é\n:"+cliente.getSenha()+"\n\n\n"
+            +"Sua senha de acesso é:\n"+cliente.getSenha()+"\n\n\n"
             +"Equipe BomRango");
 
             if (send.sendMessage()) {

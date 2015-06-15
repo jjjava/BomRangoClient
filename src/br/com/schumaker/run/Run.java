@@ -1,11 +1,10 @@
 package br.com.schumaker.run;
 
-import br.com.schumaker.gfx.FrLogin;
-import br.com.schumaker.gfx.FrMain;
-
 /**
  *
- * @author hudsonschumaker
+ * @author hudson schumaker HStudio - @BomRango 05/06/2015
+ * @version 1.0.0
+ * @since 1.0.0
  */
 public class Run {
 
@@ -13,7 +12,7 @@ public class Run {
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
-              new FrLogin().setVisible(true);
+              new FrSplash().start();
             }
         });
     }

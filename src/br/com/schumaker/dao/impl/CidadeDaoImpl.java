@@ -36,11 +36,13 @@ public class CidadeDaoImpl implements CidadeDao {
                 cidade.setNome(rs.getString("nome"));
             }
         } catch (SQLException ex) {
+            System.err.println(ex);
             LogBsImpl.getInstance().inserirLog(this.getClass().getSimpleName(), ex.getMessage());
         } finally {
             try {
                 conn.close();
             } catch (SQLException ex) {
+                System.err.println(ex);
                 LogBsImpl.getInstance().inserirLog(this.getClass().getSimpleName(), ex.getMessage());
             }
         }
