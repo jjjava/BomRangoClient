@@ -19,6 +19,21 @@ public class Fabricante {
         this.id = id;
     }
 
+    public Fabricante(String nome) {
+        this.nome = nome;
+    }
+
+    public Fabricante(String nome, String site) {
+        this.nome = nome;
+        this.site = site;
+    }
+
+    public Fabricante(Integer id, String nome, String site) {
+        this.id = id;
+        this.nome = nome;
+        this.site = site;
+    }
+
     public Integer getId() {
         return id;
     }

@@ -3,12 +3,16 @@ package br.com.schumaker.bs.impl;
 import br.com.schumaker.bs.ProdutoBs;
 import br.com.schumaker.dao.impl.FabricanteDaoImpl;
 import br.com.schumaker.dao.impl.ProdutoDaoImpl;
+import br.com.schumaker.gfx.FrMain;
+import br.com.schumaker.io.HsFile;
 import br.com.schumaker.model.Fabricante;
 import br.com.schumaker.model.Produto;
 import br.com.schumaker.model.Setor;
 import br.com.schumaker.model.Unidade;
+import br.com.schumaker.util.FileFilterReadPool;
 import br.com.schumaker.util.HsMessage;
 import java.util.List;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
 /**
@@ -18,6 +22,17 @@ import javax.swing.JOptionPane;
  * @since 1.0.0
  */
 public class ProdutoBsImpl implements ProdutoBs {
+
+    private static final ProdutoBsImpl instance = new ProdutoBsImpl();
+    private Produto produto;
+
+    private ProdutoBsImpl() {
+        produto = new Produto();
+    }
+
+    public static ProdutoBsImpl getInstance() {
+        return instance;
+    }
 
     @Override
     public Produto obter(Integer id) {
@@ -123,12 +138,26 @@ public class ProdutoBsImpl implements ProdutoBs {
     }
 
     private void setCadProdutoSessao(Produto produto) {
-       
+
     }
 
     public Produto getCadProdutoSessao() {
-      return null; //voltar aqui
-      
+        return null; //voltar aqui
+
     }
-   
+
+    public void carregarImagem() {
+        JFileChooser chooser = new JFileChooser(System.getProperty("user.home"));
+        for (int k = 0; k < FileFilterReadPool.getInstance().getInitialSize(); k++) {
+            chooser.addChoosableFileFilter(FileFilterReadPool.getInstance().aquire());
+        }
+        chooser.setAcceptAllFileFilterUsed(false);//support all files
+        chooser.setDialogTitle("Abrir arquivo");
+        chooser.setApproveButtonText("Abrir");
+        int sf = chooser.showOpenDialog(null);
+        if (sf == JFileChooser.APPROVE_OPTION) {
+            produto.setImagem(chooser.getSelectedFile().getAbsolutePath());
+            System.out.println(produto.getImagem());
+        }
+    }
 }

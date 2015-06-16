@@ -39,9 +39,13 @@ public class FrMain extends javax.swing.JFrame {
 
         manutencao = new DefaultMutableTreeNode("Manutenção");//menu
         root.add(manutencao);
-
         precos = new DefaultMutableTreeNode("Preços");
         manutencao.add(precos);
+        
+        consultas = new DefaultMutableTreeNode("Consulta");//menu
+        root.add(consultas);
+        
+        
     }
 
     @SuppressWarnings("unchecked")
@@ -228,6 +232,13 @@ public class FrMain extends javax.swing.JFrame {
                     ifCadProd.toFront();
                     return;
                 }
+                if (nodeInfo.equals("Fabricantes")) {
+                    IfCadFabricante ifCadFabricante = new IfCadFabricante();
+                    ifCadFabricante.setSize(jDesktop.getWidth(), jDesktop.getHeight() - 40);
+                    jDesktop.add(ifCadFabricante);
+                    ifCadFabricante.toFront();
+                    return;
+                }
                 if (nodeInfo.equals("Setores")) {
 
                     return;
@@ -237,7 +248,7 @@ public class FrMain extends javax.swing.JFrame {
                     return;
                 }
                 if (nodeInfo.equals("Usuários")) {
-
+                    return;
                 }
             }
         }
@@ -278,6 +289,7 @@ public class FrMain extends javax.swing.JFrame {
     private DefaultMutableTreeNode root;
     private DefaultMutableTreeNode cadastro;
     private DefaultMutableTreeNode manutencao;
+    private DefaultMutableTreeNode consultas;
 
     private DefaultMutableTreeNode produtos;
     private DefaultMutableTreeNode fabricantes;
