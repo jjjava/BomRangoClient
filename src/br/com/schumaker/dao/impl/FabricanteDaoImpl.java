@@ -165,13 +165,21 @@ public class FabricanteDaoImpl implements FabricanteDao {
         Connection conn = HsConnection.getConnection();
         PreparedStatement pst = null;
         try {
+            conn.setAutoCommit(false);
             pst = conn.prepareStatement(sql);
             pst.setString(1, fabricante.getNome());
             pst.setString(2, fabricante.getSite());
             pst.execute();
+            conn.commit();
             cadastrado = true;
         } catch (SQLException ex) {
             cadastrado = false;
+            try {
+                conn.rollback();
+            } catch (SQLException ex2) {
+                System.err.println(ex);
+                LogBsImpl.getInstance().inserirLog(this.getClass().getSimpleName(), ex2.getMessage());
+            }
             System.err.println(ex);
             LogBsImpl.getInstance().inserirLog(this.getClass().getSimpleName(), ex.getMessage());
         } finally {
@@ -194,15 +202,23 @@ public class FabricanteDaoImpl implements FabricanteDao {
         Connection conn = HsConnection.getConnection();
         PreparedStatement pst = null;
         try {
+            conn.setAutoCommit(false);
             pst = conn.prepareStatement(sql);
             pst.setString(1, fabricante.getNome());
             pst.setString(2, fabricante.getSite());
             //where
             pst.setInt(3, fabricante.getId());
             pst.executeUpdate();
+            conn.commit();
             atualizado = true;
         } catch (SQLException ex) {
             atualizado = false;
+            try {
+                conn.rollback();
+            } catch (SQLException ex2) {
+                System.err.println(ex);
+                LogBsImpl.getInstance().inserirLog(this.getClass().getSimpleName(), ex2.getMessage());
+            }
             System.err.println(ex);
             LogBsImpl.getInstance().inserirLog(this.getClass().getSimpleName(), ex.getMessage());
         } finally {

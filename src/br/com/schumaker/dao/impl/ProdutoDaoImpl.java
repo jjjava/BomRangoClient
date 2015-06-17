@@ -9,12 +9,16 @@ import br.com.schumaker.model.Mercado;
 import br.com.schumaker.model.Produto;
 import br.com.schumaker.model.Unidade;
 import br.com.schumaker.util.HsCommons;
+import java.io.File;
+import java.io.FileInputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -404,7 +408,10 @@ public class ProdutoDaoImpl implements ProdutoDao {
                 + " values (?,?,?,?,?,?,?,?,?,?)";
         Connection conn = HsConnection.getConnection();
         PreparedStatement pst = null;
+        FileInputStream fis = null;
         try {
+            conn.setAutoCommit(false);
+            File file = new File(produto.getImagem());
             pst = conn.prepareStatement(sql);
             pst.setString(1, produto.getNome());
             pst.setString(2, produto.getDescricao());
@@ -414,13 +421,20 @@ public class ProdutoDaoImpl implements ProdutoDao {
             pst.setInt(6, produto.getIdFabricante());
             pst.setInt(7, produto.getIdSetor());
             pst.setString(8, produto.getUnidade());
-            pst.setString(9, produto.getImagem());
+            pst.setBinaryStream(9, fis, (int) file.length());
             pst.setInt(10, produto.getAtivo());
 
             pst.execute();
+            conn.commit();
             cadastrado = true;
         } catch (SQLException ex) {
             cadastrado = false;
+            try {
+                conn.rollback();
+            } catch (SQLException ex2) {
+                System.err.println(ex);
+                LogBsImpl.getInstance().inserirLog(this.getClass().getSimpleName(), ex2.getMessage());
+            }
             System.err.println(ex);
             LogBsImpl.getInstance().inserirLog(this.getClass().getSimpleName(), ex.getMessage());
         } finally {

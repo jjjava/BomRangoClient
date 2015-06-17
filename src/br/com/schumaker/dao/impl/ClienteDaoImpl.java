@@ -10,6 +10,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -200,15 +202,23 @@ public class ClienteDaoImpl implements ClienteDao {
         Connection conn = HsConnection.getConnection();
         PreparedStatement pst = null;
         try {
+            conn.setAutoCommit(false);
             pst = conn.prepareStatement(sql);
             pst.setInt(1, cliente.getIdMercado());
             pst.setString(2, cliente.getNome());
             pst.setString(3, cliente.getEmail());// criptografado
             pst.setString(4, cliente.getSenha());// criptografado
             pst.execute();
+            conn.commit();
             cadastrado = true;
         } catch (SQLException ex) {
             cadastrado = false;
+            try {
+                conn.rollback();
+            } catch (SQLException ex2) {
+                System.err.println(ex);
+                LogBsImpl.getInstance().inserirLog(this.getClass().getSimpleName(), ex2.getMessage());
+            }
             System.err.println(ex);
             LogBsImpl.getInstance().inserirLog(this.getClass().getSimpleName(), ex.getMessage());
         } finally {
@@ -231,6 +241,7 @@ public class ClienteDaoImpl implements ClienteDao {
         Connection conn = HsConnection.getConnection();
         PreparedStatement pst = null;
         try {
+            conn.setAutoCommit(false);
             pst = conn.prepareStatement(sql);
             pst.setString(1, cliente.getNome());
             pst.setString(2, cliente.getEmail());
@@ -238,9 +249,16 @@ public class ClienteDaoImpl implements ClienteDao {
             //where
             pst.setInt(4, cliente.getId());
             pst.executeUpdate();
+            conn.commit();
             atualizado = true;
         } catch (SQLException ex) {
             atualizado = false;
+            try {
+                conn.rollback();
+            } catch (SQLException ex2) {
+                System.err.println(ex);
+                LogBsImpl.getInstance().inserirLog(this.getClass().getSimpleName(), ex2.getMessage());
+            }
             System.err.println(ex);
             LogBsImpl.getInstance().inserirLog(this.getClass().getSimpleName(), ex.getMessage());
         } finally {

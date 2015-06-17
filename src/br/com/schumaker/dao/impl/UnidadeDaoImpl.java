@@ -163,13 +163,21 @@ public class UnidadeDaoImpl implements UnidadeDao {
         Connection conn = HsConnection.getConnection();
         PreparedStatement pst = null;
         try {
+            conn.setAutoCommit(false);
             pst = conn.prepareStatement(sql);
             pst.setString(1, unidade.getNome());
             pst.setString(2, unidade.getDescricao());
             pst.execute();
+            conn.commit();
             cadastrado = true;
         } catch (SQLException ex) {
             cadastrado = false;
+            try {
+                conn.rollback();
+            } catch (SQLException ex2) {
+                System.err.println(ex);
+                LogBsImpl.getInstance().inserirLog(this.getClass().getSimpleName(), ex2.getMessage());
+            }
             System.err.println(ex);
             LogBsImpl.getInstance().inserirLog(this.getClass().getSimpleName(), ex.getMessage());
         } finally {
