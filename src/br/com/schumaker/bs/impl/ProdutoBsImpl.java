@@ -3,16 +3,11 @@ package br.com.schumaker.bs.impl;
 import br.com.schumaker.bs.ProdutoBs;
 import br.com.schumaker.dao.impl.FabricanteDaoImpl;
 import br.com.schumaker.dao.impl.ProdutoDaoImpl;
-import br.com.schumaker.io.HsGfxEngine;
 import br.com.schumaker.model.Fabricante;
 import br.com.schumaker.model.Produto;
-import br.com.schumaker.model.Setor;
-import br.com.schumaker.model.Unidade;
 import br.com.schumaker.util.FileFilterReadPool;
 import br.com.schumaker.util.HsMessage;
-import java.io.File;
 import java.util.List;
-import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -133,10 +128,11 @@ public class ProdutoBsImpl implements ProdutoBs {
         produto.setUnidade(new UnidadeBsImpl().obter(unidade));
         produto.setIdmercado(new MercadoBsImpl().getMercadoSessao());
         produto.setQuantidade(Double.parseDouble(quantidade));
+        produto.setDescricao(descricao);
         produto.setPreco(Double.parseDouble(preco));
         produto.setImagem(image);
         produto.setAtivo(1);//validacao com inteiro
-        this.cadastrar(produto);
+        this.cadastrar(produto);//Metodo Ponte
     }
     
     public void carregarImagem(JLabel label, JTextField field) {

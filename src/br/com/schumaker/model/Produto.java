@@ -112,8 +112,8 @@ public class Produto {
         this.idcategoria = idcategoria;
     }
 
-    public String getUnidade() {
-        return unidade.getNome();
+    public int getUnidade() {
+        return unidade.getId();
     }
 
     public void setUnidade(Unidade unidade) {

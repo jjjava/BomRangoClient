@@ -418,7 +418,7 @@ public class ProdutoDaoImpl implements ProdutoDao {
             pst.setInt(5, produto.getIdMercado());
             pst.setInt(6, produto.getIdFabricante());
             pst.setInt(7, produto.getIdSetor());
-            pst.setString(8, produto.getUnidade());
+            pst.setInt(8, produto.getUnidade());
             pst.setBinaryStream(9, fis, (int) file.length());
             pst.setInt(10, produto.getAtivo());
 

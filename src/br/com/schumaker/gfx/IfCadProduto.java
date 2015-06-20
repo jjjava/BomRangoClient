@@ -203,7 +203,7 @@ public class IfCadProduto extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btProcurarImagemActionPerformed
 
     private void btGravarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btGravarActionPerformed
-
+        //O Mercado é colcoado pelo ProdutoBsImpl
         ProdutoBsImpl.getInstance().primeiraEtapaCadastro(tfNome.getText(),
                 jcFabricante.getSelectedItem().toString(),
                 jcSetor.getSelectedItem().toString(),
