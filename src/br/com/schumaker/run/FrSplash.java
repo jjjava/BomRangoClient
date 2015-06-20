@@ -26,7 +26,6 @@ public class FrSplash extends JFrame implements Runnable {
         this.setResizable(false);
         this.setLocationRelativeTo(null);
         this.setVisible(true);
-
     }
 
     public void start() {

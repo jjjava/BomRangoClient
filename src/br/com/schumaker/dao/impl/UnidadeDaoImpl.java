@@ -76,7 +76,7 @@ public class UnidadeDaoImpl implements UnidadeDao {
     @Override
     public List<Unidade> listar() {
         List<Unidade> unidades = new ArrayList<Unidade>();
-        String sql = "select * from compras.unidade";
+        String sql = "select * from compras.unidade order by unidade.nome";
         Connection conn = HsConnection.getConnection();
         try {
             PreparedStatement pst = conn.prepareStatement(sql);
@@ -106,7 +106,7 @@ public class UnidadeDaoImpl implements UnidadeDao {
     @Override
     public List<Unidade> like(String s) {
         List<Unidade> unidades = new ArrayList<Unidade>();
-        String sql = "select * from compras.unidade where unidade.nome like '%" + s + "%'";
+        String sql = "select * from compras.unidade where unidade.nome like '%" + s + "%' order by unidade.nome";
         Connection conn = HsConnection.getConnection();
         try {
             PreparedStatement pst = conn.prepareStatement(sql);
@@ -136,7 +136,7 @@ public class UnidadeDaoImpl implements UnidadeDao {
     @Override
     public boolean verificarNome(String nome) {
         boolean validado = false;
-        String sql = "select * from compras.unidade where unidade.nome = '" + nome + "'";
+        String sql = "select * from compras.unidade where unidade.nome = '" + nome + "' order by unidade.nome";
         Connection conn = HsConnection.getConnection();
         try {
             PreparedStatement pst = conn.prepareStatement(sql);

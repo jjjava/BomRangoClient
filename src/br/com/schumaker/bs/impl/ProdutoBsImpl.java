@@ -3,8 +3,6 @@ package br.com.schumaker.bs.impl;
 import br.com.schumaker.bs.ProdutoBs;
 import br.com.schumaker.dao.impl.FabricanteDaoImpl;
 import br.com.schumaker.dao.impl.ProdutoDaoImpl;
-import br.com.schumaker.gfx.FrMain;
-import br.com.schumaker.io.HsFile;
 import br.com.schumaker.model.Fabricante;
 import br.com.schumaker.model.Produto;
 import br.com.schumaker.model.Setor;

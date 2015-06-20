@@ -10,8 +10,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -83,7 +81,7 @@ public class ClienteDaoImpl implements ClienteDao {
 
     @Override
     public List<Cliente> listar() {
-        String sql = "select * from compras.cliente order by cliente.nome";
+        String sql = "select * from compras.cliente order by cliente.nome order by cliente.name";
         Connection conn = HsConnection.getConnection();
         List<Cliente> clientes = new ArrayList<>();
         try {

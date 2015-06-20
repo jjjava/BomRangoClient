@@ -52,7 +52,7 @@ public class CidadeDaoImpl implements CidadeDao {
     @Override
     public List<Cidade> listar() {
         List<Cidade> cidades = new ArrayList<>();
-        String sql = "select * from compras.cidade order by cidade.nome";
+        String sql = "select * from compras.cidade order by cidade.nome order by cidade.name";
         Connection conn = HsConnection.getConnection();
         try {
             PreparedStatement pst = conn.prepareStatement(sql);
@@ -82,7 +82,7 @@ public class CidadeDaoImpl implements CidadeDao {
     @Override
     public List<Cidade> like(String s) {
         List<Cidade> cidades = new ArrayList<>();
-        String sql = "select * from compras.cidade where cidade.nome like '%" + s + "%'";
+        String sql = "select * from compras.cidade where cidade.nome like '%" + s + "%' order by cidade.name";
         Connection conn = HsConnection.getConnection();
         try {
             PreparedStatement pst = conn.prepareStatement(sql);

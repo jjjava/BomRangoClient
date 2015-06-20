@@ -63,7 +63,7 @@ public class MercadoDaoImpl implements MercadoDao {
     @Override
     public List<Mercado> listar() {
         List<Mercado> mercados = new ArrayList<>();
-        String sql = "select * from compras.mercado";
+        String sql = "select * from compras.mercado order by mercado.nome";
         Connection conn = HsConnection.getConnection();
         try {
             PreparedStatement pst = conn.prepareStatement(sql);
@@ -105,7 +105,7 @@ public class MercadoDaoImpl implements MercadoDao {
     @Override
     public List<Mercado> like(String s) {
         List<Mercado> mercados = new ArrayList<>();
-        String sql = "select * from compras.mercado where mercado.nome like '%" + s + "%'";
+        String sql = "select * from compras.mercado where mercado.nome like '%" + s + "%' order by mercado.nome";
         Connection conn = HsConnection.getConnection();
         try {
             PreparedStatement pst = conn.prepareStatement(sql);
