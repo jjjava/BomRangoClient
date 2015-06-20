@@ -160,14 +160,14 @@ public class ProdutoBsImpl implements ProdutoBs {
         if (sf == JFileChooser.APPROVE_OPTION) {
             File file = chooser.getSelectedFile();
             
-            System.out.println(file.getAbsolutePath());
-            System.out.println(file.getName());
-            System.out.println(file.getParent());
+
+            
+            
+            HsGfxEngine hsGfx =new HsGfxEngine(file.getParent(), file.getParent(), file.getName());
+            hsGfx.start();
             
 //            label.setText("");
 //            label.setIcon(new ImageIcon(file.getAbsolutePath()));
-//            HsGfxEngine hsGfx =new HsGfxEngine(file.getParent(),file.getName());
-//            hsGfx.start();
                   
 
         }

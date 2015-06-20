@@ -1,6 +1,5 @@
 package br.com.schumaker.run;
 
-import br.com.schumaker.bs.impl.LogBsImpl;
 import br.com.schumaker.bs.impl.ServerBsImpl;
 import br.com.schumaker.gfx.FrLogin;
 import br.com.schumaker.util.HsDriverChecker;
@@ -20,7 +19,7 @@ public class FrSplash extends JFrame implements Runnable {
     public FrSplash() {
         super("Carregando...");
         setUndecorated(true);
-        AWTUtilities.setWindowOpacity(this, 0.77777777F);
+      //  AWTUtilities.setWindowOpacity(this, 0.77777777F);
         this.initComponents();
         this.jProgressBar.setString("Inicializando...");
         this.setAlwaysOnTop(true);
@@ -36,46 +35,43 @@ public class FrSplash extends JFrame implements Runnable {
 
     @Override
     public void run() {
-        
-          LogBsImpl.getInstance().inserirLog(this.getClass().getSimpleName(), "teste");
-        
         HsDriverChecker hsDriverChecker = new HsDriverChecker();
         jProgressBar.setValue(20);
         try {
-            Thread.sleep(1500);
+            Thread.sleep(15);//1500
         } catch (InterruptedException e) {
         }
         this.jProgressBar.setString("Verificando MySQL Drivers...");
         if (hsDriverChecker.testMySqlDriver()) {
-            jProgressBar.setValue(40);
-            try {
-                Thread.sleep(1500);
-            } catch (InterruptedException e) {
-            }
-            this.jProgressBar.setString("Verificando Email Drivers...");
-            hsDriverChecker.testMailDriver();
-            jProgressBar.setValue(60);
-            try {
-                Thread.sleep(1500);
-            } catch (InterruptedException e) {
-            }
-            this.jProgressBar.setString("Verificando Core...");
-            new ServerBsImpl().getStatus();
-            try {
-                Thread.sleep(1500);
-            } catch (InterruptedException e) {
-            }
-            this.jProgressBar.setString("Verificando Conectividade...");
-            jProgressBar.setValue(80);
-            try {
-                Thread.sleep(1500);
-            } catch (InterruptedException e) {
-            }
-            this.jProgressBar.setString("Carregando Interface Gráfica...");
-            try {
-                Thread.sleep(1500);
-            } catch (InterruptedException e) {
-            }
+//            jProgressBar.setValue(40);
+//            try {
+//                Thread.sleep(1500);
+//            } catch (InterruptedException e) {
+//            }
+//            this.jProgressBar.setString("Verificando Email Drivers...");
+//            hsDriverChecker.testMailDriver();
+//            jProgressBar.setValue(60);
+//            try {
+//                Thread.sleep(1500);
+//            } catch (InterruptedException e) {
+//            }
+//            this.jProgressBar.setString("Verificando Core...");
+//            new ServerBsImpl().getStatus();
+//            try {
+//                Thread.sleep(1500);
+//            } catch (InterruptedException e) {
+//            }
+//            this.jProgressBar.setString("Verificando Conectividade...");
+//            jProgressBar.setValue(80);
+//            try {
+//                Thread.sleep(1500);
+//            } catch (InterruptedException e) {
+//            }
+//            this.jProgressBar.setString("Carregando Interface Gráfica...");
+//            try {
+//                Thread.sleep(1500);
+//            } catch (InterruptedException e) {
+//            }
             FrLogin frLogin = new FrLogin();
             jProgressBar.setValue(100);
             this.jProgressBar.setString("Pronto...");

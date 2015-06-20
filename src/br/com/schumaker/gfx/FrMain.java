@@ -15,9 +15,11 @@ public class FrMain extends javax.swing.JFrame {
 
     public FrMain() {
         super("Bom Rango");
-        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        //this.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        
         this.createTree();
         this.initComponents();
+        this.setSize(800, 600);
         this.setLocationRelativeTo(null);
     }
 

@@ -25,12 +25,6 @@ public class HsGfxEngine implements Runnable {
     private String pathOut;
     private String name;
 
-    public HsGfxEngine(String pathOut, String name) {
-        this.pathOut = pathOut;
-        this.name = name;
-        setUp();
-    }
-
     public HsGfxEngine(String sourcePath, String pathOut, String name) {
         this.sourcePath = sourcePath;
         this.pathOut = pathOut;
@@ -48,11 +42,12 @@ public class HsGfxEngine implements Runnable {
     }
 
     private void createImages(String path) {
-        BufferedImage originalImage = readImageFromDisk(path);
+        System.out.println("dentro:"+path);
+        BufferedImage originalImage = this.readImageFromDisk(path);
         int type = originalImage.getType() == 0 ? BufferedImage.TYPE_INT_ARGB : originalImage.getType();
         for (int k = 0; k < aNames.size(); k++) {
-            BufferedImage resizeImageHintPng = resizeImageWithHint(originalImage, type, aSize.get(k), aSize.get(k));
-            writeImageOnDisk(resizeImageHintPng, "png", pathOut, aNames.get(k));
+            BufferedImage resizeImageHintPng = this.resizeImageWithHint(originalImage, type, aSize.get(k), aSize.get(k));
+            this.writeImageOnDisk(resizeImageHintPng, "png", pathOut, aNames.get(k));
         }
     }
 
@@ -73,7 +68,6 @@ public class HsGfxEngine implements Runnable {
         try {
             image = ImageIO.read(new File(path));
         } catch (IOException ex) {
-            System.err.println(ex);
             LogBsImpl.getInstance().inserirLog(this.getClass().getSimpleName(), ex.getMessage());
         }
         return image;
@@ -81,18 +75,15 @@ public class HsGfxEngine implements Runnable {
 
     private void writeImageOnDisk(BufferedImage img, String type, String path, String clearName) {
         try {
-            ImageIO.write(img, type, new File(path + clearName + "." + type));
+            ImageIO.write(img, type, new File(path +"/"+ clearName + "." + type));
         } catch (IOException ex) {
-            System.err.println(ex);
             LogBsImpl.getInstance().inserirLog(this.getClass().getSimpleName(), ex.getMessage());
         }
     }
 
     @Override
     public void run() {
-        System.out.println(sourcePath);
-        System.out.println(name);
-        createImages(sourcePath + name);
+        createImages(sourcePath +"/"+ name);
     }
 
     public void start() {
