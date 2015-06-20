@@ -1,5 +1,6 @@
 package br.com.schumaker.run;
 
+import br.com.schumaker.bs.impl.LogBsImpl;
 import br.com.schumaker.bs.impl.ServerBsImpl;
 import br.com.schumaker.gfx.FrLogin;
 import br.com.schumaker.util.HsDriverChecker;
@@ -35,6 +36,9 @@ public class FrSplash extends JFrame implements Runnable {
 
     @Override
     public void run() {
+        
+          LogBsImpl.getInstance().inserirLog(this.getClass().getSimpleName(), "teste");
+        
         HsDriverChecker hsDriverChecker = new HsDriverChecker();
         jProgressBar.setValue(20);
         try {

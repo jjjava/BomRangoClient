@@ -3,14 +3,18 @@ package br.com.schumaker.bs.impl;
 import br.com.schumaker.bs.ProdutoBs;
 import br.com.schumaker.dao.impl.FabricanteDaoImpl;
 import br.com.schumaker.dao.impl.ProdutoDaoImpl;
+import br.com.schumaker.io.HsGfxEngine;
 import br.com.schumaker.model.Fabricante;
 import br.com.schumaker.model.Produto;
 import br.com.schumaker.model.Setor;
 import br.com.schumaker.model.Unidade;
 import br.com.schumaker.util.FileFilterReadPool;
 import br.com.schumaker.util.HsMessage;
+import java.io.File;
 import java.util.List;
+import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 /**
@@ -144,7 +148,7 @@ public class ProdutoBsImpl implements ProdutoBs {
 
     }
 
-    public void carregarImagem() {
+    public void carregarImagem(JLabel label) {
         JFileChooser chooser = new JFileChooser(System.getProperty("user.home"));
         for (int k = 0; k < FileFilterReadPool.getInstance().getInitialSize(); k++) {
             chooser.addChoosableFileFilter(FileFilterReadPool.getInstance().aquire());
@@ -154,8 +158,18 @@ public class ProdutoBsImpl implements ProdutoBs {
         chooser.setApproveButtonText("Abrir");
         int sf = chooser.showOpenDialog(null);
         if (sf == JFileChooser.APPROVE_OPTION) {
-            produto.setImagem(chooser.getSelectedFile().getAbsolutePath());
-            System.out.println(produto.getImagem());
+            File file = chooser.getSelectedFile();
+            
+            System.out.println(file.getAbsolutePath());
+            System.out.println(file.getName());
+            System.out.println(file.getParent());
+            
+//            label.setText("");
+//            label.setIcon(new ImageIcon(file.getAbsolutePath()));
+//            HsGfxEngine hsGfx =new HsGfxEngine(file.getParent(),file.getName());
+//            hsGfx.start();
+                  
+
         }
     }
 }

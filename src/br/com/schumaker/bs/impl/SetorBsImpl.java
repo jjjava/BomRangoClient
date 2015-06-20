@@ -39,6 +39,15 @@ public class SetorBsImpl implements SetorBs {
     public boolean verificarNome(String nome) {
         return new SetorDaoImpl().verificarNome(nome);
     }
+    
+     public String [] getNomesToArray(){
+        List<Setor> lista = listar();
+        String nomes[] = new String[lista.size()];
+        for(int k=0;k<lista.size();k++){
+            nomes[k] = lista.get(k).getNome();
+        }
+        return nomes;
+    }
 
     @Override
     public void cadastrar(Setor setor) {

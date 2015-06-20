@@ -24,7 +24,7 @@ public class LogDaoImpl implements LogDao {
             pst = conn.prepareStatement(sql);
             pst.setString(1, log.getClazz());
             pst.setString(2, log.getError());
-            pst.setString(2, log.getDate());
+            pst.setString(3, log.getDate());
             pst.execute();
         } catch (SQLException e) {
             System.err.println(e);
