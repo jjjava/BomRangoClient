@@ -19,7 +19,7 @@ public class FrMain extends javax.swing.JFrame {
         
         this.createTree();
         this.initComponents();
-        this.setSize(800, 600);
+        this.setSize(1024, 768);
         this.setLocationRelativeTo(null);
     }
 
