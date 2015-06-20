@@ -16,6 +16,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 
 /**
  *
@@ -24,43 +25,43 @@ import javax.swing.JOptionPane;
  * @since 1.0.0
  */
 public class ProdutoBsImpl implements ProdutoBs {
-
+    
     private static final ProdutoBsImpl instance = new ProdutoBsImpl();
     private Produto produto;
-
+    
     private ProdutoBsImpl() {
         produto = new Produto();
     }
-
+    
     public static ProdutoBsImpl getInstance() {
         return instance;
     }
-
+    
     @Override
     public Produto obter(Integer id) {
         return new ProdutoDaoImpl().obter(id);
     }
-
+    
     @Override
     public List<Produto> listar() {
         return new ProdutoDaoImpl().listar();
     }
-
+    
     @Override
     public List<Produto> listar(int limite) {
         return new ProdutoDaoImpl().listar(limite);
     }
-
+    
     @Override
     public List<Produto> listar(String nome) {
         return new ProdutoDaoImpl().listar(nome);
     }
-
+    
     @Override
     public List<Produto> listar(String nome, int limite) {
         return new ProdutoDaoImpl().listar(nome, limite);
     }
-
+    
     @Override
     public List<Produto> listarELike(String nome) {
         List<Produto> listaNome = new ProdutoDaoImpl().listar(nome);
@@ -70,7 +71,7 @@ public class ProdutoBsImpl implements ProdutoBs {
         }
         return listaNome;
     }
-
+    
     @Override
     public List<Produto> listarELike(String nome, int limite) {
         List<Produto> listaNome = new ProdutoDaoImpl().listar(nome, limite);
@@ -80,27 +81,27 @@ public class ProdutoBsImpl implements ProdutoBs {
         }
         return listaNome;
     }
-
+    
     @Override
     public List<Produto> like(String s) {
         return new ProdutoDaoImpl().like(s);
     }
-
+    
     @Override
     public List<Produto> like(String s, int limite) {
         return new ProdutoDaoImpl().like(s, limite);
     }
-
+    
     @Override
     public boolean verificarNome(String nome) {
         return new ProdutoDaoImpl().verificarNome(nome);
     }
-
+    
     @Override
     public boolean verificarFabricante(String nome) {
         return new ProdutoDaoImpl().verificarFabricante(nome);
     }
-
+    
     @Override
     public void cadastrar(Produto produto) {
         Fabricante fabricante = new FabricanteDaoImpl().obter(produto.getIdFabricante());
@@ -114,41 +115,31 @@ public class ProdutoBsImpl implements ProdutoBs {
             }
         }
     }
-
+    
     @Override
     public void atualizar(Produto produto) {
         HsMessage.mostrarMensagem(JOptionPane.WARNING_MESSAGE, "Produto", "Não suportado ainda");
     }
-
+    
     @Override
     public void deletar(Produto produto) {
         HsMessage.mostrarMensagem(JOptionPane.WARNING_MESSAGE, "Produto", "Não suportado ainda");
     }
-
-    public void primeiraEtapaCadastro(Produto p, Setor s, Fabricante f, Unidade u) {
-        p.setIdcategoria(new SetorBsImpl().obter(s.getNome()));
-        p.setIdfabricante(new FabricanteBsImpl().obter(f.getNome()));
-        p.setUnidade(new UnidadeBsImpl().obter(u.getNome()));
-        p.setIdmercado(new MercadoBsImpl().getMercadoSessao());
-        p.setAtivo(1);//validacao com inteiro
-
-        setCadProdutoSessao(p);
+    
+    public void primeiraEtapaCadastro(String nome, String fabricante, String setor, String unidade, String quantidade, String descricao, String preco, String image) {
+        
+        produto.setIdfabricante(new FabricanteBsImpl().obter(fabricante));
+        produto.setIdcategoria(new SetorBsImpl().obter(setor));
+        produto.setUnidade(new UnidadeBsImpl().obter(unidade));
+        produto.setIdmercado(new MercadoBsImpl().getMercadoSessao());
+        produto.setQuantidade(Double.parseDouble(quantidade));
+        produto.setPreco(Double.parseDouble(preco));
+        produto.setImagem(image);
+        produto.setAtivo(1);//validacao com inteiro
+        this.cadastrar(produto);
     }
-
-    public void segundaEtapaCadastro() {
-        Produto p = getCadProdutoSessao();
-    }
-
-    private void setCadProdutoSessao(Produto produto) {
-
-    }
-
-    public Produto getCadProdutoSessao() {
-        return null; //voltar aqui
-
-    }
-
-    public void carregarImagem(JLabel label) {
+    
+    public void carregarImagem(JLabel label, JTextField field) {
         JFileChooser chooser = new JFileChooser(System.getProperty("user.home"));
         for (int k = 0; k < FileFilterReadPool.getInstance().getInitialSize(); k++) {
             chooser.addChoosableFileFilter(FileFilterReadPool.getInstance().aquire());
@@ -158,18 +149,7 @@ public class ProdutoBsImpl implements ProdutoBs {
         chooser.setApproveButtonText("Abrir");
         int sf = chooser.showOpenDialog(null);
         if (sf == JFileChooser.APPROVE_OPTION) {
-            File file = chooser.getSelectedFile();
-            
-
-            
-            
-            HsGfxEngine hsGfx =new HsGfxEngine(file.getParent(), file.getParent(), file.getName());
-            hsGfx.start();
-            
-//            label.setText("");
-//            label.setIcon(new ImageIcon(file.getAbsolutePath()));
-                  
-
+            field.setText(chooser.getSelectedFile().getAbsolutePath());         
         }
     }
 }

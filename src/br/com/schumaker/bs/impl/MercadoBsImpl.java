@@ -4,6 +4,7 @@ import br.com.schumaker.bs.MercadoBs;
 import br.com.schumaker.dao.impl.MercadoDaoImpl;
 import br.com.schumaker.hsfiles.HsFiles;
 import br.com.schumaker.model.Cliente;
+import br.com.schumaker.model.HsSession;
 import br.com.schumaker.model.Mercado;
 import br.com.schumaker.util.HsMessage;
 import java.io.IOException;
@@ -88,17 +89,11 @@ public class MercadoBsImpl implements MercadoBs {
 
     @Override
     public Cliente getClienteSessao() {
-//        FacesContext fc = FacesContext.getCurrentInstance();
-//        HttpSession session = (HttpSession) fc.getExternalContext().getSession(false);
-        return null; //(Cliente) session.getAttribute("Cliente");
+        return HsSession.getInstance().getCliente();
     }
 
     @Override
     public Mercado getMercadoSessao() {
-//        HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
-//        Cliente cliente = (Cliente) session.getAttribute("Cliente");
-//        MercadoDaoImpl mercadoDaoImpl = new MercadoDaoImpl();
-        return null; // mercadoDaoImpl.obter(cliente.getIdMercado());
+        return HsSession.getInstance().getMercado();
     }
-
 }
