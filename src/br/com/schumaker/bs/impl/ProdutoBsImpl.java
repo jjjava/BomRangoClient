@@ -126,8 +126,8 @@ public class ProdutoBsImpl implements ProdutoBs {
         HsMessage.mostrarMensagem(JOptionPane.WARNING_MESSAGE, "Produto", "Não suportado ainda");
     }
     
-    public void primeiraEtapaCadastro(String nome, String fabricante, String setor, String unidade, String quantidade, String descricao, String preco, String image) {
-        
+    public void primeiraEtapaCadastro(String nome, String fabricante, String setor, String unidade, String quantidade, String descricao, String preco, String image) {        
+        produto.setNome(nome);
         produto.setIdfabricante(new FabricanteBsImpl().obter(fabricante));
         produto.setIdcategoria(new SetorBsImpl().obter(setor));
         produto.setUnidade(new UnidadeBsImpl().obter(unidade));

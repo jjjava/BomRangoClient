@@ -402,7 +402,7 @@ public class ProdutoDaoImpl implements ProdutoDao {
     @Override
     public boolean cadastrar(Produto produto) {
         boolean cadastrado = false;
-        String sql = "insert into compras.produtos (nome, descricao, preco, quantidade, idmercado, idfabricante, idcategoria, unidade, imagem, ativo) "
+        String sql = "insert into compras.produto (nome, descricao, preco, quantidade, idmercado, idfabricante, idcategoria, unidade, imagem, ativo) "
                 + " values (?,?,?,?,?,?,?,?,?,?)";
         Connection conn = HsConnection.getConnection();
         PreparedStatement pst = null;
