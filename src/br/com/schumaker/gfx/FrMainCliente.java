@@ -1,8 +1,7 @@
 package br.com.schumaker.gfx;
 
 import br.com.schumaker.bs.impl.FrMainBsImpl;
-import br.com.schumaker.model.HsSessionAdm;
-import javax.swing.JFrame;
+import br.com.schumaker.model.HsSessionCliente;
 import javax.swing.tree.DefaultMutableTreeNode;
 
 /**
@@ -11,11 +10,12 @@ import javax.swing.tree.DefaultMutableTreeNode;
  * @version 1.0.0
  * @since 1.0.0
  */
-public class FrMain extends JFrame {
+public class FrMainCliente extends javax.swing.JFrame {
 
-    public FrMain() {
+    public FrMainCliente() {
         super("Rede Encarte");
         //this.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        
         this.createTree();
         this.initComponents();
         this.setSize(1024, 768);
@@ -23,13 +23,10 @@ public class FrMain extends JFrame {
     }
 
     private void createTree() {
-        root = new DefaultMutableTreeNode(HsSessionAdm.getInstance().getAdm().getNome());
+        root = new DefaultMutableTreeNode(HsSessionCliente.getInstance().getMercado().getNome());
 
         cadastro = new DefaultMutableTreeNode("Cadastro");//menu
         root.add(cadastro);
-
-        mercados = new DefaultMutableTreeNode("Mercados");
-        cadastro.add(mercados);
         produtos = new DefaultMutableTreeNode("Produtos");
         cadastro.add(produtos);
         fabricantes = new DefaultMutableTreeNode("Fabricantes");
@@ -45,10 +42,11 @@ public class FrMain extends JFrame {
         root.add(manutencao);
         precos = new DefaultMutableTreeNode("Preços");
         manutencao.add(precos);
-
-        consultas = new DefaultMutableTreeNode("Consultas");//menu
+        
+        consultas = new DefaultMutableTreeNode("Consulta");//menu
         root.add(consultas);
-
+        
+        
     }
 
     @SuppressWarnings("unchecked")
@@ -228,10 +226,6 @@ public class FrMain extends JFrame {
             DefaultMutableTreeNode node = (DefaultMutableTreeNode) jtMenuTree.getLastSelectedPathComponent();
             Object nodeInfo = node.getUserObject();
             if (node.isLeaf()) {
-                if (nodeInfo.equals("Mercados")) {
-                    System.out.println("mercados");
-                    return;
-                }
                 if (nodeInfo.equals("Produtos")) {
                     IfCadProduto ifCadProd = new IfCadProduto();
                     ifCadProd.setSize(jDesktop.getWidth(), jDesktop.getHeight() - 40);
@@ -257,15 +251,12 @@ public class FrMain extends JFrame {
                 if (nodeInfo.equals("Usuários")) {
                     return;
                 }
-                if (nodeInfo.equals("Consultas")) {
-
-                }
             }
         }
     }//GEN-LAST:event_jtMenuTreeMouseClicked
 
     private void jmLogoffActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmLogoffActionPerformed
-        FrMainBsImpl.getInstance().doLogoff(this);
+      //  FrMainBsImpl.getInstance().doLogoff(this);
     }//GEN-LAST:event_jmLogoffActionPerformed
 
     private void jmFecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmFecharActionPerformed
@@ -301,7 +292,6 @@ public class FrMain extends JFrame {
     private DefaultMutableTreeNode manutencao;
     private DefaultMutableTreeNode consultas;
 
-    private DefaultMutableTreeNode mercados;
     private DefaultMutableTreeNode produtos;
     private DefaultMutableTreeNode fabricantes;
     private DefaultMutableTreeNode usuarios;

@@ -1,7 +1,7 @@
 package br.com.schumaker.gfx;
 
 import br.com.schumaker.bs.impl.ClienteBsImpl;
-import br.com.schumaker.model.HsSession;
+import br.com.schumaker.model.HsSessionCliente;
 
 /**
  *
@@ -13,7 +13,7 @@ public class FrAlterarSenha extends javax.swing.JFrame {
 
     public FrAlterarSenha() {
         this.initComponents();
-        this.jtEmail.setText(HsSession.getInstance().getCliente().getEmail());
+        this.jtEmail.setText(HsSessionCliente.getInstance().getCliente().getEmail());
         this.setLocationRelativeTo(null);
     }
 

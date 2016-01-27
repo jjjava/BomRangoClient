@@ -4,7 +4,7 @@ import br.com.schumaker.bs.MercadoBs;
 import br.com.schumaker.dao.impl.MercadoDaoImpl;
 import br.com.schumaker.hsfiles.HsFiles;
 import br.com.schumaker.model.Cliente;
-import br.com.schumaker.model.HsSession;
+import br.com.schumaker.model.HsSessionCliente;
 import br.com.schumaker.model.Mercado;
 import br.com.schumaker.util.HsMessage;
 import java.io.IOException;
@@ -89,11 +89,11 @@ public class MercadoBsImpl implements MercadoBs {
 
     @Override
     public Cliente getClienteSessao() {
-        return HsSession.getInstance().getCliente();
+        return HsSessionCliente.getInstance().getCliente();
     }
 
     @Override
     public Mercado getMercadoSessao() {
-        return HsSession.getInstance().getMercado();
+        return HsSessionCliente.getInstance().getMercado();
     }
 }

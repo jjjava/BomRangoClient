@@ -19,8 +19,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -413,10 +411,10 @@ public class ProdutoDaoImpl implements ProdutoDao {
         FileInputStream fis = null;
         try {
             conn.setAutoCommit(false);
-            
+
             File file = new File(produto.getImagem());//prepara inserção da imagem
             fis = new FileInputStream(file);
-            
+
             pst = conn.prepareStatement(sql);
             pst.setString(1, produto.getNome());
             pst.setString(2, produto.getDescricao());
@@ -426,7 +424,7 @@ public class ProdutoDaoImpl implements ProdutoDao {
             pst.setInt(6, produto.getIdFabricante());
             pst.setInt(7, produto.getIdSetor());
             pst.setInt(8, produto.getUnidade());
-            pst.setBinaryStream(9, fis, (int) file.length());
+            pst.setBinaryStream(9, fis, file.length());
             pst.setInt(10, produto.getAtivo());
 
             pst.execute();

@@ -4,10 +4,10 @@ import br.com.schumaker.bs.ClienteBs;
 import br.com.schumaker.dao.impl.ClienteDaoImpl;
 import br.com.schumaker.gfx.FrAlterarSenha;
 import br.com.schumaker.gfx.FrLogin;
-import br.com.schumaker.gfx.FrMain;
+import br.com.schumaker.gfx.FrMainCliente;
 import br.com.schumaker.mail.SendBrief;
 import br.com.schumaker.model.Cliente;
-import br.com.schumaker.model.HsSession;
+import br.com.schumaker.model.HsSessionCliente;
 import br.com.schumaker.util.HsMessage;
 import java.awt.Cursor;
 import java.util.List;
@@ -54,11 +54,11 @@ public class ClienteBsImpl implements ClienteBs {
         //criptografar aqui
         //
         if (clienteDaoImpl.validar(cliente.getEmail(), cliente.getSenha())) {//usar senha criptografada
-            HsSession.getInstance().setCliente(clienteDaoImpl.obter(cliente.getEmail()));
-            HsSession.getInstance().setMercado(new MercadoBsImpl().obter(HsSession.getInstance().getCliente().getIdMercado()));
+            HsSessionCliente.getInstance().setCliente(obter(cliente.getEmail()));
+            HsSessionCliente.getInstance().setMercado(new MercadoBsImpl().obter(HsSessionCliente.getInstance().getCliente().getIdMercado()));
 
             frLogin.dispose();
-            new FrMain().setVisible(true);
+            new FrMainCliente().setVisible(true);
         } else {
             frLogin.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
             HsMessage.mostrarMensagem(JOptionPane.WARNING_MESSAGE, "Login", "Email ou Senha incorretos.");
@@ -72,7 +72,7 @@ public class ClienteBsImpl implements ClienteBs {
 
     @Override
     public void alterarSenha(FrAlterarSenha fr, String senhaAtual, String senhaNova) {
-        Cliente cliente = HsSession.getInstance().getCliente();
+        Cliente cliente = HsSessionCliente.getInstance().getCliente();
         if (cliente.getSenha().equals(senhaAtual)) {
             cliente.setSenha(senhaNova);
             if (new ClienteDaoImpl().atualizar(cliente)) {
@@ -115,7 +115,7 @@ public class ClienteBsImpl implements ClienteBs {
 
     @Override
     public void invalidarSessao() {
-        HsSession.getInstance().cleanSession();
+        HsSessionCliente.getInstance().cleanSession();
     }
 
     @Override

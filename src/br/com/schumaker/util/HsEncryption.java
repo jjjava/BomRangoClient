@@ -26,16 +26,8 @@ public class HsEncryption {
             cipher.init(Cipher.ENCRYPT_MODE, chave);
             byte criptografada[] = cipher.doFinal(text.getBytes());
             value = new String(criptografada);
-        } catch (NoSuchAlgorithmException ex) {
+        } catch (NoSuchAlgorithmException | NoSuchPaddingException | InvalidKeyException | IllegalBlockSizeException | BadPaddingException ex) {
             System.err.println(ex.toString());
-        } catch (NoSuchPaddingException e) {
-            System.err.println(e.toString());
-        } catch (InvalidKeyException e) {
-            System.err.println(e.toString());
-        } catch (IllegalBlockSizeException e) {
-            System.err.println(e.toString());
-        } catch (BadPaddingException e) {
-            System.err.println(e.toString());
         }
         return value;
     }

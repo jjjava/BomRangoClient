@@ -1,7 +1,7 @@
 package br.com.schumaker.gfx;
 
 import br.com.schumaker.bs.impl.EnviarMensagemBsImpl;
-import br.com.schumaker.model.HsSession;
+import br.com.schumaker.model.HsSessionCliente;
 
 /**
  *
@@ -14,7 +14,7 @@ public class FrMensagem extends javax.swing.JFrame {
     public FrMensagem() {
         
         this.initComponents();
-        tfDe.setText(HsSession.getInstance().getCliente().getEmail());
+        tfDe.setText(HsSessionCliente.getInstance().getCliente().getEmail());
         this.setLocationRelativeTo(null);
     }
 

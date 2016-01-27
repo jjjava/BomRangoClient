@@ -39,6 +39,21 @@ public class FrSobre extends javax.swing.JFrame {
             memory_ram.setText("Total memória RAM: " + size);
 
             processor_num.setText("Número de processadores: " + Runtime.getRuntime().availableProcessors());
+           
+            
+            Long ll = Runtime.getRuntime().maxMemory();
+            String max = Long.toString(ll);
+            double dd = Double.parseDouble(max);
+            max = decimal.format(((dd / 1024) / 1024) / 1024) + " GB";
+            System.out.println(max);
+            
+            Runtime.getRuntime().gc();
+            Long lll = Runtime.getRuntime().freeMemory();
+            String free = Long.toString(lll);
+            double ddd = Double.parseDouble(free);
+            free = decimal.format(((ddd / 1024) / 1024) / 1024) + " GB";
+            System.out.println(free);
+           
         } catch (UnknownHostException ex) {
             System.err.println(ex);
         }
@@ -68,7 +83,7 @@ public class FrSobre extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("BomRango");
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("BomRango "  + versao));
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Rede Encarte"  + versao));
 
         java_version.setText("java.version");
 
@@ -124,7 +139,7 @@ public class FrSobre extends javax.swing.JFrame {
                     .addComponent(host_ip)
                     .addComponent(memory_ram)
                     .addComponent(processor_num))
-                .addContainerGap(635, Short.MAX_VALUE))
+                .addContainerGap(647, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(bt_ok, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -159,7 +174,7 @@ public class FrSobre extends javax.swing.JFrame {
                 .addComponent(memory_ram)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(processor_num)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
                 .addComponent(bt_ok)
                 .addContainerGap())
         );
@@ -168,17 +183,11 @@ public class FrSobre extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();

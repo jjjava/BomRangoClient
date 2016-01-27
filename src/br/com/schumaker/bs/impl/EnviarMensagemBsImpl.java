@@ -3,7 +3,7 @@ package br.com.schumaker.bs.impl;
 import br.com.schumaker.bs.EnviarMensagemBs;
 import br.com.schumaker.gfx.FrMensagem;
 import br.com.schumaker.mail.SendBrief;
-import br.com.schumaker.model.HsSession;
+import br.com.schumaker.model.HsSessionCliente;
 import br.com.schumaker.util.HsMessage;
 import javax.swing.JOptionPane;
 
@@ -18,9 +18,9 @@ public class EnviarMensagemBsImpl implements EnviarMensagemBs{
         SendBrief send = new SendBrief();
         send.setTo("hudson@schumaker.com.br");
         send.setSubject(assunto);
-        send.setMessage(HsSession.getInstance().getCliente().getEmail()+"\n"
-                +HsSession.getInstance().getMercado().getNome()+"\n"
-                +HsSession.getInstance().getMercado().getTelefone()+"\n\n"
+        send.setMessage(HsSessionCliente.getInstance().getCliente().getEmail()+"\n"
+                +HsSessionCliente.getInstance().getMercado().getNome()+"\n"
+                +HsSessionCliente.getInstance().getMercado().getTelefone()+"\n\n"
                 +texto);
         
         if(send.sendMessage()){

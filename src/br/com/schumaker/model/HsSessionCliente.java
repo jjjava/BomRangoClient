@@ -6,16 +6,16 @@ package br.com.schumaker.model;
  * @version 1.0.0
  * @since 1.0.0
  */
-public class HsSession {
+public class HsSessionCliente {
 
-    private static final HsSession instance = new HsSession();
+    private static final HsSessionCliente instance = new HsSessionCliente();
     private Cliente cliente;
     private Mercado mercado;
 
-    private HsSession() {
+    private HsSessionCliente() {
     }
 
-    public static HsSession getInstance() {
+    public static HsSessionCliente getInstance() {
         return instance;
     }
 

@@ -1,6 +1,9 @@
 package br.com.schumaker.gfx;
 
+import br.com.schumaker.bs.impl.AdmBsImpl;
 import br.com.schumaker.bs.impl.ClienteBsImpl;
+import br.com.schumaker.bs.impl.LoginBsImpl;
+import br.com.schumaker.model.Adm;
 import br.com.schumaker.model.Cliente;
 
 /**
@@ -30,18 +33,18 @@ public class FrLogin extends javax.swing.JFrame {
         btEsqueci = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Bom Rango");
+        setTitle("Rede Encarte");
         setResizable(false);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         jLabel1.setText("Email:");
 
-        jtEmail.setText("hudson@schumaker.com.br");
+        jtEmail.setText("$hudson");
 
         jLabel2.setText("Senha:");
 
-        jpSenha.setText("1234");
+        jpSenha.setText("P@ssw0rd");
         jpSenha.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jpSenhaActionPerformed(evt);
@@ -148,14 +151,30 @@ public class FrLogin extends javax.swing.JFrame {
     }//GEN-LAST:event_jpSenhaActionPerformed
 
     private void btEsqueciActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEsqueciActionPerformed
-        new ClienteBsImpl().esqueceuSenha(jtEmail.getText());
+        forgotPassword();
     }//GEN-LAST:event_btEsqueciActionPerformed
 
     private void doLogin() {
-        Cliente cliente = new Cliente();
-        cliente.setEmail(jtEmail.getText());
-        cliente.setSenha(jpSenha.getText());
-        new ClienteBsImpl().validar(cliente, this);
+
+        if (LoginBsImpl.getInstance().verifyTypeLogin(jtEmail.getText())) {
+            Adm adm = new Adm();
+            adm.setLogin(jtEmail.getText());
+            adm.setSenha(jpSenha.getText());
+            new AdmBsImpl().validar(adm, this);
+        } else {
+            Cliente cliente = new Cliente();
+            cliente.setEmail(jtEmail.getText());
+            cliente.setSenha(jpSenha.getText());
+            new ClienteBsImpl().validar(cliente, this);
+        }
+    }
+
+    private void forgotPassword() {
+        if (LoginBsImpl.getInstance().verifyTypeLogin(jtEmail.getText())) {
+            new AdmBsImpl().esqueceuSenha(jtEmail.getText());
+        } else {
+            new ClienteBsImpl().esqueceuSenha(jtEmail.getText());
+        }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

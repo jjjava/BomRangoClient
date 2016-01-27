@@ -24,7 +24,7 @@ public class CidadeDaoImpl implements CidadeDao {
 
     @Override
     public Cidade obter(Integer id) {
-        String sql = "select * from compras.cidade where cidade.id = " + id;
+        String sql = "select * from redeencarte.cidade where cidade.id = " + id;
         Connection conn = HsConnection.getConnection();
         Cidade cidade = new Cidade();
         try {
@@ -52,7 +52,7 @@ public class CidadeDaoImpl implements CidadeDao {
     @Override
     public List<Cidade> listar() {
         List<Cidade> cidades = new ArrayList<>();
-        String sql = "select * from compras.cidade order by cidade.nome order by cidade.name";
+        String sql = "select * from redeencarte.cidade order by cidade.nome order by cidade.name";
         Connection conn = HsConnection.getConnection();
         try {
             PreparedStatement pst = conn.prepareStatement(sql);
