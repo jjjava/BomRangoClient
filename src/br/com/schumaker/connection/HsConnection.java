@@ -13,14 +13,5 @@ import java.sql.SQLException;
  */
 public class HsConnection {
 
-    public static synchronized Connection getConnection() {
-        Connection conn = null;
-        try {
-            Driver drv = (Driver) Class.forName("com.mysql.jdbc.Driver").newInstance();
-            
-        } catch (SQLException | ClassNotFoundException | InstantiationException | IllegalAccessException ex) {
-            System.err.println(ex);
-        }
-        return conn;
-    }
+    
 }
