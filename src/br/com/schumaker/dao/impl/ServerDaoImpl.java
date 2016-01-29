@@ -40,4 +40,66 @@ public class ServerDaoImpl implements ServerDao {
         }
         return status;
     }
+
+    @Override
+    public boolean setStatus(int status) {
+        boolean atualizado = false;
+        String sql = "update redeencarte.tb_server set redeencarte.tb_server.status=? where redeencarte.tb_server.id=?";
+        Connection conn = HsConnection.getConnection();
+        PreparedStatement pst = null;
+        try {
+            pst = conn.prepareStatement(sql);
+            pst.setInt(1, status);
+            //where
+            pst.setInt(2, 1);//unica linha da tabela 
+            pst.executeUpdate();
+            conn.commit();
+            atualizado = true;
+        } catch (SQLException ex) {
+            atualizado = false;
+            try {
+                conn.rollback();
+            } catch (SQLException ex2) {
+                System.err.println(ex);
+                LogBsImpl.getInstance().inserirLog(this.getClass().getSimpleName(), ex2.getMessage());
+            }
+            System.err.println(ex);
+            LogBsImpl.getInstance().inserirLog(this.getClass().getSimpleName(), ex.getMessage());
+        } finally {
+            try {
+                pst.close();
+                conn.close();
+            } catch (SQLException ex) {
+                System.err.println(ex);
+                LogBsImpl.getInstance().inserirLog(this.getClass().getSimpleName(), ex.getMessage());
+            }
+        }
+        return atualizado;
+    }
+
+    @Override
+    public boolean verifyConnection() {
+        int status = -1;
+        String sql = "select * from redeencarte.tb_server";
+        Connection conn = HsConnection.getConnection();
+        try {
+            PreparedStatement pst = conn.prepareStatement(sql);
+            ResultSet rs = pst.executeQuery();
+            while (rs.next()) {
+                status = rs.getInt("id");
+            }
+        } catch (SQLException ex) {
+            status = 0;
+            System.err.println(ex);
+            LogBsImpl.getInstance().inserirLog(this.getClass().getSimpleName(), ex.getMessage());
+        } finally {
+            try {
+                conn.close();
+            } catch (SQLException ex) {
+                System.err.println(ex);
+                LogBsImpl.getInstance().inserirLog(this.getClass().getSimpleName(), ex.getMessage());
+            }
+        }
+        return status == 1;
+    }
 }

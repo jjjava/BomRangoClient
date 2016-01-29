@@ -17,8 +17,7 @@ public class HsConnection {
         Connection conn = null;
         try {
             Driver drv = (Driver) Class.forName("com.mysql.jdbc.Driver").newInstance();
-            String URL = "jdbc:mysql://200.98.143.1:3306/redeencarte";
-            conn = DriverManager.getConnection(URL, );
+            
         } catch (SQLException | ClassNotFoundException | InstantiationException | IllegalAccessException ex) {
             System.err.println(ex);
         }

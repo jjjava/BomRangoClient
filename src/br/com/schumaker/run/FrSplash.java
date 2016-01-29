@@ -56,7 +56,6 @@ public class FrSplash extends JFrame implements Runnable {
             } catch (InterruptedException e) {
             }
             this.jProgressBar.setString("Verificando Core...");
-            new ServerBsImpl().getStatus();
             try {
                 Thread.sleep(1500);
             } catch (InterruptedException e) {

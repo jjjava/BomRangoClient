@@ -3,8 +3,11 @@ package br.com.schumaker.gfx;
 import br.com.schumaker.bs.impl.AdmBsImpl;
 import br.com.schumaker.bs.impl.ClienteBsImpl;
 import br.com.schumaker.bs.impl.LoginBsImpl;
+import br.com.schumaker.bs.impl.ServerBsImpl;
 import br.com.schumaker.model.Adm;
 import br.com.schumaker.model.Cliente;
+import br.com.schumaker.util.HsMessage;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -155,17 +158,20 @@ public class FrLogin extends javax.swing.JFrame {
     }//GEN-LAST:event_btEsqueciActionPerformed
 
     private void doLogin() {
-
         if (LoginBsImpl.getInstance().verifyTypeLogin(jtEmail.getText())) {
             Adm adm = new Adm();
             adm.setLogin(jtEmail.getText());
             adm.setSenha(jpSenha.getText());
             new AdmBsImpl().validar(adm, this);
         } else {
-            Cliente cliente = new Cliente();
-            cliente.setEmail(jtEmail.getText());
-            cliente.setSenha(jpSenha.getText());
-            new ClienteBsImpl().validar(cliente, this);
+            if (new ServerBsImpl().getStatus()) {
+                Cliente cliente = new Cliente();
+                cliente.setEmail(jtEmail.getText());
+                cliente.setSenha(jpSenha.getText());
+                new ClienteBsImpl().validar(cliente, this);
+            } else {
+                HsMessage.mostrarMensagem(JOptionPane.WARNING_MESSAGE, "Rede Encarte", "Servidor em manutenção.");
+            }
         }
     }
 
@@ -173,7 +179,11 @@ public class FrLogin extends javax.swing.JFrame {
         if (LoginBsImpl.getInstance().verifyTypeLogin(jtEmail.getText())) {
             new AdmBsImpl().esqueceuSenha(jtEmail.getText());
         } else {
-            new ClienteBsImpl().esqueceuSenha(jtEmail.getText());
+            if (new ServerBsImpl().getStatus()) {
+                new ClienteBsImpl().esqueceuSenha(jtEmail.getText());
+            } else {
+                HsMessage.mostrarMensagem(JOptionPane.WARNING_MESSAGE, "Rede Encarte", "Servidor em manutenção.");
+            }
         }
     }
 

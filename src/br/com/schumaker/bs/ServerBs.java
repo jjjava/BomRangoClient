@@ -8,4 +8,6 @@ package br.com.schumaker.bs;
  */
 public interface ServerBs {
     public boolean getStatus();
+    public boolean setStatus(int status);
+    public boolean verifyConnection();
 }

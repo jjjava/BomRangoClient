@@ -7,5 +7,7 @@ package br.com.schumaker.dao;
  * @since 1.0.0
  */
 public interface ServerDao {
-    int getStatus();
+    public int getStatus();
+    public boolean setStatus(int status);
+    public boolean verifyConnection();
 }

@@ -15,4 +15,14 @@ public class ServerBsImpl implements ServerBs {
     public boolean getStatus() {
         return new ServerDaoImpl().getStatus() == 1;
     }
+
+    @Override
+    public boolean setStatus(int status) {
+        return new ServerDaoImpl().setStatus(status);
+    }
+
+    @Override
+    public boolean verifyConnection() {
+        return new ServerDaoImpl().verifyConnection();
+    }
 }
