@@ -30,7 +30,7 @@ public class UnidadeDaoImpl implements UnidadeDao {
             while (rs.next()) {
                 unidade.setId(rs.getInt("id"));
                 unidade.setNome(rs.getString("nome"));
-                unidade.setDescricao(rs.getString("descricao"));
+                unidade.setInfo(rs.getString("info"));
             }
         } catch (SQLException ex) {
             System.err.println(ex);
@@ -57,7 +57,7 @@ public class UnidadeDaoImpl implements UnidadeDao {
             while (rs.next()) {
                 unidade.setId(rs.getInt("id"));
                 unidade.setNome(rs.getString("nome"));
-                unidade.setDescricao(rs.getString("descricao"));
+                unidade.setInfo(rs.getString("info"));
             }
         } catch (SQLException ex) {
             System.err.println(ex);
@@ -75,7 +75,7 @@ public class UnidadeDaoImpl implements UnidadeDao {
 
     @Override
     public List<Unidade> listar() {
-        List<Unidade> unidades = new ArrayList<Unidade>();
+        List<Unidade> unidades = new ArrayList<>();
         String sql = "select * from compras.unidade order by unidade.nome";
         Connection conn = HsConnection.getConnection();
         try {
@@ -85,7 +85,7 @@ public class UnidadeDaoImpl implements UnidadeDao {
                 Unidade unidade = new Unidade();
                 unidade.setId(rs.getInt("id"));
                 unidade.setNome(rs.getString("nome"));
-                unidade.setDescricao(rs.getString("descricao"));
+                unidade.setInfo(rs.getString("info"));
                 //---add na lista
                 unidades.add(unidade);
             }
@@ -105,7 +105,7 @@ public class UnidadeDaoImpl implements UnidadeDao {
 
     @Override
     public List<Unidade> like(String s) {
-        List<Unidade> unidades = new ArrayList<Unidade>();
+        List<Unidade> unidades = new ArrayList<>();
         String sql = "select * from compras.unidade where unidade.nome like '%" + s + "%' order by unidade.nome";
         Connection conn = HsConnection.getConnection();
         try {
@@ -115,7 +115,7 @@ public class UnidadeDaoImpl implements UnidadeDao {
                 Unidade unidade = new Unidade();
                 unidade.setId(rs.getInt("id"));
                 unidade.setNome(rs.getString("nome"));
-                unidade.setDescricao(rs.getString("descricao"));
+                unidade.setInfo(rs.getString("info"));
                 //---add na lista
                 unidades.add(unidade);
             }
@@ -159,14 +159,14 @@ public class UnidadeDaoImpl implements UnidadeDao {
     @Override
     public boolean cadastrar(Unidade unidade) {
         boolean cadastrado = false;
-        String sql = "insert into compras.unidade ( nome, descricao ) values (?,?)";
+        String sql = "insert into compras.unidade ( nome, info ) values (?,?)";
         Connection conn = HsConnection.getConnection();
         PreparedStatement pst = null;
         try {
             conn.setAutoCommit(false);
             pst = conn.prepareStatement(sql);
             pst.setString(1, unidade.getNome());
-            pst.setString(2, unidade.getDescricao());
+            pst.setString(2, unidade.getInfo());
             pst.execute();
             conn.commit();
             cadastrado = true;
@@ -195,14 +195,14 @@ public class UnidadeDaoImpl implements UnidadeDao {
     @Override
     public boolean atualizar(Unidade unidade) {
         boolean atualizado = false;
-        String sql = "update compras.unidade set unidade.nome=?, unidade.descricao=? "
+        String sql = "update compras.unidade set unidade.nome=?, unidade.info=? "
                 + "where unidade.id=?";
         Connection conn = HsConnection.getConnection();
         PreparedStatement pst = null;
         try {
             pst = conn.prepareStatement(sql);
             pst.setString(1, unidade.getNome());
-            pst.setString(2, unidade.getDescricao());
+            pst.setString(2, unidade.getInfo());
             //where
             pst.setInt(3, unidade.getId());
             pst.executeUpdate();

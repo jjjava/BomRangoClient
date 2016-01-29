@@ -10,7 +10,7 @@ public class Unidade {
 
     private Integer id;
     private String nome;
-    private String descricao;
+    private String info;
 
     public Unidade() {
     }
@@ -35,12 +35,12 @@ public class Unidade {
         this.nome = nome;
     }
 
-    public String getDescricao() {
-        return descricao;
+    public String getInfo() {
+        return info;
     }
 
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
+    public void setInfo(String descricao) {
+        this.info = descricao;
     }
     
     @Override

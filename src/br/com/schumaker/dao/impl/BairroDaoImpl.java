@@ -32,7 +32,7 @@ public class BairroDaoImpl implements BairroDao {
             ResultSet rs = pst.executeQuery();
             while (rs.next()) {
                 bairro.setId(rs.getInt("id"));
-                bairro.setIdEstado(rs.getInt("idestado"));
+                bairro.setIdCidade(rs.getInt("idcidade"));
                 bairro.setNome(rs.getString("nome"));
             }
         } catch (SQLException ex) {
@@ -60,7 +60,7 @@ public class BairroDaoImpl implements BairroDao {
             while (rs.next()) {
                 Bairro bairro = new Bairro();
                 bairro.setId(rs.getInt("id"));
-                bairro.setIdEstado(rs.getInt("idestado"));
+                bairro.setIdCidade(rs.getInt("idcidade"));
                 bairro.setNome(rs.getString("nome"));
                 //---add na lista
                 bairros.add(bairro);
@@ -90,7 +90,7 @@ public class BairroDaoImpl implements BairroDao {
             while (rs.next()) {
                 Bairro bairro = new Bairro();
                 bairro.setId(rs.getInt("id"));
-                bairro.setIdEstado(rs.getInt("idestado"));
+                bairro.setIdCidade(rs.getInt("idcidade"));
                 bairro.setNome(rs.getString("nome"));
                 //---add na lista
                 bairros.add(bairro);
@@ -137,12 +137,12 @@ public class BairroDaoImpl implements BairroDao {
     @Override
     public boolean cadastrar(Bairro bairro) {
         boolean cadastrado = false;
-        String sql = "insert into compras.cliente ( idestado, nome ) values (?,?)";
+        String sql = "insert into compras.cliente ( idcidade, nome ) values (?,?)";
         Connection conn = HsConnection.getConnection();
         PreparedStatement pst = null;
         try {
             pst = conn.prepareStatement(sql);
-            pst.setInt(1, bairro.getIdEstado());
+            pst.setInt(1, bairro.getIdCidade());
             pst.setString(2, bairro.getNome());
             pst.execute();
             cadastrado = true;
@@ -165,13 +165,13 @@ public class BairroDaoImpl implements BairroDao {
     @Override
     public boolean atualizar(Bairro bairro) {
         boolean atualizado = false;
-        String sql = "update compras.bairro set bairro.idestado=?, bairro.nome=? "
+        String sql = "update compras.bairro set bairro.idcidade=?, bairro.nome=? "
                 + "where bairro.id=?";
         Connection conn = HsConnection.getConnection();
         PreparedStatement pst = null;
         try {
             pst = conn.prepareStatement(sql);
-            pst.setInt(1, bairro.getIdEstado());
+            pst.setInt(1, bairro.getIdCidade());
             pst.setString(2, bairro.getNome());
             //where
             pst.setInt(3, bairro.getId());

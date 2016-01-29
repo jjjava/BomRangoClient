@@ -13,5 +13,7 @@ import java.sql.SQLException;
  */
 public class HsConnection {
 
-    
+    public static synchronized Connection getConnection() {
+       
+    }
 }
