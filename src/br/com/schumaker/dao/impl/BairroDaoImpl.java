@@ -2,8 +2,8 @@ package br.com.schumaker.dao.impl;
 
 import br.com.schumaker.bs.impl.LogBsImpl;
 import br.com.schumaker.connection.HsConnection;
-import br.com.schumaker.dao.DensidadeDao;
-import br.com.schumaker.model.Densidade;
+import br.com.schumaker.dao.BairroDao;
+import br.com.schumaker.model.Bairro;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -17,51 +17,23 @@ import java.util.List;
  * @version 1.0.0
  * @since 1.0.0
  */
-public class DensidadeDaoImpl implements DensidadeDao {
+public class BairroDaoImpl implements BairroDao {
 
-    public DensidadeDaoImpl() {
+    public BairroDaoImpl() {
     }
 
     @Override
-    public Densidade obter(Integer id) {
-        String sql = "select * from compras.densidade where densidade.id = " + id;
+    public Bairro obter(Integer id) {
+        String sql = "select * from redeencarte.bairro where bairro.id = " + id;
         Connection conn = HsConnection.getConnection();
-        Densidade densidade = new Densidade();
+        Bairro bairro = new Bairro();
         try {
             PreparedStatement pst = conn.prepareStatement(sql);
             ResultSet rs = pst.executeQuery();
             while (rs.next()) {
-                densidade.setId(rs.getInt("id"));
-                densidade.setNome(rs.getString("nome"));
-            }
-        } catch (SQLException ex) {
-            System.err.println(ex);
-            LogBsImpl.getInstance().inserirLog(this.getClass().getSimpleName(), ex.getMessage());
-        } finally {
-            try {
-                conn.close();
-            } catch (SQLException ex) {
-                System.err.println(ex);//throw new RuntimeException(e);
-                LogBsImpl.getInstance().inserirLog(this.getClass().getSimpleName(), ex.getMessage());
-            }
-        }
-        return densidade;
-    }
-
-    @Override
-    public List<Densidade> listar() {
-        List<Densidade> densidades = new ArrayList<>();
-        String sql = "select * from compras.densidade order by densidade.id";
-        Connection conn = HsConnection.getConnection();
-        try {
-            PreparedStatement pst = conn.prepareStatement(sql);
-            ResultSet rs = pst.executeQuery();
-            while (rs.next()) {
-                Densidade densidade = new Densidade();
-                densidade.setId(rs.getInt("id"));
-                densidade.setNome(rs.getString("nome"));
-                //---add na lista
-                densidades.add(densidade);
+                bairro.setId(rs.getInt("id"));
+                bairro.setIdEstado(rs.getInt("idestado"));
+                bairro.setNome(rs.getString("nome"));
             }
         } catch (SQLException ex) {
             System.err.println(ex);
@@ -74,23 +46,24 @@ public class DensidadeDaoImpl implements DensidadeDao {
                 LogBsImpl.getInstance().inserirLog(this.getClass().getSimpleName(), ex.getMessage());
             }
         }
-        return densidades;
+        return bairro;
     }
 
     @Override
-    public List<Densidade> like(String s) {
-        List<Densidade> densidades = new ArrayList<>();
-        String sql = "select * from compras.densidade where densidade.nome like '%" + s + "%'";
+    public List<Bairro> listar() {
+        List<Bairro> bairros = new ArrayList<>();
+        String sql = "select * from redeencarte.bairro order by bairro.nome order by bairro.name";
         Connection conn = HsConnection.getConnection();
         try {
             PreparedStatement pst = conn.prepareStatement(sql);
             ResultSet rs = pst.executeQuery();
             while (rs.next()) {
-                Densidade densidade = new Densidade();
-                densidade.setId(rs.getInt("id"));
-                densidade.setNome(rs.getString("nome"));
+                Bairro bairro = new Bairro();
+                bairro.setId(rs.getInt("id"));
+                bairro.setIdEstado(rs.getInt("idestado"));
+                bairro.setNome(rs.getString("nome"));
                 //---add na lista
-                densidades.add(densidade);
+                bairros.add(bairro);
             }
         } catch (SQLException ex) {
             System.err.println(ex);
@@ -100,15 +73,46 @@ public class DensidadeDaoImpl implements DensidadeDao {
                 conn.close();
             } catch (SQLException ex) {
                 System.err.println(ex);
+                LogBsImpl.getInstance().inserirLog(this.getClass().getSimpleName(), ex.getMessage());
             }
         }
-        return densidades;
+        return bairros;
+    }
+
+    @Override
+    public List<Bairro> like(String s) {
+        List<Bairro> bairros = new ArrayList<>();
+        String sql = "select * from compras.bairro where bairro.nome like '%" + s + "%' order by bairro.name";
+        Connection conn = HsConnection.getConnection();
+        try {
+            PreparedStatement pst = conn.prepareStatement(sql);
+            ResultSet rs = pst.executeQuery();
+            while (rs.next()) {
+                Bairro bairro = new Bairro();
+                bairro.setId(rs.getInt("id"));
+                bairro.setIdEstado(rs.getInt("idestado"));
+                bairro.setNome(rs.getString("nome"));
+                //---add na lista
+                bairros.add(bairro);
+            }
+        } catch (SQLException ex) {
+            System.err.println(ex);
+            LogBsImpl.getInstance().inserirLog(this.getClass().getSimpleName(), ex.getMessage());
+        } finally {
+            try {
+                conn.close();
+            } catch (SQLException ex) {
+                System.err.println(ex);
+                LogBsImpl.getInstance().inserirLog(this.getClass().getSimpleName(), ex.getMessage());
+            }
+        }
+        return bairros;
     }
 
     @Override
     public boolean verificarNome(String nome) {
         boolean validado = false;
-        String sql = "select * from compras.densidade where densidade.nome = '" + nome + "'";
+        String sql = "select * from compras.bairro where bairro.nome = '" + nome + "'";
         Connection conn = HsConnection.getConnection();
         try {
             PreparedStatement pst = conn.prepareStatement(sql);
@@ -118,52 +122,59 @@ public class DensidadeDaoImpl implements DensidadeDao {
             }
         } catch (SQLException e) {
             System.err.println(e);
+            LogBsImpl.getInstance().inserirLog(this.getClass().getSimpleName(), e.getMessage());
         } finally {
             try {
                 conn.close();
-            } catch (SQLException e) {
-                System.err.println(e);
+            } catch (SQLException ex) {
+                System.err.println(ex);
+                LogBsImpl.getInstance().inserirLog(this.getClass().getSimpleName(), ex.getMessage());
             }
         }
         return validado;
     }
 
     @Override
-    public boolean cadastrar(Densidade densidade) {
+    public boolean cadastrar(Bairro bairro) {
         boolean cadastrado = false;
-        String sql = "insert into compras.densidade (nome) values (?)";
+        String sql = "insert into compras.cliente ( idestado, nome ) values (?,?)";
         Connection conn = HsConnection.getConnection();
         PreparedStatement pst = null;
         try {
             pst = conn.prepareStatement(sql);
-            pst.setString(1, densidade.getNome());
+            pst.setInt(1, bairro.getIdEstado());
+            pst.setString(2, bairro.getNome());
             pst.execute();
             cadastrado = true;
-        } catch (SQLException e) {
+        } catch (SQLException ex) {
             cadastrado = false;
-            System.err.println(e);
+            System.err.println(ex);
+            LogBsImpl.getInstance().inserirLog(this.getClass().getSimpleName(), ex.getMessage());
         } finally {
             try {
                 pst.close();
                 conn.close();
-            } catch (SQLException e) {
-                System.err.println(e);
+            } catch (SQLException ex) {
+                System.err.println(ex);
+                LogBsImpl.getInstance().inserirLog(this.getClass().getSimpleName(), ex.getMessage());
             }
         }
         return cadastrado;
     }
 
     @Override
-    public boolean atualizar(Densidade densiadade) {
+    public boolean atualizar(Bairro bairro) {
         boolean atualizado = false;
-        String sql = "update compras.densidade set densidade.nome=? where densidade.id=?";
+        String sql = "update compras.bairro set bairro.idestado=?, bairro.nome=? "
+                + "where bairro.id=?";
         Connection conn = HsConnection.getConnection();
         PreparedStatement pst = null;
         try {
             pst = conn.prepareStatement(sql);
-            pst.setString(1, densiadade.getNome());
+            pst.setInt(1, bairro.getIdEstado());
+            pst.setString(2, bairro.getNome());
             //where
-            pst.setInt(2, densiadade.getId());
+            pst.setInt(3, bairro.getId());
             pst.executeUpdate();
             atualizado = true;
         } catch (SQLException ex) {
@@ -183,7 +194,7 @@ public class DensidadeDaoImpl implements DensidadeDao {
     }
 
     @Override
-    public boolean deletar(Densidade densidade) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public boolean deletar(Bairro bairro) {
+        throw new UnsupportedOperationException("Not supported.");
     }
 }
