@@ -17,7 +17,7 @@ public class LogDaoImpl implements LogDao {
 
     @Override
     public void cadastarLog(Log log) {
-        String sql = "insert into compras.log ( class, erro, data ) values (?,?,?)";
+        String sql = "insert into redeencarte.tb_log ( class, erro, data ) values (?,?,?)";
         Connection conn = HsConnection.getConnection();
         PreparedStatement pst = null;
         try {

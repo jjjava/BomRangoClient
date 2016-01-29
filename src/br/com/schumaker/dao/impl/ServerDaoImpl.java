@@ -19,7 +19,7 @@ public class ServerDaoImpl implements ServerDao {
     @Override
     public int getStatus() {
         int status = -1;
-        String sql = "select * from compras.server";
+        String sql = "select * from redeencarte.tb_server";
         Connection conn = HsConnection.getConnection();
         try {
             PreparedStatement pst = conn.prepareStatement(sql);

@@ -8,6 +8,8 @@ package br.com.schumaker.util;
  */
 public class HsCommons {
 
+    public static final String version = "1.0.0";
+    public static final String name = "Rede Encarte";
     public static final int DAOPRODES = 200;
     public static final int DCTAGS = 40;
     public static final int PRODATIV = 1;

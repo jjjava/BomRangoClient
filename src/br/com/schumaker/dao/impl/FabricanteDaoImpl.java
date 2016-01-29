@@ -75,7 +75,7 @@ public class FabricanteDaoImpl implements FabricanteDao {
 
     @Override
     public List<Fabricante> listar() {
-        List<Fabricante> fabricantes = new ArrayList<Fabricante>();
+        List<Fabricante> fabricantes = new ArrayList<>();
         String sql = "select * from compras.fabricante order by fabricante.nome";
         Connection conn = HsConnection.getConnection();
         try {
@@ -105,7 +105,7 @@ public class FabricanteDaoImpl implements FabricanteDao {
 
     @Override
     public List<Fabricante> like(String s) {
-        List<Fabricante> fabricantes = new ArrayList<Fabricante>();
+        List<Fabricante> fabricantes = new ArrayList<>();
         String sql = "select * from compras.fabricante where fabricante.nome like '%" + s + "%' order by fabricante.nome";
         Connection conn = HsConnection.getConnection();
         try {

@@ -1,9 +1,7 @@
 package br.com.schumaker.gfx;
 
 import br.com.schumaker.bs.impl.FabricanteBsImpl;
-import br.com.schumaker.bs.impl.UnidadeBsImpl;
 import br.com.schumaker.model.Fabricante;
-import javax.swing.JComboBox;
 
 /**
  *
@@ -112,7 +110,6 @@ public class IfCadFabricante extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btGravarActionPerformed
 
     private void btCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCancelarActionPerformed
-
         this.dispose();
     }//GEN-LAST:event_btCancelarActionPerformed
 

@@ -1,5 +1,6 @@
 package br.com.schumaker.gfx;
 
+import br.com.schumaker.util.HsCommons;
 import java.lang.management.ManagementFactory;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
@@ -13,21 +14,19 @@ import java.text.DecimalFormat;
  */
 public class FrSobre extends javax.swing.JFrame {
 
-    private final String versao = "1.0.0";
     public FrSobre() {
         this.initComponents();
         try {
             com.sun.management.OperatingSystemMXBean mxbean = (com.sun.management.OperatingSystemMXBean) ManagementFactory.getOperatingSystemMXBean();
-
-            java_version.setText("Versão do Java: "+ System.getProperty("java.version"));
+            java_version.setText("Versão do Java: " + System.getProperty("java.version"));
             java_vendor.setText("Fabricante da máquina virtual: " + System.getProperty("java.vendor"));
-            java_vm_name.setText("Nome da máquina virtual: "+ System.getProperty("java.vm.name"));
+            java_vm_name.setText("Nome da máquina virtual: " + System.getProperty("java.vm.name"));
             os_name.setText("Sistema operacional: " + System.getProperty("os.name"));
             os_arch.setText("Arquitetura do sistema operacional: " + System.getProperty("os.arch"));
-            os_version.setText("Versão do sistema operacional: "+ System.getProperty("os.version"));
-            user_name.setText("Nome do usuário: "+ System.getProperty("user.name"));
-            user_home.setText("Local dos documentos dos usuário: "+ System.getProperty("user.home"));
-            user_dir.setText("Local de instalação do BomRango "+versao+": " + System.getProperty("user.dir"));
+            os_version.setText("Versão do sistema operacional: " + System.getProperty("os.version"));
+            user_name.setText("Nome do usuário: " + System.getProperty("user.name"));
+            user_home.setText("Local dos documentos dos usuário: " + System.getProperty("user.home"));
+            user_dir.setText("Local de instalação do " + HsCommons.name + " " + HsCommons.version + ": " + System.getProperty("user.dir"));
             host_name.setText("Nome da máquina: " + InetAddress.getLocalHost().getHostName());
             host_ip.setText("IP da máquina: " + InetAddress.getLocalHost().getHostAddress());
 
@@ -39,21 +38,20 @@ public class FrSobre extends javax.swing.JFrame {
             memory_ram.setText("Total memória RAM: " + size);
 
             processor_num.setText("Número de processadores: " + Runtime.getRuntime().availableProcessors());
-           
-            
+
             Long ll = Runtime.getRuntime().maxMemory();
             String max = Long.toString(ll);
             double dd = Double.parseDouble(max);
             max = decimal.format(((dd / 1024) / 1024) / 1024) + " GB";
             System.out.println(max);
-            
+
             Runtime.getRuntime().gc();
             Long lll = Runtime.getRuntime().freeMemory();
             String free = Long.toString(lll);
             double ddd = Double.parseDouble(free);
             free = decimal.format(((ddd / 1024) / 1024) / 1024) + " GB";
             System.out.println(free);
-           
+
         } catch (UnknownHostException ex) {
             System.err.println(ex);
         }
@@ -83,7 +81,7 @@ public class FrSobre extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("BomRango");
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Rede Encarte"  + versao));
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(HsCommons.name + " " + HsCommons.version));
 
         java_version.setText("java.version");
 
@@ -197,7 +195,7 @@ public class FrSobre extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_bt_okActionPerformed
 
- 
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bt_ok;
     private javax.swing.JLabel host_ip;
