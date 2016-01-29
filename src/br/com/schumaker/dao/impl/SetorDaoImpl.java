@@ -13,7 +13,7 @@ import java.util.List;
 
 /**
  *
- * @author hudson schumaker HStudio - @BomRango 07/01/2015
+ * @author Hudson Schumaker HStudio - @BomRango 07/01/2015
  * @version 1.0.0
  * @since 1.0.0
  */
@@ -24,7 +24,7 @@ public class SetorDaoImpl implements SetorDao {
 
     @Override
     public Setor obter(Integer id) {
-        String sql = "select * from compras.categoria where categoria.id = " + id;
+        String sql = "select * from redeencarte.tb_setor where redeencarte.tb_setor.id = " + id;
         Connection conn = HsConnection.getConnection();
         Setor categoria = new Setor();
         try {
@@ -51,7 +51,7 @@ public class SetorDaoImpl implements SetorDao {
 
     @Override
     public Setor obter(String nome) {
-        String sql = "select * from compras.categoria where categoria.nome = '" + nome + "'";
+        String sql = "select * from redeencarte.tb_setor where redeencarte.tb_setor.nome = '" + nome + "'";
         Connection conn = HsConnection.getConnection();
         Setor categoria = new Setor();
         try {
@@ -78,8 +78,8 @@ public class SetorDaoImpl implements SetorDao {
 
     @Override
     public List<Setor> listar() {
-        List<Setor> categorias = new ArrayList<Setor>();
-        String sql = "select * from compras.categoria order by categoria.nome";
+        List<Setor> categorias = new ArrayList<>();
+        String sql = "select * from redeencarte.tb_setor order by redeencarte.tb_setor.nome";
         Connection conn = HsConnection.getConnection();
         try {
             PreparedStatement pst = conn.prepareStatement(sql);
@@ -108,8 +108,8 @@ public class SetorDaoImpl implements SetorDao {
 
     @Override
     public List<Setor> like(String s) {
-        List<Setor> categorias = new ArrayList<Setor>();
-        String sql = "select * from compras.categoria where categoria.nome like '%" + s + "%' order by categoria.nome";
+        List<Setor> categorias = new ArrayList<>();
+        String sql = "select * from redeencarte.tb_setor where redeencarte.tb_setor.nome like '%" + s + "%' order by redeencarte.tb_setor.nome";
         Connection conn = HsConnection.getConnection();
         try {
             PreparedStatement pst = conn.prepareStatement(sql);
@@ -139,7 +139,7 @@ public class SetorDaoImpl implements SetorDao {
     @Override
     public boolean verificarNome(String nome) {
         boolean validado = false;
-        String sql = "select * from compras.categoria where categoria.nome = '" + nome + "'";
+        String sql = "select * from redeencarte.tb_setor where redeencarte.tb_setor.nome = '" + nome + "'";
         Connection conn = HsConnection.getConnection();
         try {
             PreparedStatement pst = conn.prepareStatement(sql);
@@ -164,7 +164,7 @@ public class SetorDaoImpl implements SetorDao {
     @Override
     public boolean cadastrar(Setor setor) {
         boolean cadastrado = false;
-        String sql = "insert into compras.categoria ( nome, descricao ) values (?,?)";
+        String sql = "insert into redeencarte.tb_setor ( nome, descricao ) values (?,?)";
         Connection conn = HsConnection.getConnection();
         PreparedStatement pst = null;
         try {
@@ -192,8 +192,7 @@ public class SetorDaoImpl implements SetorDao {
     @Override
     public boolean atualizar(Setor setor) {
         boolean atualizado = false;
-        String sql = "update compras.categoria set categoria.nome=?, categoria.descricao=? "
-                + "where categoria.id=?";
+        String sql = "update redeencarte.tb_setor set redeencarte.tb_setor.nome=?, redeencarte.tb_setor.descricao=? where redeencarte.tb_setor.id=?";
         Connection conn = HsConnection.getConnection();
         PreparedStatement pst = null;
         try {

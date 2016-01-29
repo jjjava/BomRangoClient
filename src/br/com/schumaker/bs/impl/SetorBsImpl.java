@@ -64,11 +64,11 @@ public class SetorBsImpl implements SetorBs {
 
     @Override
     public void atualizar(Setor setor) {
-        HsMessage.mostrarMensagem(JOptionPane.WARNING_MESSAGE, "Setor", "Não suportado ainda");
+        HsMessage.mostrarMensagem(JOptionPane.WARNING_MESSAGE, "Setor", "Não suportado ainda.");
     }
 
     @Override
     public void deletar(Setor setor) {
-        HsMessage.mostrarMensagem(JOptionPane.WARNING_MESSAGE, "Setor", "Não suportado ainda");
+        HsMessage.mostrarMensagem(JOptionPane.WARNING_MESSAGE, "Setor", "Não suportado ainda.");
     }
 }

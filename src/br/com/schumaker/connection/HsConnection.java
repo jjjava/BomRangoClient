@@ -15,5 +15,6 @@ public class HsConnection {
 
     public static synchronized Connection getConnection() {
        
+        return conn;
     }
 }
