@@ -24,7 +24,7 @@ public class ClienteDaoImpl implements ClienteDao {
 
     @Override
     public Cliente obter(Integer id) {
-        String sql = "select * from compras.cliente where cliente.id = " + id;
+        String sql = "select * from redeencarte.tb_cliente where redeencarte.tb_cliente.id = " + id;
         Connection conn = HsConnection.getConnection();
         Cliente cliente = new Cliente();
         try {
@@ -52,7 +52,7 @@ public class ClienteDaoImpl implements ClienteDao {
     }
 
     public Cliente obter(String email) {
-        String sql = "select * from compras.cliente where cliente.email = '" + email + "'";
+        String sql = "select * from redeencarte.tb_cliente where redeencarte.tb_cliente.email = '" + email + "'";
         Connection conn = HsConnection.getConnection();
         Cliente cliente = new Cliente();
         try {
@@ -81,7 +81,7 @@ public class ClienteDaoImpl implements ClienteDao {
 
     @Override
     public List<Cliente> listar() {
-        String sql = "select * from compras.cliente order by cliente.nome order by cliente.name";
+        String sql = "select * from redeencarte.tb_cliente order by redeencarte.tb_cliente.nome";
         Connection conn = HsConnection.getConnection();
         List<Cliente> clientes = new ArrayList<>();
         try {
@@ -113,7 +113,7 @@ public class ClienteDaoImpl implements ClienteDao {
 
     @Override
     public List<Cliente> like(String nome) {
-        String sql = "select * from compras.cliente where cliente.nome like '%" + nome + "%' order by cliente.nome";
+        String sql = "select * from redeencarte.tb_cliente where redeencarte.tb_cliente.nome like '%" + nome + "%' order by redeencarte.tb_cliente.nome";
         Connection conn = HsConnection.getConnection();
         List<Cliente> clientes = new ArrayList<>();
         try {
@@ -146,7 +146,7 @@ public class ClienteDaoImpl implements ClienteDao {
     @Override
     public boolean validar(String cryptEmail, String cryptPassword) {//recebe dados criptografados
         boolean validado = false;
-        String sql = "select * from compras.cliente where cliente.email = '" + cryptEmail + "' and cliente.senha = '" + cryptPassword + "'";
+        String sql = "select * from redeencarte.tb_cliente where redeencarte.tb_cliente.email = '" + cryptEmail + "' and redeencarte.tb_cliente.senha = '" + cryptPassword + "'";
         Connection conn = HsConnection.getConnection();
         try {
             PreparedStatement pst = conn.prepareStatement(sql);
@@ -171,7 +171,7 @@ public class ClienteDaoImpl implements ClienteDao {
     @Override
     public boolean verificarEmail(String email) {
         boolean validado = false;
-        String sql = "select * from compras.cliente where cliente.email = '" + email + "'";
+        String sql = "select * from redeencarte.tb_cliente where redeencarte.tb_cliente.email = '" + email + "'";
         Connection conn = HsConnection.getConnection();
         try {
             PreparedStatement pst = conn.prepareStatement(sql);
@@ -196,7 +196,7 @@ public class ClienteDaoImpl implements ClienteDao {
     @Override
     public boolean cadastrar(Cliente cliente) {
         boolean cadastrado = false;
-        String sql = "insert into compras.cliente (idmercado, nome, email, senha) values (?,?,?,?)";
+        String sql = "insert into redeencarte.tb_cliente (idmercado, nome, email, senha) values (?,?,?,?)";
         Connection conn = HsConnection.getConnection();
         PreparedStatement pst = null;
         try {
@@ -234,8 +234,8 @@ public class ClienteDaoImpl implements ClienteDao {
     @Override
     public boolean atualizar(Cliente cliente) {
         boolean atualizado = false;
-        String sql = "update compras.cliente set cliente.nome=?, cliente.email=?, cliente.senha=? "
-                + "where cliente.id=?";
+        String sql = "update redeencarte.tb_cliente set redeencarte.tb_cliente.nome=?, redeencarte.tb_cliente.email=?, redeencarte.tb_cliente.senha=? "
+                + "where redeencarte.tb_cliente.id=?";
         Connection conn = HsConnection.getConnection();
         PreparedStatement pst = null;
         try {
