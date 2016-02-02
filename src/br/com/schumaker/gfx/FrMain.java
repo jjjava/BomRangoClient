@@ -247,7 +247,10 @@ public class FrMain extends JFrame {
                     return;
                 }
                 if (nodeInfo.equals("Setores")) {
-
+                    IfCadSetor ifCadSetor = new IfCadSetor();
+                    ifCadSetor.setSize(jDesktop.getWidth(), jDesktop.getHeight() - 40);
+                    jDesktop.add(ifCadSetor);
+                    ifCadSetor.toFront();
                     return;
                 }
                 if (nodeInfo.equals("Unidades")) {

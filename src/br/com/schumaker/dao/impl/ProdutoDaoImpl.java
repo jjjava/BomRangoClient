@@ -70,7 +70,7 @@ public class ProdutoDaoImpl implements ProdutoDao {
 
     @Override
     public List<Produto> listar() {
-        List<Produto> produtos = new ArrayList<Produto>();
+        List<Produto> produtos = new ArrayList<>();
         String sql = "select * from compras.produto order by produto.preco";
         Connection conn = HsConnection.getConnection();
         try {
@@ -110,7 +110,7 @@ public class ProdutoDaoImpl implements ProdutoDao {
 
     @Override
     public List<Produto> listar(int limite) {
-        List<Produto> produtos = new ArrayList<Produto>();
+        List<Produto> produtos = new ArrayList<>();
         String sql = "select * from compras.produto where produto.ativo=" + HsCommons.PRODATIV + " order by produto.preco limit " + limite;
         Connection conn = HsConnection.getConnection();
         try {
@@ -150,7 +150,7 @@ public class ProdutoDaoImpl implements ProdutoDao {
 
     @Override
     public List<Produto> listar(String nome) {
-        List<Produto> produtos = new ArrayList<Produto>();
+        List<Produto> produtos = new ArrayList<>();
         String sql = "select * from compras.produto where produto.nome = '" + nome + "' and produto.ativo=" + HsCommons.PRODATIV + " order by produto.preco";
         Connection conn = HsConnection.getConnection();
         try {
@@ -190,7 +190,7 @@ public class ProdutoDaoImpl implements ProdutoDao {
 
     @Override
     public List<Produto> listar(String nome, int limite) {
-        List<Produto> produtos = new ArrayList<Produto>();
+        List<Produto> produtos = new ArrayList<>();
         String sql = "select * from compras.produto where produto.nome ='" + nome + "' and produto.ativo=" + HsCommons.PRODATIV + " order by produto.preco limit " + limite;
         Connection conn = HsConnection.getConnection();
         try {
@@ -230,7 +230,7 @@ public class ProdutoDaoImpl implements ProdutoDao {
 
     @Override
     public List<Produto> like(String s) {
-        List<Produto> produtos = new ArrayList<Produto>();
+        List<Produto> produtos = new ArrayList<>();
         String sql = "select * from compras.produto where produto.nome like '%" + s + "%' and produto.ativo=" + HsCommons.PRODATIV + " order by produto.preco";
         Connection conn = HsConnection.getConnection();
         try {
@@ -272,7 +272,7 @@ public class ProdutoDaoImpl implements ProdutoDao {
 
     @Override
     public List<Produto> like(String s, int limite) {
-        List<Produto> produtos = new ArrayList<Produto>();
+        List<Produto> produtos = new ArrayList<>();
         String sql = "select * from compras.produto where produto.nome like '%" + s + "%' and produto.ativo=" + HsCommons.PRODATIV + " order by produto.preco limit " + limite;
         Connection conn = HsConnection.getConnection();
         try {
@@ -313,7 +313,7 @@ public class ProdutoDaoImpl implements ProdutoDao {
     }
 
     public List<Produto> listarPorCategoria(int idCategoria, int limite) {
-        List<Produto> produtos = new ArrayList<Produto>();
+        List<Produto> produtos = new ArrayList<>();
         String sql = "select * from compras.produto where produto.idcategoria=" + idCategoria + " and produto.ativo=" + HsCommons.PRODATIV + "  order by produto.preco limit " + limite;
         Connection conn = HsConnection.getConnection();
         try {
@@ -448,10 +448,7 @@ public class ProdutoDaoImpl implements ProdutoDao {
                 pst.close();
                 conn.close();
                 fis.close();
-            } catch (SQLException ex) {
-                System.err.println(ex);
-                LogBsImpl.getInstance().inserirLog(this.getClass().getSimpleName(), ex.getMessage());
-            } catch (IOException ex) {
+            } catch (SQLException | IOException ex) {
                 System.err.println(ex);
                 LogBsImpl.getInstance().inserirLog(this.getClass().getSimpleName(), ex.getMessage());
             }

@@ -9,6 +9,7 @@ package br.com.schumaker.model;
 public class Mercado {
 
     private Integer id;
+    private Integer idSeguimento;
     private Integer idDensidade;
     private String nome;
     private String endereco;
@@ -17,13 +18,16 @@ public class Mercado {
     private Estado estado;
     private String telefone;
     private String site;
+    private String email;
     private String cartoes;
+    private String razaoSocial;
     private String cnpj;
+    private String ie;
     private String horarioFunc;
-    private String fundacao;
-    private String sobre;
-    private int ativo;
     private int estacionamento;
+    private String sobre;
+    private String image;
+    private int ativo;
 
     public Mercado() {
     }
@@ -38,6 +42,22 @@ public class Mercado {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public Integer getIdDensidade() {
+        return idDensidade;
+    }
+
+    public void setIdDensidade(Integer idDensidade) {
+        this.idDensidade = idDensidade;
+    }
+
+    public Integer getIdSeguimento() {
+        return idSeguimento;
+    }
+
+    public void setIdSeguimento(Integer idSeguimento) {
+        this.idSeguimento = idSeguimento;
     }
 
     public String getNome() {
@@ -72,14 +92,6 @@ public class Mercado {
         this.site = site;
     }
 
-    public Integer getIdDensidade() {
-        return idDensidade;
-    }
-
-    public void setIdDensidade(Integer idDensidade) {
-        this.idDensidade = idDensidade;
-    }
-
     public String getCartoes() {
         return cartoes;
     }
@@ -102,22 +114,6 @@ public class Mercado {
 
     public void setHorarioFunc(String horarioFunc) {
         this.horarioFunc = horarioFunc;
-    }
-
-    public String getFundacao() {
-        return fundacao;
-    }
-
-    public void setFundacao(String fundacao) {
-        this.fundacao = fundacao;
-    }
-
-    public String getSobre() {
-        return sobre;
-    }
-
-    public void setSobre(String sobre) {
-        this.sobre = sobre;
     }
 
     public String getCidadeStr() {
@@ -167,9 +163,49 @@ public class Mercado {
     public void setEstacionamento(int estacionamento) {
         this.estacionamento = estacionamento;
     }
-    
+
     @Override
     public String toString() {//para aparecer no combobox
         return getNome();
+    }
+
+    public String getRazaoSocial() {
+        return razaoSocial;
+    }
+
+    public void setRazaoSocial(String razaoSocial) {
+        this.razaoSocial = razaoSocial;
+    }
+
+    public String getIe() {
+        return ie;
+    }
+
+    public void setIe(String ie) {
+        this.ie = ie;
+    }
+
+    public String getSobre() {
+        return sobre;
+    }
+
+    public void setSobre(String sobre) {
+        this.sobre = sobre;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }

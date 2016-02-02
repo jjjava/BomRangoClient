@@ -21,7 +21,7 @@ public class UnidadeDaoImpl implements UnidadeDao {
 
     @Override
     public Unidade obter(Integer id) {
-        String sql = "select * from compras.unidade where unidade.id = " + id;
+        String sql = "select * from redeencarte.tb_unidade where redeencarte.tb_unidade.id = " + id;
         Connection conn = HsConnection.getConnection();
         Unidade unidade = new Unidade();
         try {
@@ -48,7 +48,7 @@ public class UnidadeDaoImpl implements UnidadeDao {
 
     @Override
     public Unidade obter(String nome) {
-        String sql = "select * from compras.unidade where unidade.nome = '" + nome + "'";
+        String sql = "select * from redeencarte.tb_unidade where redeencarte.tb_unidade.nome = '" + nome + "'";
         Connection conn = HsConnection.getConnection();
         Unidade unidade = new Unidade();
         try {
@@ -76,7 +76,7 @@ public class UnidadeDaoImpl implements UnidadeDao {
     @Override
     public List<Unidade> listar() {
         List<Unidade> unidades = new ArrayList<>();
-        String sql = "select * from compras.unidade order by unidade.nome";
+        String sql = "select * from redeencarte.tb_unidade order by redeencarte.tb_unidade.nome";
         Connection conn = HsConnection.getConnection();
         try {
             PreparedStatement pst = conn.prepareStatement(sql);
@@ -106,7 +106,7 @@ public class UnidadeDaoImpl implements UnidadeDao {
     @Override
     public List<Unidade> like(String s) {
         List<Unidade> unidades = new ArrayList<>();
-        String sql = "select * from compras.unidade where unidade.nome like '%" + s + "%' order by unidade.nome";
+        String sql = "select * from redeencarte.tb_unidade where redeencarte.tb_unidade.nome like '%" + s + "%' order by redeencarte.tb_unidade.nome";
         Connection conn = HsConnection.getConnection();
         try {
             PreparedStatement pst = conn.prepareStatement(sql);
@@ -136,7 +136,7 @@ public class UnidadeDaoImpl implements UnidadeDao {
     @Override
     public boolean verificarNome(String nome) {
         boolean validado = false;
-        String sql = "select * from compras.unidade where unidade.nome = '" + nome + "' order by unidade.nome";
+        String sql = "select * from redeencarte.tb_unidade where redeencarte.tb_unidade.nome = '" + nome + "' order by redeencarte.tb_unidade.nome";
         Connection conn = HsConnection.getConnection();
         try {
             PreparedStatement pst = conn.prepareStatement(sql);
@@ -159,7 +159,7 @@ public class UnidadeDaoImpl implements UnidadeDao {
     @Override
     public boolean cadastrar(Unidade unidade) {
         boolean cadastrado = false;
-        String sql = "insert into compras.unidade ( nome, info ) values (?,?)";
+        String sql = "insert into redeencarte.tb_unidade ( nome, info ) values (?,?)";
         Connection conn = HsConnection.getConnection();
         PreparedStatement pst = null;
         try {
@@ -195,8 +195,8 @@ public class UnidadeDaoImpl implements UnidadeDao {
     @Override
     public boolean atualizar(Unidade unidade) {
         boolean atualizado = false;
-        String sql = "update compras.unidade set unidade.nome=?, unidade.info=? "
-                + "where unidade.id=?";
+        String sql = "update redeencarte.tb_unidade set redeencarte.tb_unidade.nome=?, redeencarte.tb_unidade.info=? "
+                + "where redeencarte.tb_unidade.id=?";
         Connection conn = HsConnection.getConnection();
         PreparedStatement pst = null;
         try {

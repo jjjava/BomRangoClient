@@ -33,10 +33,10 @@ public class HsGfxEngine implements Runnable {
     }
 
     private void setUp() {
-        aSize = new ArrayList<Integer>();
+        aSize = new ArrayList<>();
         aSize.add(64);
         aSize.add(128);
-        aNames = new ArrayList<String>();
+        aNames = new ArrayList<>();
         aNames.add(HsFiles.getClearName(name) + "@1");
         aNames.add(HsFiles.getClearName(name) + "@2");
     }

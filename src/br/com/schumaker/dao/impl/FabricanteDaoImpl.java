@@ -21,7 +21,7 @@ public class FabricanteDaoImpl implements FabricanteDao {
 
     @Override
     public Fabricante obter(Integer id) {
-        String sql = "select * from compras.fabricante where fabricante.id = " + id;
+        String sql = "select * redeencarte.tb_fabricante where redeencarte.tb_fabricante.id = " + id;
         Connection conn = HsConnection.getConnection();
         Fabricante fabricante = new Fabricante();
         try {
@@ -48,7 +48,7 @@ public class FabricanteDaoImpl implements FabricanteDao {
 
     @Override
     public Fabricante obter(String nome) {
-        String sql = "select * from compras.fabricante where fabricante.nome = '" + nome + "'";
+        String sql = "select * from redeencarte.tb_fabricante where redeencarte.tb_fabricante.nome = '" + nome + "'";
         Connection conn = HsConnection.getConnection();
         Fabricante fabricante = new Fabricante();
         try {
@@ -76,7 +76,7 @@ public class FabricanteDaoImpl implements FabricanteDao {
     @Override
     public List<Fabricante> listar() {
         List<Fabricante> fabricantes = new ArrayList<>();
-        String sql = "select * from compras.fabricante order by fabricante.nome";
+        String sql = "select * from redeencarte.tb_fabricante order by redeencarte.tb_fabricante.nome";
         Connection conn = HsConnection.getConnection();
         try {
             PreparedStatement pst = conn.prepareStatement(sql);
@@ -106,7 +106,7 @@ public class FabricanteDaoImpl implements FabricanteDao {
     @Override
     public List<Fabricante> like(String s) {
         List<Fabricante> fabricantes = new ArrayList<>();
-        String sql = "select * from compras.fabricante where fabricante.nome like '%" + s + "%' order by fabricante.nome";
+        String sql = "select * from redeencarte.tb_fabricante where redeencarte.tb_fabricante.nome like '%" + s + "%' order by redeencarte.tb_fabricante.nome";
         Connection conn = HsConnection.getConnection();
         try {
             PreparedStatement pst = conn.prepareStatement(sql);
@@ -136,7 +136,7 @@ public class FabricanteDaoImpl implements FabricanteDao {
     @Override
     public boolean verificarNome(String nome) {
         boolean validado = false;
-        String sql = "select * from compras.fabricante where fabricante.nome = '" + nome + "'";
+        String sql = "select * from redeencarte.tb_fabricante where redeencarte.tb_fabricante.nome = '" + nome + "'";
         Connection conn = HsConnection.getConnection();
         try {
             PreparedStatement pst = conn.prepareStatement(sql);
@@ -161,7 +161,7 @@ public class FabricanteDaoImpl implements FabricanteDao {
     @Override
     public boolean cadastrar(Fabricante fabricante) {
         boolean cadastrado = false;
-        String sql = "insert into compras.fabricante (nome, site) values (?,?)";
+        String sql = "insert into redeencarte.tb_fabricante (nome, site) values (?,?)";
         Connection conn = HsConnection.getConnection();
         PreparedStatement pst = null;
         try {
@@ -197,8 +197,8 @@ public class FabricanteDaoImpl implements FabricanteDao {
     @Override
     public boolean atualizar(Fabricante fabricante) {
         boolean atualizado = false;
-        String sql = "update compras.fabricante set fabricante.nome=?, fabricante.site=? "
-                + "where fabricante.id=?";
+        String sql = "update redeencarte.tb_fabricante set redeencarte.tb_fabricante.nome=?, redeencarte.tb_fabricante.site=? "
+                + "where redeencarte.tb_fabricante.id=?";
         Connection conn = HsConnection.getConnection();
         PreparedStatement pst = null;
         try {
