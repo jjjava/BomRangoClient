@@ -2,19 +2,19 @@ package br.com.schumaker.bs.impl;
 
 import br.com.schumaker.bs.BairroBs;
 import br.com.schumaker.dao.impl.BairroDaoImpl;
-import br.com.schumaker.dao.impl.EstadoDaoImpl;
 import br.com.schumaker.model.Bairro;
-import br.com.schumaker.util.HsMessage;
 import java.util.List;
-import javax.swing.JOptionPane;
 
 /**
  *
- * @author hudson schumaker HStudio - @BomRangoClient 06/06/2015
+ * @author Hudson Schumaker HStudio - @BomRangoClient 06/06/2015
  * @version 1.0.0
  * @since 1.0.0
  */
 public class BairroBsImpl implements BairroBs {
+    
+    public BairroBsImpl(){
+    }
 
     @Override
     public Bairro obter(Integer id) {
@@ -24,6 +24,10 @@ public class BairroBsImpl implements BairroBs {
     @Override
     public List<Bairro> listar() {
         return new BairroDaoImpl().listar();
+    }
+
+    public List<Bairro> listar(int id) {
+        return new BairroDaoImpl().listar(id);
     }
 
     @Override
@@ -38,7 +42,6 @@ public class BairroBsImpl implements BairroBs {
 
     @Override
     public void cadastrar(Bairro cidade) {
-       
     }
 
     @Override

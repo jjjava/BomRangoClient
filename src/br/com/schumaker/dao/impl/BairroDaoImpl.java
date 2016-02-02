@@ -79,6 +79,35 @@ public class BairroDaoImpl implements BairroDao {
         return bairros;
     }
 
+    public List<Bairro> listar(int id) {
+        List<Bairro> bairros = new ArrayList<>();
+        String sql = "select * from redeencarte.bairro where idcidade = " + id + " order by bairro.nome order by bairro.name";
+        Connection conn = HsConnection.getConnection();
+        try {
+            PreparedStatement pst = conn.prepareStatement(sql);
+            ResultSet rs = pst.executeQuery();
+            while (rs.next()) {
+                Bairro bairro = new Bairro();
+                bairro.setId(rs.getInt("id"));
+                bairro.setIdCidade(rs.getInt("idcidade"));
+                bairro.setNome(rs.getString("nome"));
+                //---add na lista
+                bairros.add(bairro);
+            }
+        } catch (SQLException ex) {
+            System.err.println(ex);
+            LogBsImpl.getInstance().inserirLog(this.getClass().getSimpleName(), ex.getMessage());
+        } finally {
+            try {
+                conn.close();
+            } catch (SQLException ex) {
+                System.err.println(ex);
+                LogBsImpl.getInstance().inserirLog(this.getClass().getSimpleName(), ex.getMessage());
+            }
+        }
+        return bairros;
+    }
+
     @Override
     public List<Bairro> like(String s) {
         List<Bairro> bairros = new ArrayList<>();

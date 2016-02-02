@@ -25,6 +25,10 @@ public class CidadeBsImpl implements CidadeBs {
     public List<Cidade> listar() {
         return new CidadeDaoImpl().listar();
     }
+    
+    public List<Cidade> listar(int id) {
+        return new CidadeDaoImpl().listar(id);
+    }
 
     @Override
     public List<Cidade> like(String s) {

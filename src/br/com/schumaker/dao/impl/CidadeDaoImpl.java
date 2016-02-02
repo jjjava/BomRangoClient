@@ -78,6 +78,35 @@ public class CidadeDaoImpl implements CidadeDao {
         }
         return cidades;
     }
+    
+    public List<Cidade> listar(int id) {
+        List<Cidade> cidades = new ArrayList<>();
+        String sql = "select * from redeencarte.cidade where idestado = "+id+" order by cidade.nome order by cidade.name";
+        Connection conn = HsConnection.getConnection();
+        try {
+            PreparedStatement pst = conn.prepareStatement(sql);
+            ResultSet rs = pst.executeQuery();
+            while (rs.next()) {
+                Cidade cidade = new Cidade();
+                cidade.setId(rs.getInt("id"));
+                cidade.setIdEstado(rs.getInt("idestado"));
+                cidade.setNome(rs.getString("nome"));
+                //---add na lista
+                cidades.add(cidade);
+            }
+        } catch (SQLException ex) {
+            System.err.println(ex);
+            LogBsImpl.getInstance().inserirLog(this.getClass().getSimpleName(), ex.getMessage());
+        } finally {
+            try {
+                conn.close();
+            } catch (SQLException ex) {
+                System.err.println(ex);
+                LogBsImpl.getInstance().inserirLog(this.getClass().getSimpleName(), ex.getMessage());
+            }
+        }
+        return cidades;
+    }
 
     @Override
     public List<Cidade> like(String s) {

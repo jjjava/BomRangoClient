@@ -77,7 +77,7 @@ public class EstadoDaoImpl implements EstadoDao {
 
     @Override
     public List<Estado> like(String s) {
-        List<Estado> estados = new ArrayList<Estado>();
+        List<Estado> estados = new ArrayList<>();
         String sql = "select * from compras.estado where estado.nome like '%" + s + "%' order by estado.nome";
         Connection conn = HsConnection.getConnection();
         try {
