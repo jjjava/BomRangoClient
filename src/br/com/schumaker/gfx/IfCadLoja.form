@@ -63,67 +63,75 @@
                               <Component id="jLabel7" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel8" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel9" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabel14" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabel15" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="tfNome" pref="356" max="32767" attributes="0"/>
-                      <Component id="tfInfo" max="32767" attributes="0"/>
-                      <Group type="102" alignment="0" attributes="0">
-                          <Component id="tfRazaoSocial" min="-2" pref="155" max="-2" attributes="0"/>
-                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="tfIE" max="32767" attributes="0"/>
-                      </Group>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="jcGaragem" min="-2" max="-2" attributes="0"/>
                       <Group type="102" attributes="0">
-                          <Component id="tfTelefone" min="-2" pref="155" max="-2" attributes="0"/>
-                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="tfSite" max="32767" attributes="0"/>
-                      </Group>
-                      <Component id="jTextField1" max="32767" attributes="0"/>
-                      <Component id="jTextField2" max="32767" attributes="0"/>
-                      <Group type="102" attributes="0">
-                          <Component id="jcEstado" min="-2" pref="151" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jLabel10" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jcCidade" max="32767" attributes="0"/>
-                      </Group>
-                  </Group>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="1" attributes="0">
-                      <Group type="102" alignment="1" attributes="0">
-                          <Component id="btGravar" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="11" max="32767" attributes="0"/>
-                          <Component id="btCancelar" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="98" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
                           <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                              <Component id="tfPath" max="32767" attributes="0"/>
+                              <Component id="tfNome" alignment="0" pref="356" max="32767" attributes="0"/>
+                              <Component id="tfInfo" alignment="0" max="32767" attributes="0"/>
                               <Group type="102" alignment="0" attributes="0">
-                                  <Component id="jLabel12" min="-2" max="-2" attributes="0"/>
+                                  <Component id="tfRazaoSocial" min="-2" pref="155" max="-2" attributes="0"/>
+                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                  <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="tfCnpj" max="32767" attributes="0"/>
+                                  <Component id="tfIE" max="32767" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="jLabel11" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jLabel13" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  </Group>
+                                  <Component id="tfTelefone" min="-2" pref="155" max="-2" attributes="0"/>
+                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                  <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                      <Component id="jcBairro" pref="130" max="32767" attributes="0"/>
-                                      <Component id="tfHorario" max="32767" attributes="0"/>
-                                  </Group>
+                                  <Component id="tfSite" max="32767" attributes="0"/>
+                              </Group>
+                              <Component id="jTextField1" alignment="0" max="32767" attributes="0"/>
+                              <Component id="jTextField2" alignment="0" max="32767" attributes="0"/>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="jcEstado" min="-2" pref="151" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="jLabel10" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="jcCidade" max="32767" attributes="0"/>
                               </Group>
                           </Group>
-                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="103" groupAlignment="1" attributes="0">
+                                  <Group type="102" attributes="0">
+                                      <Component id="btGravar" min="-2" pref="81" max="-2" attributes="0"/>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <Component id="btCancelar" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <Component id="jLabel12" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Component id="tfCnpj" max="32767" attributes="0"/>
+                                      </Group>
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Component id="jLabel11" alignment="0" min="-2" max="-2" attributes="0"/>
+                                              <Component id="jLabel13" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                              <Component id="jcBairro" pref="130" max="32767" attributes="0"/>
+                                              <Component id="tfHorario" max="32767" attributes="0"/>
+                                          </Group>
+                                      </Group>
+                                  </Group>
+                              </Group>
+                              <Component id="btSelecionar" alignment="0" min="-2" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
                   </Group>
+                  <EmptySpace min="0" pref="74" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -179,7 +187,20 @@
                       <Component id="jLabel11" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jcBairro" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="173" max="32767" attributes="0"/>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="jLabel14" min="-2" max="-2" attributes="0"/>
+                      <Component id="jcGaragem" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="jLabel15" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="tfPath" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="btSelecionar" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                  <EmptySpace pref="97" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="btGravar" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="btCancelar" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -323,6 +344,28 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="tfHorario">
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabel14">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Garagem:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JCheckBox" name="jcGaragem">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Sim/N&#xe3;o"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabel15">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Logo:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="tfPath">
+        </Component>
+        <Component class="javax.swing.JButton" name="btSelecionar">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Selecionar"/>
+          </Properties>
         </Component>
       </SubComponents>
     </Container>

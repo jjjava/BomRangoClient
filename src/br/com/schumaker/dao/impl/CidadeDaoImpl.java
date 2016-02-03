@@ -35,6 +35,7 @@ public class CidadeDaoImpl implements CidadeDao {
                 cidade.setIdEstado(rs.getInt("idestado"));
                 cidade.setNome(rs.getString("nome"));
             }
+            pst.close();
         } catch (SQLException ex) {
             System.err.println(ex);
             LogBsImpl.getInstance().inserirLog(this.getClass().getSimpleName(), ex.getMessage());
@@ -65,6 +66,7 @@ public class CidadeDaoImpl implements CidadeDao {
                 //---add na lista
                 cidades.add(cidade);
             }
+            pst.close();
         } catch (SQLException ex) {
             System.err.println(ex);
             LogBsImpl.getInstance().inserirLog(this.getClass().getSimpleName(), ex.getMessage());
@@ -94,6 +96,7 @@ public class CidadeDaoImpl implements CidadeDao {
                 //---add na lista
                 cidades.add(cidade);
             }
+            pst.close();
         } catch (SQLException ex) {
             System.err.println(ex);
             LogBsImpl.getInstance().inserirLog(this.getClass().getSimpleName(), ex.getMessage());
@@ -124,6 +127,7 @@ public class CidadeDaoImpl implements CidadeDao {
                 //---add na lista
                 cidades.add(cidade);
             }
+            pst.close();
         } catch (SQLException ex) {
             System.err.println(ex);
             LogBsImpl.getInstance().inserirLog(this.getClass().getSimpleName(), ex.getMessage());
@@ -149,6 +153,7 @@ public class CidadeDaoImpl implements CidadeDao {
             while (rs.next()) {
                 validado = true;
             }
+            pst.close();
         } catch (SQLException e) {
             System.err.println(e);
             LogBsImpl.getInstance().inserirLog(this.getClass().getSimpleName(), e.getMessage());

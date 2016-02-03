@@ -36,6 +36,7 @@ public class EstadoDaoImpl implements EstadoDao {
                 estado.setNome(rs.getString("nome"));
                 estado.setUf(rs.getString("uf"));
             }
+            pst.close();
         } catch (SQLException e) {
             System.err.println(e);//throw new RuntimeException(e);
         } finally {
@@ -64,6 +65,7 @@ public class EstadoDaoImpl implements EstadoDao {
                 //---add na lista
                 estados.add(estado);
             }
+            pst.close();
         } catch (SQLException ex) {
             System.err.println(ex);
             LogBsImpl.getInstance().inserirLog(this.getClass().getSimpleName(), ex.getMessage());
@@ -94,6 +96,7 @@ public class EstadoDaoImpl implements EstadoDao {
                 //---add na lista
                 estados.add(estado);
             }
+            pst.close();
         } catch (SQLException e) {
             System.err.println(e);
         } finally {
@@ -176,6 +179,7 @@ public class EstadoDaoImpl implements EstadoDao {
             while (rs.next()) {
                 validado = true;
             }
+            pst.close();
         } catch (SQLException e) {
             System.err.println(e);
         } finally {
@@ -199,6 +203,7 @@ public class EstadoDaoImpl implements EstadoDao {
             while (rs.next()) {
                 validado = true;
             }
+            pst.close();
         } catch (SQLException e) {
             System.err.println(e);
         } finally {
@@ -223,6 +228,7 @@ public class EstadoDaoImpl implements EstadoDao {
             while (rs.next()) {
                 verificado = true;
             }
+            pst.close();
         } catch (SQLException e) {
             System.err.println(e);
         } finally {

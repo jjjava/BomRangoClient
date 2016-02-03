@@ -62,6 +62,11 @@ public class IfCadLoja extends javax.swing.JInternalFrame {
         tfCnpj = new javax.swing.JTextField();
         jLabel13 = new javax.swing.JLabel();
         tfHorario = new javax.swing.JTextField();
+        jLabel14 = new javax.swing.JLabel();
+        jcGaragem = new javax.swing.JCheckBox();
+        jLabel15 = new javax.swing.JLabel();
+        tfPath = new javax.swing.JTextField();
+        btSelecionar = new javax.swing.JButton();
 
         tfEmail.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
@@ -111,6 +116,14 @@ public class IfCadLoja extends javax.swing.JInternalFrame {
 
         jLabel13.setText("Horario:");
 
+        jLabel14.setText("Garagem:");
+
+        jcGaragem.setText("Sim/Não");
+
+        jLabel15.setText("Logo:");
+
+        btSelecionar.setText("Selecionar");
+
         javax.swing.GroupLayout tfEmailLayout = new javax.swing.GroupLayout(tfEmail);
         tfEmail.setLayout(tfEmailLayout);
         tfEmailLayout.setHorizontalGroup(
@@ -132,53 +145,59 @@ public class IfCadLoja extends javax.swing.JInternalFrame {
                             .addComponent(jLabel5)
                             .addComponent(jLabel7)
                             .addComponent(jLabel8)
-                            .addComponent(jLabel9))
+                            .addComponent(jLabel9)
+                            .addComponent(jLabel14)
+                            .addComponent(jLabel15))
                         .addGap(34, 34, 34)))
-                .addGroup(tfEmailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(tfNome, javax.swing.GroupLayout.DEFAULT_SIZE, 356, Short.MAX_VALUE)
-                    .addComponent(tfInfo)
+                .addGroup(tfEmailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jcGaragem)
                     .addGroup(tfEmailLayout.createSequentialGroup()
-                        .addComponent(tfRazaoSocial, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(tfIE))
-                    .addGroup(tfEmailLayout.createSequentialGroup()
-                        .addComponent(tfTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel6)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(tfSite))
-                    .addComponent(jTextField1)
-                    .addComponent(jTextField2)
-                    .addGroup(tfEmailLayout.createSequentialGroup()
-                        .addComponent(jcEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel10)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jcCidade, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(tfEmailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(tfEmailLayout.createSequentialGroup()
-                        .addComponent(btGravar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
-                        .addComponent(btCancelar)
-                        .addGap(98, 98, 98))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, tfEmailLayout.createSequentialGroup()
                         .addGroup(tfEmailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(tfPath)
+                            .addComponent(tfNome, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 356, Short.MAX_VALUE)
+                            .addComponent(tfInfo, javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, tfEmailLayout.createSequentialGroup()
-                                .addComponent(jLabel12)
+                                .addComponent(tfRazaoSocial, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabel3)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(tfCnpj))
+                                .addComponent(tfIE))
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, tfEmailLayout.createSequentialGroup()
-                                .addGroup(tfEmailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel11)
-                                    .addComponent(jLabel13))
+                                .addComponent(tfTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabel6)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(tfEmailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jcBairro, 0, 130, Short.MAX_VALUE)
-                                    .addComponent(tfHorario))))
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                                .addComponent(tfSite))
+                            .addComponent(jTextField1, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jTextField2, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, tfEmailLayout.createSequentialGroup()
+                                .addComponent(jcEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel10)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jcCidade, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(tfEmailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(tfEmailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addGroup(tfEmailLayout.createSequentialGroup()
+                                    .addComponent(btGravar, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(btCancelar))
+                                .addGroup(tfEmailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, tfEmailLayout.createSequentialGroup()
+                                        .addComponent(jLabel12)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(tfCnpj))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, tfEmailLayout.createSequentialGroup()
+                                        .addGroup(tfEmailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel11)
+                                            .addComponent(jLabel13))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGroup(tfEmailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(jcBairro, 0, 130, Short.MAX_VALUE)
+                                            .addComponent(tfHorario)))))
+                            .addComponent(btSelecionar))))
+                .addGap(0, 74, Short.MAX_VALUE))
         );
         tfEmailLayout.setVerticalGroup(
             tfEmailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -224,7 +243,17 @@ public class IfCadLoja extends javax.swing.JInternalFrame {
                     .addComponent(jcCidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel11)
                     .addComponent(jcBairro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 173, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(tfEmailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel14)
+                    .addComponent(jcGaragem))
+                .addGap(18, 18, 18)
+                .addGroup(tfEmailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel15)
+                    .addGroup(tfEmailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(tfPath, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btSelecionar)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 97, Short.MAX_VALUE)
                 .addGroup(tfEmailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btGravar)
                     .addComponent(btCancelar))
@@ -266,11 +295,14 @@ public class IfCadLoja extends javax.swing.JInternalFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btCancelar;
     private javax.swing.JButton btGravar;
+    private javax.swing.JButton btSelecionar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -284,12 +316,14 @@ public class IfCadLoja extends javax.swing.JInternalFrame {
     private javax.swing.JComboBox jcBairro;
     private javax.swing.JComboBox jcCidade;
     private javax.swing.JComboBox jcEstado;
+    private javax.swing.JCheckBox jcGaragem;
     private javax.swing.JTextField tfCnpj;
     private javax.swing.JPanel tfEmail;
     private javax.swing.JTextField tfHorario;
     private javax.swing.JTextField tfIE;
     private javax.swing.JTextField tfInfo;
     private javax.swing.JTextField tfNome;
+    private javax.swing.JTextField tfPath;
     private javax.swing.JTextField tfRazaoSocial;
     private javax.swing.JTextField tfSite;
     private javax.swing.JTextField tfTelefone;

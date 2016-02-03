@@ -12,9 +12,12 @@ import java.util.List;
 
 /**
  *
- * @author hudson schumaker Rede Encarte 27/01/16
+ * @author Hudson Schumaker Rede Encarte 27/01/16
  */
 public class AdmDaoImpl implements AdmDao {
+    
+    public AdmDaoImpl(){
+    }
 
     @Override
     public Adm obter(Integer id) {
@@ -29,9 +32,8 @@ public class AdmDaoImpl implements AdmDao {
                 adm.setLogin(rs.getString("login"));
                 adm.setEmail(rs.getString("email"));
                 adm.setSenha(rs.getString("senha"));//duvida se carregar ou nao 
-                
-                pst.close();
             }
+            pst.close();
         } catch (SQLException ex) {
             System.err.println(ex);
             LogBsImpl.getInstance().inserirLog(this.getClass().getSimpleName(), ex.getMessage());
@@ -59,9 +61,8 @@ public class AdmDaoImpl implements AdmDao {
                 adm.setLogin(rs.getString("login"));
                 adm.setEmail(rs.getString("email"));
                 adm.setSenha(rs.getString("senha"));//duvida se carregar ou nao 
-                
-                pst.close();
             }
+            pst.close();
         } catch (SQLException ex) {
             System.err.println(ex);
             LogBsImpl.getInstance().inserirLog(this.getClass().getSimpleName(), ex.getMessage());
@@ -101,9 +102,7 @@ public class AdmDaoImpl implements AdmDao {
             while (rs.next()) {
                 validado = true;
             }
-            
             pst.close();
-            
         } catch (SQLException ex) {
             System.err.println(ex);
             LogBsImpl.getInstance().inserirLog(this.getClass().getSimpleName(), ex.getMessage());
