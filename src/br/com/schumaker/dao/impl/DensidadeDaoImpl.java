@@ -51,7 +51,7 @@ public class DensidadeDaoImpl implements DensidadeDao {
     @Override
     public List<Densidade> listar() {
         List<Densidade> densidades = new ArrayList<>();
-        String sql = "select * from compras.densidade order by densidade.id";
+        String sql = "select * from redeencarte.tb_densidade order by redeencarte.tb_densidade.id";
         Connection conn = HsConnection.getConnection();
         try {
             PreparedStatement pst = conn.prepareStatement(sql);
@@ -63,6 +63,36 @@ public class DensidadeDaoImpl implements DensidadeDao {
                 //---add na lista
                 densidades.add(densidade);
             }
+            pst.close();
+        } catch (SQLException ex) {
+            System.err.println(ex);
+            LogBsImpl.getInstance().inserirLog(this.getClass().getSimpleName(), ex.getMessage());
+        } finally {
+            try {
+                conn.close();
+            } catch (SQLException ex) {
+                System.err.println(ex);
+                LogBsImpl.getInstance().inserirLog(this.getClass().getSimpleName(), ex.getMessage());
+            }
+        }
+        return densidades;
+    }
+
+    public List<Densidade> listar(int id) {
+        List<Densidade> densidades = new ArrayList<>();
+        String sql = "select * from redeencarte.tb_densidade where id = " + id;
+        Connection conn = HsConnection.getConnection();
+        try {
+            PreparedStatement pst = conn.prepareStatement(sql);
+            ResultSet rs = pst.executeQuery();
+            while (rs.next()) {
+                Densidade densidade = new Densidade();
+                densidade.setId(rs.getInt("id"));
+                densidade.setNome(rs.getString("nome"));
+                //---add na lista
+                densidades.add(densidade);
+            }
+            pst.close();
         } catch (SQLException ex) {
             System.err.println(ex);
             LogBsImpl.getInstance().inserirLog(this.getClass().getSimpleName(), ex.getMessage());

@@ -25,6 +25,10 @@ public class DensidadeBsImpl implements DensidadeBs {
         return new DensidadeDaoImpl().listar();
     }
 
+    public List<Densidade> listar(int id) {
+        return new DensidadeDaoImpl().listar(id);
+    }
+
     @Override
     public List<Densidade> like(String s) {
         return new DensidadeDaoImpl().like(s);
@@ -60,5 +64,23 @@ public class DensidadeBsImpl implements DensidadeBs {
         } else {
             HsMessage.mostrarMensagem(JOptionPane.ERROR_MESSAGE, "Deletar - Densidade", "Erro ao deletar a densidade.");
         }
+    }
+
+    public String[] getNomesToArray() {
+        List<Densidade> lista = listar();
+        String nomes[] = new String[lista.size()];
+        for (int k = 0; k < lista.size(); k++) {
+            nomes[k] = lista.get(k).getNome();
+        }
+        return nomes;
+    }
+
+    public String[] getNomesToArray(int id) {
+        List<Densidade> lista = listar(id);
+        String nomes[] = new String[lista.size()];
+        for (int k = 0; k < lista.size(); k++) {
+            nomes[k] = lista.get(k).getNome();
+        }
+        return nomes;
     }
 }

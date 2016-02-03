@@ -1,7 +1,6 @@
 package br.com.schumaker.hsfiles;
 
 import java.io.File;
-import java.io.IOException;
 
 /**
  *

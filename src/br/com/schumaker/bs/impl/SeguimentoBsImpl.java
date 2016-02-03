@@ -72,5 +72,4 @@ public class SeguimentoBsImpl implements SeguimentoBs{
         }
         return nomes;
     }
-    
 }

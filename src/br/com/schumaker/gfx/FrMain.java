@@ -28,7 +28,7 @@ public class FrMain extends JFrame {
         cadastro = new DefaultMutableTreeNode("Cadastro");//menu
         root.add(cadastro);
 
-        mercados = new DefaultMutableTreeNode("Mercados");
+        mercados = new DefaultMutableTreeNode("Lojas");
         cadastro.add(mercados);
         produtos = new DefaultMutableTreeNode("Produtos");
         cadastro.add(produtos);
@@ -228,7 +228,7 @@ public class FrMain extends JFrame {
             DefaultMutableTreeNode node = (DefaultMutableTreeNode) jtMenuTree.getLastSelectedPathComponent();
             Object nodeInfo = node.getUserObject();
             if (node.isLeaf()) {
-                if (nodeInfo.equals("Mercados")) {
+                if (nodeInfo.equals("Lojas")) {
                     IfCadLoja ifCadMercado = new IfCadLoja();
                     ifCadMercado.setSize(jDesktop.getWidth(), jDesktop.getHeight() - 40);
                     jDesktop.add(ifCadMercado);

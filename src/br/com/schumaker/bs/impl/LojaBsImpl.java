@@ -6,8 +6,9 @@ import br.com.schumaker.hsfiles.HsFiles;
 import br.com.schumaker.model.Cliente;
 import br.com.schumaker.model.HsSessionCliente;
 import br.com.schumaker.model.Loja;
+import br.com.schumaker.util.HsFileTools;
 import br.com.schumaker.util.HsMessage;
-import java.io.IOException;
+import br.com.schumaker.util.HsUUID;
 import java.util.List;
 import javax.swing.JOptionPane;
 
@@ -44,12 +45,9 @@ public class LojaBsImpl implements LojaBs {
         if (new LojaDaoImpl().verificarNome(mercado.getNome())) {
             HsMessage.mostrarMensagem(JOptionPane.WARNING_MESSAGE, "Cadastro - Mercado", "Já existe um mercado com esse nome.");
         } else {
+            mercado.setImagemNome(HsUUID.getAnUUID() + "." + HsFileTools.getFileExtension(HsFileTools.getClearName(mercado.getImage())));
             if (new LojaDaoImpl().cadastrar(mercado)) {
-                if (new HsFiles().criarDirMercado(mercado.getNome())) {//cria pasta para arquivos do mercado
-                    HsMessage.mostrarMensagem(JOptionPane.WARNING_MESSAGE, "Cadastro - Mercado", "Mercado cadastrado do sucesso.");
-                } else {
-                    HsMessage.mostrarMensagem(JOptionPane.WARNING_MESSAGE, "Cadastro - Mercado", "Erro ao cadastrar mercado.");
-                }
+                HsMessage.mostrarMensagem(JOptionPane.INFORMATION_MESSAGE, "Cadastro - Loja", "Loja cadastrado do sucesso.");
             } else {
                 HsMessage.mostrarMensagem(JOptionPane.WARNING_MESSAGE, "Cadastro - Mercado", "Erro ao cadastrar mercado.");
             }

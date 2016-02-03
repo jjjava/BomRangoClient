@@ -2,8 +2,10 @@ package br.com.schumaker.gfx;
 
 import br.com.schumaker.bs.impl.BairroBsImpl;
 import br.com.schumaker.bs.impl.CidadeBsImpl;
+import br.com.schumaker.bs.impl.DensidadeBsImpl;
 import br.com.schumaker.bs.impl.EstadoBsImpl;
 import br.com.schumaker.bs.impl.LojaBsImpl;
+import br.com.schumaker.bs.impl.SeguimentoBsImpl;
 import br.com.schumaker.model.Bairro;
 import br.com.schumaker.model.Cidade;
 import br.com.schumaker.model.Estado;
@@ -66,6 +68,10 @@ public class IfCadLoja extends javax.swing.JInternalFrame {
         jLabel15 = new javax.swing.JLabel();
         tfPath = new javax.swing.JTextField();
         btSelecionar = new javax.swing.JButton();
+        jLabel16 = new javax.swing.JLabel();
+        jcSeguimento = new javax.swing.JComboBox(new SeguimentoBsImpl().getNomesToArray());
+        jLabel17 = new javax.swing.JLabel();
+        jcDensidade = new javax.swing.JComboBox(new DensidadeBsImpl().getNomesToArray());
 
         panel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
@@ -128,6 +134,10 @@ public class IfCadLoja extends javax.swing.JInternalFrame {
             }
         });
 
+        jLabel16.setText("Seguimento:");
+
+        jLabel17.setText("Densidade:");
+
         javax.swing.GroupLayout panelLayout = new javax.swing.GroupLayout(panel);
         panel.setLayout(panelLayout);
         panelLayout.setHorizontalGroup(
@@ -187,12 +197,20 @@ public class IfCadLoja extends javax.swing.JInternalFrame {
                                     .addComponent(btGravar, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                     .addComponent(btCancelar))
-                                .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelLayout.createSequentialGroup()
+                                .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(panelLayout.createSequentialGroup()
+                                        .addComponent(jLabel17)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jcDensidade, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addGroup(panelLayout.createSequentialGroup()
+                                        .addComponent(jLabel16)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jcSeguimento, 0, 108, Short.MAX_VALUE))
+                                    .addGroup(panelLayout.createSequentialGroup()
                                         .addComponent(jLabel12)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(tfCnpj))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelLayout.createSequentialGroup()
+                                    .addGroup(panelLayout.createSequentialGroup()
                                         .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(jLabel11)
                                             .addComponent(jLabel13))
@@ -206,14 +224,18 @@ public class IfCadLoja extends javax.swing.JInternalFrame {
         panelLayout.setVerticalGroup(
             panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelLayout.createSequentialGroup()
-                .addGap(27, 27, 27)
+                .addGap(25, 25, 25)
                 .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(tfNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tfNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel16)
+                    .addComponent(jcSeguimento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(tfInfo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tfInfo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel17)
+                    .addComponent(jcDensidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2)
@@ -257,7 +279,7 @@ public class IfCadLoja extends javax.swing.JInternalFrame {
                     .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(tfPath, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(btSelecionar)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 97, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 89, Short.MAX_VALUE)
                 .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btGravar)
                     .addComponent(btCancelar))
@@ -281,6 +303,8 @@ public class IfCadLoja extends javax.swing.JInternalFrame {
     private void btGravarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btGravarActionPerformed
         Loja loja = new Loja();
         
+        loja.setIdSeguimento(jcSeguimento.getSelectedIndex() + 1);
+        loja.setIdDensidade(jcDensidade.getSelectedIndex() + 1);
         loja.setNome(tfNome.getText());
         loja.setSobre(tfInfo.getText());
         loja.setRazaoSocial(tfRazaoSocial.getText());
@@ -303,6 +327,7 @@ public class IfCadLoja extends javax.swing.JInternalFrame {
         }
         
         loja.setImage(tfPath.getText());
+        loja.setAtivo(1);
         
         new LojaBsImpl().cadastrar(loja);
     }//GEN-LAST:event_btGravarActionPerformed
@@ -347,6 +372,8 @@ public class IfCadLoja extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -357,8 +384,10 @@ public class IfCadLoja extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JComboBox jcBairro;
     private javax.swing.JComboBox jcCidade;
+    private javax.swing.JComboBox jcDensidade;
     private javax.swing.JComboBox jcEstado;
     private javax.swing.JCheckBox jcGaragem;
+    private javax.swing.JComboBox jcSeguimento;
     private javax.swing.JPanel panel;
     private javax.swing.JTextField tfCnpj;
     private javax.swing.JTextField tfEmail;
