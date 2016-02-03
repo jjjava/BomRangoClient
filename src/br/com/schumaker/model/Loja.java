@@ -14,7 +14,7 @@ public class Loja {
     private String nome;
     private String endereco;
     private Cidade cidade;
-    private String bairro;
+    private Bairro bairro;
     private Estado estado;
     private String telefone;
     private String site;
@@ -27,6 +27,7 @@ public class Loja {
     private int estacionamento;
     private String sobre;
     private String image;
+    private String imagemNome;
     private int ativo;
 
     public Loja() {
@@ -128,11 +129,15 @@ public class Loja {
         this.cidade = cidade;
     }
 
-    public String getBairro() {
-        return bairro;
+    public int getBairro() {
+        return bairro.getId();
     }
 
-    public void setBairro(String bairro) {
+    public String getBairroStr() {
+        return bairro.getNome();
+    }
+
+    public void setBairro(Bairro bairro) {
         this.bairro = bairro;
     }
 
@@ -207,5 +212,13 @@ public class Loja {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getImagemNome() {
+        return imagemNome;
+    }
+
+    public void setImagemNome(String imagemNome) {
+        this.imagemNome = imagemNome;
     }
 }

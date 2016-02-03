@@ -7,9 +7,17 @@ package br.com.schumaker.model;
  * @since 1.0.0
  */
 public class Estado {
+
     private Integer id;
     private String nome;
     private String uf;
+
+    public Estado() {
+    }
+
+    public Estado(int id) {
+        this.id = id;
+    }
 
     public Integer getId() {
         return id;

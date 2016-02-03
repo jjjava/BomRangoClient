@@ -24,6 +24,9 @@ import java.util.List;
  * @since 1.0.0
  */
 public class LojaDaoImpl implements LojaDao {
+    
+    public LojaDaoImpl(){
+    }
 
     @Override
     public Loja obter(Integer id) {
@@ -219,7 +222,7 @@ public class LojaDaoImpl implements LojaDao {
     public boolean cadastrar(Loja mercado) {
         boolean cadastrado = false;
         String sql = "insert into redeencarte.tb_loja (idseguimento,iddensidade,idestado,idcidade,idbairro,nome,endereco,tel,site,email,cartoes,razaosocial,cnpj,ie,garagem,sobre,"
-                + "imagem,status ) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+                + "imagem,nomeimagem,status ) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
         Connection conn = HsConnection.getConnection();
         PreparedStatement pst = null;
         try {
@@ -228,7 +231,7 @@ public class LojaDaoImpl implements LojaDao {
             pst.setInt(2, mercado.getIdDensidade());
             pst.setInt(3, mercado.getEstado());
             pst.setInt(4, mercado.getCidade());
-            pst.setString(5, mercado.getBairro());
+            pst.setInt(5, mercado.getBairro());
             pst.setString(6, mercado.getNome());
             pst.setString(7, mercado.getEndereco());
             pst.setString(8, mercado.getTelefone());
@@ -245,8 +248,10 @@ public class LojaDaoImpl implements LojaDao {
             File image = new File(mercado.getImage());
             FileInputStream fis = new FileInputStream(image);
             pst.setBinaryStream(17, fis, (int) image.length());
+            
+            pst.setString(18, mercado.getImagemNome());
 
-            pst.setInt(18, mercado.getAtivo());
+            pst.setInt(19, mercado.getAtivo());
 
             pst.execute();
             cadastrado = true;
