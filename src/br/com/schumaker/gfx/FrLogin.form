@@ -116,9 +116,6 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="jtEmail">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="$hudson"/>
-          </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel2">
           <Properties>
@@ -126,9 +123,6 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JPasswordField" name="jpSenha">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="P@ssw0rd"/>
-          </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jpSenhaActionPerformed"/>
           </Events>

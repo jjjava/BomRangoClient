@@ -43,11 +43,8 @@ public class FrLogin extends javax.swing.JFrame {
 
         jLabel1.setText("Email:");
 
-        jtEmail.setText("$hudson");
-
         jLabel2.setText("Senha:");
 
-        jpSenha.setText("P@ssw0rd");
         jpSenha.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jpSenhaActionPerformed(evt);
