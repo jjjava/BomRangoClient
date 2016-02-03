@@ -12,8 +12,8 @@ import java.util.List;
  * @since 1.0.0
  */
 public class BairroBsImpl implements BairroBs {
-    
-    public BairroBsImpl(){
+
+    public BairroBsImpl() {
     }
 
     @Override
@@ -52,5 +52,23 @@ public class BairroBsImpl implements BairroBs {
     @Override
     public void deletar(Bairro cidade) {
         new BairroDaoImpl().deletar(cidade);
+    }
+
+    public String[] getNomesToArray() {
+        List<Bairro> lista = listar();
+        String nomes[] = new String[lista.size()];
+        for (int k = 0; k < lista.size(); k++) {
+            nomes[k] = lista.get(k).getNome();
+        }
+        return nomes;
+    }
+    
+    public String[] getNomesToArray(int id) {
+        List<Bairro> lista = listar(id);
+        String nomes[] = new String[lista.size()];
+        for (int k = 0; k < lista.size(); k++) {
+            nomes[k] = lista.get(k).getNome();
+        }
+        return nomes;
     }
 }

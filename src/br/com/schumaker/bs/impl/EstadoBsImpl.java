@@ -51,4 +51,13 @@ public class EstadoBsImpl implements EstadoBs {
     public void deletar(Estado estado) {
         new EstadoDaoImpl().deletar(estado);
     }
+
+    public String[] getNomesToArray() {
+        List<Estado> lista = listar();
+        String nomes[] = new String[lista.size()];
+        for (int k = 0; k < lista.size(); k++) {
+            nomes[k] = lista.get(k).getNome();
+        }
+        return nomes;
+    }
 }

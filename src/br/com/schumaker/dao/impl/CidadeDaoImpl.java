@@ -52,7 +52,7 @@ public class CidadeDaoImpl implements CidadeDao {
     @Override
     public List<Cidade> listar() {
         List<Cidade> cidades = new ArrayList<>();
-        String sql = "select * from redeencarte.cidade order by cidade.nome order by cidade.name";
+        String sql = "select * from redeencarte.tb_cidade order by cidade.nome";
         Connection conn = HsConnection.getConnection();
         try {
             PreparedStatement pst = conn.prepareStatement(sql);
@@ -78,10 +78,10 @@ public class CidadeDaoImpl implements CidadeDao {
         }
         return cidades;
     }
-    
+
     public List<Cidade> listar(int id) {
         List<Cidade> cidades = new ArrayList<>();
-        String sql = "select * from redeencarte.cidade where idestado = "+id+" order by cidade.nome order by cidade.name";
+        String sql = "select * from redeencarte.tb_cidade where idestado = " + id + " ";
         Connection conn = HsConnection.getConnection();
         try {
             PreparedStatement pst = conn.prepareStatement(sql);

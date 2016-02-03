@@ -1,5 +1,6 @@
 package br.com.schumaker.dao.impl;
 
+import br.com.schumaker.bs.impl.LogBsImpl;
 import br.com.schumaker.connection.HsConnection;
 import br.com.schumaker.dao.EstadoDao;
 import br.com.schumaker.model.Cidade;
@@ -24,7 +25,7 @@ public class EstadoDaoImpl implements EstadoDao {
 
     @Override
     public Estado obter(Integer id) {
-        String sql = "select * from compras.estado where estado.id = " + id;
+        String sql = "select * from redeencarte.tb_estado where redeencarte.tb_estado.id = " + id;
         Connection conn = HsConnection.getConnection();
         Estado estado = new Estado();
         try {
@@ -49,8 +50,8 @@ public class EstadoDaoImpl implements EstadoDao {
 
     @Override
     public List<Estado> listar() {
-        List<Estado> estados = new ArrayList<Estado>();
-        String sql = "select * from compras.estado order by estado.nome";
+        List<Estado> estados = new ArrayList<>();
+        String sql = "select * from redeencarte.tb_estado order by redeencarte.tb_estado.nome";
         Connection conn = HsConnection.getConnection();
         try {
             PreparedStatement pst = conn.prepareStatement(sql);
@@ -63,13 +64,15 @@ public class EstadoDaoImpl implements EstadoDao {
                 //---add na lista
                 estados.add(estado);
             }
-        } catch (SQLException e) {
-            System.err.println(e);
+        } catch (SQLException ex) {
+            System.err.println(ex);
+            LogBsImpl.getInstance().inserirLog(this.getClass().getSimpleName(), ex.getMessage());
         } finally {
             try {
                 conn.close();
-            } catch (SQLException e) {
-                System.err.println(e);
+            } catch (SQLException ex) {
+                System.err.println(ex);
+                LogBsImpl.getInstance().inserirLog(this.getClass().getSimpleName(), ex.getMessage());
             }
         }
         return estados;

@@ -24,7 +24,7 @@ public class BairroDaoImpl implements BairroDao {
 
     @Override
     public Bairro obter(Integer id) {
-        String sql = "select * from redeencarte.bairro where bairro.id = " + id;
+        String sql = "select * from redeencarte.tb_bairro where tb_bairro.id = " + id;
         Connection conn = HsConnection.getConnection();
         Bairro bairro = new Bairro();
         try {
@@ -52,7 +52,7 @@ public class BairroDaoImpl implements BairroDao {
     @Override
     public List<Bairro> listar() {
         List<Bairro> bairros = new ArrayList<>();
-        String sql = "select * from redeencarte.bairro order by bairro.nome order by bairro.name";
+        String sql = "select * from redeencarte.tb_bairro order by bairro.nome";
         Connection conn = HsConnection.getConnection();
         try {
             PreparedStatement pst = conn.prepareStatement(sql);
@@ -81,7 +81,7 @@ public class BairroDaoImpl implements BairroDao {
 
     public List<Bairro> listar(int id) {
         List<Bairro> bairros = new ArrayList<>();
-        String sql = "select * from redeencarte.bairro where idcidade = " + id + " order by bairro.nome order by bairro.name";
+        String sql = "select * from redeencarte.tb_bairro where idcidade = " + id + " ";
         Connection conn = HsConnection.getConnection();
         try {
             PreparedStatement pst = conn.prepareStatement(sql);

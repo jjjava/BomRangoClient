@@ -25,7 +25,7 @@ public class CidadeBsImpl implements CidadeBs {
     public List<Cidade> listar() {
         return new CidadeDaoImpl().listar();
     }
-    
+
     public List<Cidade> listar(int id) {
         return new CidadeDaoImpl().listar(id);
     }
@@ -61,5 +61,23 @@ public class CidadeBsImpl implements CidadeBs {
     @Override
     public void deletar(Cidade cidade) {
         new CidadeDaoImpl().deletar(cidade);
+    }
+
+    public String[] getNomesToArray() {
+        List<Cidade> lista = listar();
+        String nomes[] = new String[lista.size()];
+        for (int k = 0; k < lista.size(); k++) {
+            nomes[k] = lista.get(k).getNome();
+        }
+        return nomes;
+    }
+
+    public String[] getNomesToArray(int id) {
+        List<Cidade> lista = listar(id);
+        String nomes[] = new String[lista.size()];
+        for (int k = 0; k < lista.size(); k++) {
+            nomes[k] = lista.get(k).getNome();
+        }
+        return nomes;
     }
 }

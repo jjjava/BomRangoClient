@@ -4,15 +4,12 @@ import br.com.schumaker.bs.impl.BairroBsImpl;
 import br.com.schumaker.bs.impl.CidadeBsImpl;
 import br.com.schumaker.bs.impl.EstadoBsImpl;
 import br.com.schumaker.bs.impl.SetorBsImpl;
-import br.com.schumaker.model.Bairro;
-import br.com.schumaker.model.Cidade;
-import br.com.schumaker.model.Estado;
 import br.com.schumaker.model.Setor;
-import java.util.List;
+import javax.swing.JComboBox;
 
 /**
  *
- * @author hudson schumaker HStudio - @BomRango 16/06/2015
+ * @author Hudson Schumaker HStudio - @BomRango 16/06/2015
  * @version 1.0.0
  * @since 1.0.0
  */
@@ -20,15 +17,14 @@ public class IfCadMercado extends javax.swing.JInternalFrame {
 
     public IfCadMercado() {
         super("Cadastro de setor", true, true, true, true);
+        this.load();
         this.initComponents();
         this.setIconifiable(true);
         this.setVisible(true);
     }
-    
-    private void load(){
-        List<Estado> estados = new EstadoBsImpl().listar();
-        List<Cidade> cidades = new CidadeBsImpl().listar();
-        List<Bairro> bairros = new BairroBsImpl().listar();
+
+    private void load() {
+
     }
 
     @SuppressWarnings("unchecked")
@@ -55,9 +51,17 @@ public class IfCadMercado extends javax.swing.JInternalFrame {
         jLabel8 = new javax.swing.JLabel();
         jTextField2 = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox();
+        jcEstado = new javax.swing.JComboBox(new EstadoBsImpl().getNomesToArray());
         jLabel10 = new javax.swing.JLabel();
-        jComboBox2 = new javax.swing.JComboBox();
+        jcCidade = new javax.swing.JComboBox(new CidadeBsImpl().getNomesToArray(jcEstado.getSelectedIndex()+1));
+        ;
+        jLabel11 = new javax.swing.JLabel();
+        jcBairro = new javax.swing.JComboBox(new BairroBsImpl().getNomesToArray(jcCidade.getSelectedIndex()+1));
+        ;
+        jLabel12 = new javax.swing.JLabel();
+        tfCnpj = new javax.swing.JTextField();
+        jLabel13 = new javax.swing.JLabel();
+        tfHorario = new javax.swing.JTextField();
 
         tfEmail.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
@@ -93,11 +97,19 @@ public class IfCadMercado extends javax.swing.JInternalFrame {
 
         jLabel9.setText("Estado:");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
         jLabel10.setText("Cidade:");
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jcCidade.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jcCidadeItemStateChanged(evt);
+            }
+        });
+
+        jLabel11.setText("Bairro:");
+
+        jLabel12.setText("CNPJ:");
+
+        jLabel13.setText("Horario:");
 
         javax.swing.GroupLayout tfEmailLayout = new javax.swing.GroupLayout(tfEmail);
         tfEmail.setLayout(tfEmailLayout);
@@ -106,53 +118,67 @@ public class IfCadMercado extends javax.swing.JInternalFrame {
             .addGroup(tfEmailLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(tfEmailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, tfEmailLayout.createSequentialGroup()
-                        .addGap(0, 479, Short.MAX_VALUE)
-                        .addComponent(btGravar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btCancelar))
+                    .addGroup(tfEmailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(tfEmailLayout.createSequentialGroup()
+                            .addGroup(tfEmailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel1)
+                                .addComponent(jLabel4))
+                            .addGap(47, 47, 47))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, tfEmailLayout.createSequentialGroup()
+                            .addComponent(jLabel2)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
                     .addGroup(tfEmailLayout.createSequentialGroup()
                         .addGroup(tfEmailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(tfEmailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(tfEmailLayout.createSequentialGroup()
-                                    .addGroup(tfEmailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jLabel1)
-                                        .addComponent(jLabel4))
-                                    .addGap(47, 47, 47))
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, tfEmailLayout.createSequentialGroup()
-                                    .addComponent(jLabel2)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
-                            .addGroup(tfEmailLayout.createSequentialGroup()
-                                .addComponent(jLabel5)
-                                .addGap(38, 38, 38))
+                            .addComponent(jLabel5)
                             .addComponent(jLabel7)
                             .addComponent(jLabel8)
                             .addComponent(jLabel9))
-                        .addGroup(tfEmailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(tfNome, javax.swing.GroupLayout.DEFAULT_SIZE, 356, Short.MAX_VALUE)
-                            .addComponent(tfInfo)
-                            .addGroup(tfEmailLayout.createSequentialGroup()
-                                .addComponent(tfRazaoSocial, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jLabel3)
+                        .addGap(34, 34, 34)))
+                .addGroup(tfEmailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(tfNome, javax.swing.GroupLayout.DEFAULT_SIZE, 356, Short.MAX_VALUE)
+                    .addComponent(tfInfo)
+                    .addGroup(tfEmailLayout.createSequentialGroup()
+                        .addComponent(tfRazaoSocial, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(tfIE))
+                    .addGroup(tfEmailLayout.createSequentialGroup()
+                        .addComponent(tfTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel6)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(tfSite))
+                    .addComponent(jTextField1)
+                    .addComponent(jTextField2)
+                    .addGroup(tfEmailLayout.createSequentialGroup()
+                        .addComponent(jcEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel10)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jcCidade, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(tfEmailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(tfEmailLayout.createSequentialGroup()
+                        .addComponent(btGravar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
+                        .addComponent(btCancelar)
+                        .addGap(98, 98, 98))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, tfEmailLayout.createSequentialGroup()
+                        .addGroup(tfEmailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, tfEmailLayout.createSequentialGroup()
+                                .addComponent(jLabel12)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(tfIE))
-                            .addGroup(tfEmailLayout.createSequentialGroup()
-                                .addComponent(tfTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jLabel6)
+                                .addComponent(tfCnpj))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, tfEmailLayout.createSequentialGroup()
+                                .addGroup(tfEmailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel11)
+                                    .addComponent(jLabel13))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(tfSite))
-                            .addComponent(jTextField1)
-                            .addComponent(jTextField2)
-                            .addGroup(tfEmailLayout.createSequentialGroup()
-                                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel10)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jComboBox2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                                .addGroup(tfEmailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jcBairro, 0, 130, Short.MAX_VALUE)
+                                    .addComponent(tfHorario))))
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         tfEmailLayout.setVerticalGroup(
             tfEmailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -166,11 +192,14 @@ public class IfCadMercado extends javax.swing.JInternalFrame {
                     .addComponent(jLabel4)
                     .addComponent(tfInfo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(tfEmailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(tfEmailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2)
                     .addComponent(tfRazaoSocial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3)
-                    .addComponent(tfIE, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(tfEmailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel3)
+                        .addComponent(tfIE, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel12)
+                        .addComponent(tfCnpj, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addGroup(tfEmailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
@@ -184,14 +213,18 @@ public class IfCadMercado extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(tfEmailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel13)
+                    .addComponent(tfHorario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(tfEmailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jcEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel10)
-                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 82, Short.MAX_VALUE)
+                    .addComponent(jcCidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel11)
+                    .addComponent(jcBairro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 173, Short.MAX_VALUE)
                 .addGroup(tfEmailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btGravar)
                     .addComponent(btCancelar))
@@ -220,13 +253,25 @@ public class IfCadMercado extends javax.swing.JInternalFrame {
         this.dispose();
     }//GEN-LAST:event_btCancelarActionPerformed
 
+    private void jcCidadeItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jcCidadeItemStateChanged
+       
+
+        jcBairro.removeAllItems();
+        String bairros[] = new BairroBsImpl().getNomesToArray(jcCidade.getSelectedIndex() + 1);
+        for (String b : bairros) {
+            jcBairro.addItem(b);
+        }
+
+    }//GEN-LAST:event_jcCidadeItemStateChanged
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btCancelar;
     private javax.swing.JButton btGravar;
-    private javax.swing.JComboBox jComboBox1;
-    private javax.swing.JComboBox jComboBox2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -237,7 +282,12 @@ public class IfCadMercado extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
+    private javax.swing.JComboBox jcBairro;
+    private javax.swing.JComboBox jcCidade;
+    private javax.swing.JComboBox jcEstado;
+    private javax.swing.JTextField tfCnpj;
     private javax.swing.JPanel tfEmail;
+    private javax.swing.JTextField tfHorario;
     private javax.swing.JTextField tfIE;
     private javax.swing.JTextField tfInfo;
     private javax.swing.JTextField tfNome;
