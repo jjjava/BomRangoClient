@@ -254,7 +254,6 @@ public class IfCadMercado extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btCancelarActionPerformed
 
     private void jcCidadeItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jcCidadeItemStateChanged
-       
 
         jcBairro.removeAllItems();
         String bairros[] = new BairroBsImpl().getNomesToArray(jcCidade.getSelectedIndex() + 1);

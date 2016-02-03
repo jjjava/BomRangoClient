@@ -8,6 +8,9 @@ public class Seguimento {
     private int id;
     private String nome;
     private String info;
+    
+    public Seguimento(){
+    }
 
     public int getId() {
         return id;

@@ -9,6 +9,7 @@ package br.com.schumaker.model;
 public class Setor {
 
     private Integer id;
+    private Integer idSeguimento;
     private String nome;
     private String descricao;
 
@@ -19,7 +20,25 @@ public class Setor {
         this.id = id;
     }
 
+    public Setor(Integer id, Integer idSeguimento) {
+        this.id = id;
+        this.idSeguimento = idSeguimento;
+    }
+
     public Setor(String nome, String descricao) {
+        this.nome = nome;
+        this.descricao = descricao;
+    }
+
+    public Setor(Integer idSeguimento, String nome, String descricao) {
+        this.idSeguimento = idSeguimento;
+        this.nome = nome;
+        this.descricao = descricao;
+    }
+
+    public Setor(Integer id, Integer idSeguimento, String nome, String descricao) {
+        this.id = id;
+        this.idSeguimento = idSeguimento;
         this.nome = nome;
         this.descricao = descricao;
     }
@@ -51,5 +70,13 @@ public class Setor {
     @Override
     public String toString() {//para aparecer no combobox
         return getNome();
+    }
+
+    public Integer getIdSeguimento() {
+        return idSeguimento;
+    }
+
+    public void setIdSeguimento(Integer idSeguimento) {
+        this.idSeguimento = idSeguimento;
     }
 }

@@ -1,19 +1,21 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.com.schumaker.dao.impl;
 
+import br.com.schumaker.bs.impl.LogBsImpl;
+import br.com.schumaker.connection.HsConnection;
 import br.com.schumaker.dao.SeguimentoDao;
 import br.com.schumaker.model.Seguimento;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
  *
  * @author Hudson Schumaker
  */
-public class SeguimentoDaoImpl implements SeguimentoDao{
+public class SeguimentoDaoImpl implements SeguimentoDao {
 
     @Override
     public Seguimento obter(Integer id) {
@@ -27,7 +29,61 @@ public class SeguimentoDaoImpl implements SeguimentoDao{
 
     @Override
     public List<Seguimento> listar() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        List<Seguimento> seguimentos = new ArrayList<>();
+        String sql = "select * from redeencarte.tb_seguimento";
+        Connection conn = HsConnection.getConnection();
+        try {
+            PreparedStatement pst = conn.prepareStatement(sql);
+            ResultSet rs = pst.executeQuery();
+            while (rs.next()) {
+                Seguimento seguimento = new Seguimento();
+                seguimento.setId(rs.getInt("id"));
+                seguimento.setNome(rs.getString("nome"));
+                seguimento.setInfo(rs.getString("info"));
+                //---add na lista
+                seguimentos.add(seguimento);
+            }
+        } catch (SQLException ex) {
+            System.err.println(ex);
+            LogBsImpl.getInstance().inserirLog(this.getClass().getSimpleName(), ex.getMessage());
+        } finally {
+            try {
+                conn.close();
+            } catch (SQLException ex) {
+                System.err.println(ex);
+                LogBsImpl.getInstance().inserirLog(this.getClass().getSimpleName(), ex.getMessage());
+            }
+        }
+        return seguimentos;
+    }
+
+    public List<Seguimento> listar(int id) {
+        List<Seguimento> seguimentos = new ArrayList<>();
+        String sql = "select * from redeencarte.tb_seguimento where id = " + id;
+        Connection conn = HsConnection.getConnection();
+        try {
+            PreparedStatement pst = conn.prepareStatement(sql);
+            ResultSet rs = pst.executeQuery();
+            while (rs.next()) {
+                Seguimento seguimento = new Seguimento();
+                seguimento.setId(rs.getInt("id"));
+                seguimento.setNome(rs.getString("nome"));
+                seguimento.setInfo(rs.getString("info"));
+                //---add na lista
+                seguimentos.add(seguimento);
+            }
+        } catch (SQLException ex) {
+            System.err.println(ex);
+            LogBsImpl.getInstance().inserirLog(this.getClass().getSimpleName(), ex.getMessage());
+        } finally {
+            try {
+                conn.close();
+            } catch (SQLException ex) {
+                System.err.println(ex);
+                LogBsImpl.getInstance().inserirLog(this.getClass().getSimpleName(), ex.getMessage());
+            }
+        }
+        return seguimentos;
     }
 
     @Override
@@ -54,5 +110,5 @@ public class SeguimentoDaoImpl implements SeguimentoDao{
     public void deletar(Seguimento seg) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
+
 }

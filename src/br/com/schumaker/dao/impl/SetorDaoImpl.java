@@ -32,6 +32,7 @@ public class SetorDaoImpl implements SetorDao {
             ResultSet rs = pst.executeQuery();
             while (rs.next()) {
                 categoria.setId(rs.getInt("id"));
+                categoria.setIdSeguimento(rs.getInt("idseguimento"));
                 categoria.setNome(rs.getString("nome"));
                 categoria.setDescricao(rs.getString("descricao"));
             }
@@ -59,6 +60,7 @@ public class SetorDaoImpl implements SetorDao {
             ResultSet rs = pst.executeQuery();
             while (rs.next()) {
                 categoria.setId(rs.getInt("id"));
+                categoria.setIdSeguimento(rs.getInt("idseguimento"));
                 categoria.setNome(rs.getString("nome"));
                 categoria.setDescricao(rs.getString("descricao"));
             }
@@ -87,6 +89,7 @@ public class SetorDaoImpl implements SetorDao {
             while (rs.next()) {
                 Setor categoria = new Setor();
                 categoria.setId(rs.getInt("id"));
+                categoria.setIdSeguimento(rs.getInt("idseguimento"));
                 categoria.setNome(rs.getString("nome"));
                 categoria.setDescricao(rs.getString("descricao"));
                 //---add na lista
@@ -117,6 +120,7 @@ public class SetorDaoImpl implements SetorDao {
             while (rs.next()) {
                 Setor categoria = new Setor();
                 categoria.setId(rs.getInt("id"));
+                categoria.setIdSeguimento(rs.getInt("idseguimento"));
                 categoria.setNome(rs.getString("nome"));
                 categoria.setDescricao(rs.getString("descricao"));
                 //adiciona a lista
@@ -164,13 +168,14 @@ public class SetorDaoImpl implements SetorDao {
     @Override
     public boolean cadastrar(Setor setor) {
         boolean cadastrado = false;
-        String sql = "insert into redeencarte.tb_setor ( nome, descricao ) values (?,?)";
+        String sql = "insert into redeencarte.tb_setor ( idseguimento, nome, descricao ) values (?,?,?)";
         Connection conn = HsConnection.getConnection();
         PreparedStatement pst = null;
         try {
             pst = conn.prepareStatement(sql);
-            pst.setString(1, setor.getNome());
-            pst.setString(2, setor.getDescricao());
+            pst.setInt(1, setor.getIdSeguimento());
+            pst.setString(2, setor.getNome());
+            pst.setString(3, setor.getDescricao());
             pst.execute();
             cadastrado = true;
         } catch (SQLException ex) {
