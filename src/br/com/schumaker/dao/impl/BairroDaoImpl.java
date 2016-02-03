@@ -35,6 +35,7 @@ public class BairroDaoImpl implements BairroDao {
                 bairro.setIdCidade(rs.getInt("idcidade"));
                 bairro.setNome(rs.getString("nome"));
             }
+            pst.close();
         } catch (SQLException ex) {
             System.err.println(ex);
             LogBsImpl.getInstance().inserirLog(this.getClass().getSimpleName(), ex.getMessage());
@@ -65,6 +66,7 @@ public class BairroDaoImpl implements BairroDao {
                 //---add na lista
                 bairros.add(bairro);
             }
+            pst.close();
         } catch (SQLException ex) {
             System.err.println(ex);
             LogBsImpl.getInstance().inserirLog(this.getClass().getSimpleName(), ex.getMessage());
@@ -94,6 +96,7 @@ public class BairroDaoImpl implements BairroDao {
                 //---add na lista
                 bairros.add(bairro);
             }
+            pst.close();
         } catch (SQLException ex) {
             System.err.println(ex);
             LogBsImpl.getInstance().inserirLog(this.getClass().getSimpleName(), ex.getMessage());
@@ -124,6 +127,7 @@ public class BairroDaoImpl implements BairroDao {
                 //---add na lista
                 bairros.add(bairro);
             }
+            pst.close();
         } catch (SQLException ex) {
             System.err.println(ex);
             LogBsImpl.getInstance().inserirLog(this.getClass().getSimpleName(), ex.getMessage());
@@ -149,6 +153,7 @@ public class BairroDaoImpl implements BairroDao {
             while (rs.next()) {
                 validado = true;
             }
+            pst.close();
         } catch (SQLException e) {
             System.err.println(e);
             LogBsImpl.getInstance().inserirLog(this.getClass().getSimpleName(), e.getMessage());
@@ -166,11 +171,10 @@ public class BairroDaoImpl implements BairroDao {
     @Override
     public boolean cadastrar(Bairro bairro) {
         boolean cadastrado = false;
-        String sql = "insert into compras.cliente ( idcidade, nome ) values (?,?)";
         Connection conn = HsConnection.getConnection();
         PreparedStatement pst = null;
         try {
-            pst = conn.prepareStatement(sql);
+            pst = conn.prepareStatement("insert into compras.cliente ( idcidade, nome ) values (?,?)");
             pst.setInt(1, bairro.getIdCidade());
             pst.setString(2, bairro.getNome());
             pst.execute();
@@ -181,7 +185,9 @@ public class BairroDaoImpl implements BairroDao {
             LogBsImpl.getInstance().inserirLog(this.getClass().getSimpleName(), ex.getMessage());
         } finally {
             try {
-                pst.close();
+                if (pst != null) {
+                    pst.close();
+                }
                 conn.close();
             } catch (SQLException ex) {
                 System.err.println(ex);
@@ -194,12 +200,10 @@ public class BairroDaoImpl implements BairroDao {
     @Override
     public boolean atualizar(Bairro bairro) {
         boolean atualizado = false;
-        String sql = "update compras.bairro set bairro.idcidade=?, bairro.nome=? "
-                + "where bairro.id=?";
         Connection conn = HsConnection.getConnection();
         PreparedStatement pst = null;
         try {
-            pst = conn.prepareStatement(sql);
+            pst = conn.prepareStatement("update compras.tb_bairro set tb_bairro.idcidade=?, bairro.nome=? where tb_bairro.id=?");
             pst.setInt(1, bairro.getIdCidade());
             pst.setString(2, bairro.getNome());
             //where
@@ -212,7 +216,9 @@ public class BairroDaoImpl implements BairroDao {
             LogBsImpl.getInstance().inserirLog(this.getClass().getSimpleName(), ex.getMessage());
         } finally {
             try {
-                pst.close();
+                if (pst != null) {
+                    pst.close();
+                }
                 conn.close();
             } catch (SQLException ex) {
                 System.err.println(ex);

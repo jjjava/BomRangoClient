@@ -55,7 +55,7 @@ public class ClienteBsImpl implements ClienteBs {
         //
         if (clienteDaoImpl.validar(cliente.getEmail(), cliente.getSenha())) {//usar senha criptografada
             HsSessionCliente.getInstance().setCliente(obter(cliente.getEmail()));
-            HsSessionCliente.getInstance().setMercado(new MercadoBsImpl().obter(HsSessionCliente.getInstance().getCliente().getIdMercado()));
+            HsSessionCliente.getInstance().setMercado(new LojaBsImpl().obter(HsSessionCliente.getInstance().getCliente().getIdMercado()));
 
             frLogin.dispose();
             new FrMainCliente().setVisible(true);

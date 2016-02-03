@@ -13,9 +13,9 @@ import javax.swing.JComboBox;
  * @version 1.0.0
  * @since 1.0.0
  */
-public class IfCadMercado extends javax.swing.JInternalFrame {
+public class IfCadLoja extends javax.swing.JInternalFrame {
 
-    public IfCadMercado() {
+    public IfCadLoja() {
         super("Cadastro de setor", true, true, true, true);
         this.load();
         this.initComponents();

@@ -6,7 +6,7 @@ package br.com.schumaker.model;
  * @version 1.0.0
  * @since 1.0.0
  */
-public class Mercado {
+public class Loja {
 
     private Integer id;
     private Integer idSeguimento;
@@ -29,10 +29,10 @@ public class Mercado {
     private String image;
     private int ativo;
 
-    public Mercado() {
+    public Loja() {
     }
 
-    public Mercado(Integer id) {
+    public Loja(Integer id) {
         this.id = id;
     }
 

@@ -2,11 +2,11 @@ package br.com.schumaker.dao.impl;
 
 import br.com.schumaker.bs.impl.LogBsImpl;
 import br.com.schumaker.connection.HsConnection;
-import br.com.schumaker.dao.MercadoDao;
+import br.com.schumaker.dao.LojaDao;
 import br.com.schumaker.model.Bairro;
 import br.com.schumaker.model.Cidade;
 import br.com.schumaker.model.Estado;
-import br.com.schumaker.model.Mercado;
+import br.com.schumaker.model.Loja;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -23,13 +23,13 @@ import java.util.List;
  * @version 1.0.0
  * @since 1.0.0
  */
-public class MercadoDaoImpl implements MercadoDao {
+public class LojaDaoImpl implements LojaDao {
 
     @Override
-    public Mercado obter(Integer id) {
+    public Loja obter(Integer id) {
         String sql = "select * redeencarte.tb_loja where redeencarte.tb_loja.id = " + id;
         Connection conn = HsConnection.getConnection();
-        Mercado mercado = new Mercado();
+        Loja mercado = new Loja();
         try {
             PreparedStatement pst = conn.prepareStatement(sql);
             ResultSet rs = pst.executeQuery();
@@ -65,15 +65,15 @@ public class MercadoDaoImpl implements MercadoDao {
     }
 
     @Override
-    public List<Mercado> listar() {
-        List<Mercado> mercados = new ArrayList<>();
+    public List<Loja> listar() {
+        List<Loja> mercados = new ArrayList<>();
         String sql = "select * from redeencarte.tb_loja order by redeencarte.tb_loja.nome";
         Connection conn = HsConnection.getConnection();
         try {
             PreparedStatement pst = conn.prepareStatement(sql);
             ResultSet rs = pst.executeQuery();
             while (rs.next()) {
-                Mercado mercado = new Mercado();
+                Loja mercado = new Loja();
                 mercado.setId(rs.getInt("id"));
                 mercado.setIdDensidade(rs.getInt("iddensidade"));
                 mercado.setNome(rs.getString("nome"));
@@ -107,15 +107,15 @@ public class MercadoDaoImpl implements MercadoDao {
     }
 
     @Override
-    public List<Mercado> like(String s) {
-        List<Mercado> mercados = new ArrayList<>();
+    public List<Loja> like(String s) {
+        List<Loja> mercados = new ArrayList<>();
         String sql = "select * from redeencarte.tb_loja where redeencarte.tb_loja.nome like '%" + s + "%' order by redeencarte.tb_loja.nome";
         Connection conn = HsConnection.getConnection();
         try {
             PreparedStatement pst = conn.prepareStatement(sql);
             ResultSet rs = pst.executeQuery();
             while (rs.next()) {
-                Mercado mercado = new Mercado();
+                Loja mercado = new Loja();
                 mercado.setId(rs.getInt("id"));
                 mercado.setIdDensidade(rs.getInt("iddensidade"));
                 mercado.setNome(rs.getString("nome"));
@@ -149,15 +149,15 @@ public class MercadoDaoImpl implements MercadoDao {
     }
 
     @Override
-    public List<Mercado> listarPorDensidade(int idDensidade) {
-        List<Mercado> mercados = new ArrayList<>();
+    public List<Loja> listarPorDensidade(int idDensidade) {
+        List<Loja> mercados = new ArrayList<>();
         String sql = "select * from redeencarte.tb_loja where redeencarte.tb_loja.iddensidade =" + idDensidade + " order by redeencarte.tb_loja.nome";
         Connection conn = HsConnection.getConnection();
         try {
             PreparedStatement pst = conn.prepareStatement(sql);
             ResultSet rs = pst.executeQuery();
             while (rs.next()) {
-                Mercado mercado = new Mercado();
+                Loja mercado = new Loja();
                 mercado.setId(rs.getInt("id"));
                 mercado.setIdDensidade(rs.getInt("iddensidade"));
                 mercado.setNome(rs.getString("nome"));
@@ -216,7 +216,7 @@ public class MercadoDaoImpl implements MercadoDao {
     }
 
     @Override
-    public boolean cadastrar(Mercado mercado) {
+    public boolean cadastrar(Loja mercado) {
         boolean cadastrado = false;
         String sql = "insert into redeencarte.tb_loja (idseguimento,iddensidade,idestado,idcidade,idbairro,nome,endereco,tel,site,email,cartoes,razaosocial,cnpj,ie,garagem,sobre,"
                 + "imagem,status ) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
@@ -267,12 +267,12 @@ public class MercadoDaoImpl implements MercadoDao {
     }
 
     @Override
-    public boolean atualizar(Mercado mercado) {
+    public boolean atualizar(Loja mercado) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
-    public boolean deletar(Mercado mercado) {
+    public boolean deletar(Loja mercado) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 

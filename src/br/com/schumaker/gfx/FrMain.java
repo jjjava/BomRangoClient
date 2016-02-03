@@ -229,7 +229,7 @@ public class FrMain extends JFrame {
             Object nodeInfo = node.getUserObject();
             if (node.isLeaf()) {
                 if (nodeInfo.equals("Mercados")) {
-                    IfCadMercado ifCadMercado = new IfCadMercado();
+                    IfCadLoja ifCadMercado = new IfCadLoja();
                     ifCadMercado.setSize(jDesktop.getWidth(), jDesktop.getHeight() - 40);
                     jDesktop.add(ifCadMercado);
                     ifCadMercado.toFront();

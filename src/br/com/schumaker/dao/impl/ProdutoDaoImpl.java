@@ -5,7 +5,7 @@ import br.com.schumaker.connection.HsConnection;
 import br.com.schumaker.dao.ProdutoDao;
 import br.com.schumaker.model.Setor;
 import br.com.schumaker.model.Fabricante;
-import br.com.schumaker.model.Mercado;
+import br.com.schumaker.model.Loja;
 import br.com.schumaker.model.Produto;
 import br.com.schumaker.model.Unidade;
 import br.com.schumaker.util.HsCommons;
@@ -509,8 +509,8 @@ public class ProdutoDaoImpl implements ProdutoDao {
         return fabricanteDaoImpl.obter(id);
     }
 
-    private Mercado getMyMercado(Integer id) {
-        MercadoDaoImpl mercadoDaoImpl = new MercadoDaoImpl();
+    private Loja getMyMercado(Integer id) {
+        LojaDaoImpl mercadoDaoImpl = new LojaDaoImpl();
         return mercadoDaoImpl.obter(id);
     }
 

@@ -126,7 +126,7 @@ public class ProdutoBsImpl implements ProdutoBs {
         produto.setIdfabricante(new FabricanteBsImpl().obter(fabricante));
         produto.setIdcategoria(new SetorBsImpl().obter(setor));
         produto.setUnidade(new UnidadeBsImpl().obter(unidade));
-        produto.setIdmercado(new MercadoBsImpl().getMercadoSessao());
+        produto.setIdmercado(new LojaBsImpl().getMercadoSessao());
         produto.setQuantidade(Double.parseDouble(quantidade));
         produto.setDescricao(descricao);
         produto.setPreco(Double.parseDouble(preco));

@@ -1,11 +1,11 @@
 package br.com.schumaker.bs.impl;
 
-import br.com.schumaker.bs.MercadoBs;
-import br.com.schumaker.dao.impl.MercadoDaoImpl;
+import br.com.schumaker.bs.LojaBs;
+import br.com.schumaker.dao.impl.LojaDaoImpl;
 import br.com.schumaker.hsfiles.HsFiles;
 import br.com.schumaker.model.Cliente;
 import br.com.schumaker.model.HsSessionCliente;
-import br.com.schumaker.model.Mercado;
+import br.com.schumaker.model.Loja;
 import br.com.schumaker.util.HsMessage;
 import java.io.IOException;
 import java.util.List;
@@ -17,34 +17,34 @@ import javax.swing.JOptionPane;
  * @version 1.0.0
  * @since 1.0.0
  */
-public class MercadoBsImpl implements MercadoBs {
+public class LojaBsImpl implements LojaBs {
 
     @Override
-    public Mercado obter(Integer id) {
-        return new MercadoDaoImpl().obter(id);
+    public Loja obter(Integer id) {
+        return new LojaDaoImpl().obter(id);
     }
 
     @Override
-    public List<Mercado> listar() {
-        return new MercadoDaoImpl().listar();
+    public List<Loja> listar() {
+        return new LojaDaoImpl().listar();
     }
 
     @Override
-    public List<Mercado> like(String s) {
-        return new MercadoDaoImpl().like(s);
+    public List<Loja> like(String s) {
+        return new LojaDaoImpl().like(s);
     }
 
     @Override
     public boolean verificarNome(String nome) {
-        return new MercadoDaoImpl().verificarNome(nome);
+        return new LojaDaoImpl().verificarNome(nome);
     }
 
     @Override
-    public void cadastrar(Mercado mercado) {
-        if (new MercadoDaoImpl().verificarNome(mercado.getNome())) {
+    public void cadastrar(Loja mercado) {
+        if (new LojaDaoImpl().verificarNome(mercado.getNome())) {
             HsMessage.mostrarMensagem(JOptionPane.WARNING_MESSAGE, "Cadastro - Mercado", "Já existe um mercado com esse nome.");
         } else {
-            if (new MercadoDaoImpl().cadastrar(mercado)) {
+            if (new LojaDaoImpl().cadastrar(mercado)) {
                 if (new HsFiles().criarDirMercado(mercado.getNome())) {//cria pasta para arquivos do mercado
                     HsMessage.mostrarMensagem(JOptionPane.WARNING_MESSAGE, "Cadastro - Mercado", "Mercado cadastrado do sucesso.");
                 } else {
@@ -57,12 +57,12 @@ public class MercadoBsImpl implements MercadoBs {
     }
 
     @Override
-    public void atualizar(Mercado mercado) {
+    public void atualizar(Loja mercado) {
         HsMessage.mostrarMensagem(JOptionPane.WARNING_MESSAGE, "Mercado", "Sem suporte ainda.");
     }
 
     @Override
-    public void deletar(Mercado mercado) {
+    public void deletar(Loja mercado) {
         HsMessage.mostrarMensagem(JOptionPane.WARNING_MESSAGE, "Mercado", "Sem suporte ainda.");
     }
 
@@ -93,7 +93,7 @@ public class MercadoBsImpl implements MercadoBs {
     }
 
     @Override
-    public Mercado getMercadoSessao() {
+    public Loja getMercadoSessao() {
         return HsSessionCliente.getInstance().getMercado();
     }
 }

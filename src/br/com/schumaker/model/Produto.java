@@ -13,7 +13,7 @@ public class Produto {
     private String descricao;
     private Double preco;
     private Double quantidade;
-    private Mercado idmercado;
+    private Loja idmercado;
     private Fabricante idfabricante;
     private Setor idcategoria;
     private Unidade unidade;
@@ -84,11 +84,11 @@ public class Produto {
         return idmercado.getNome();
     }
 
-    public Mercado getMercadoStr() {
+    public Loja getMercadoStr() {
         return idmercado;
     }
 
-    public void setIdmercado(Mercado idmercado) {
+    public void setIdmercado(Loja idmercado) {
         this.idmercado = idmercado;
     }
 

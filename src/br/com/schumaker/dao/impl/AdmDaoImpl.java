@@ -18,11 +18,10 @@ public class AdmDaoImpl implements AdmDao {
 
     @Override
     public Adm obter(Integer id) {
-        String sql = "select * from redeencarte.tb_login where redeencarte.tb_login.id = " + id;
         Connection conn = HsConnection.getConnection();
         Adm adm = new Adm();
         try {
-            PreparedStatement pst = conn.prepareStatement(sql);
+            PreparedStatement pst = conn.prepareStatement("select * from redeencarte.tb_login where redeencarte.tb_login.id = " + id);
             ResultSet rs = pst.executeQuery();
             while (rs.next()) {
                 adm.setId(rs.getInt("id"));
@@ -30,6 +29,8 @@ public class AdmDaoImpl implements AdmDao {
                 adm.setLogin(rs.getString("login"));
                 adm.setEmail(rs.getString("email"));
                 adm.setSenha(rs.getString("senha"));//duvida se carregar ou nao 
+                
+                pst.close();
             }
         } catch (SQLException ex) {
             System.err.println(ex);
@@ -47,11 +48,10 @@ public class AdmDaoImpl implements AdmDao {
 
     @Override
     public Adm obter(String email) {
-        String sql = "select * from redeencarte.tb_login where redeencarte.tb_login.login = '" + email + "'";
         Connection conn = HsConnection.getConnection();
         Adm adm = new Adm();
         try {
-            PreparedStatement pst = conn.prepareStatement(sql);
+            PreparedStatement pst = conn.prepareStatement("select * from redeencarte.tb_login where redeencarte.tb_login.login = '" + email + "'");
             ResultSet rs = pst.executeQuery();
             while (rs.next()) {
                 adm.setId(rs.getInt("id"));
@@ -59,6 +59,8 @@ public class AdmDaoImpl implements AdmDao {
                 adm.setLogin(rs.getString("login"));
                 adm.setEmail(rs.getString("email"));
                 adm.setSenha(rs.getString("senha"));//duvida se carregar ou nao 
+                
+                pst.close();
             }
         } catch (SQLException ex) {
             System.err.println(ex);
@@ -92,14 +94,16 @@ public class AdmDaoImpl implements AdmDao {
     @Override
     public boolean validar(String cryptEmail, String cryptPassword) {
         boolean validado = false;
-        String sql = "select * from redeencarte.tb_login where redeencarte.tb_login.login = '" + cryptEmail + "' and redeencarte.tb_login.senha = '" + cryptPassword + "'";
         Connection conn = HsConnection.getConnection();
         try {
-            PreparedStatement pst = conn.prepareStatement(sql);
+            PreparedStatement pst = conn.prepareStatement("select * from redeencarte.tb_login where redeencarte.tb_login.login = '" + cryptEmail + "' and redeencarte.tb_login.senha = '" + cryptPassword + "'");
             ResultSet rs = pst.executeQuery();
             while (rs.next()) {
                 validado = true;
             }
+            
+            pst.close();
+            
         } catch (SQLException ex) {
             System.err.println(ex);
             LogBsImpl.getInstance().inserirLog(this.getClass().getSimpleName(), ex.getMessage());

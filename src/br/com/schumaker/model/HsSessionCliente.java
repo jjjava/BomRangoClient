@@ -10,7 +10,7 @@ public class HsSessionCliente {
 
     private static final HsSessionCliente instance = new HsSessionCliente();
     private Cliente cliente;
-    private Mercado mercado;
+    private Loja mercado;
 
     private HsSessionCliente() {
     }
@@ -33,11 +33,11 @@ public class HsSessionCliente {
         this.cliente = cliente;
     }
 
-    public Mercado getMercado() {
+    public Loja getMercado() {
         return mercado;
     }
 
-    public void setMercado(Mercado mercado) {
+    public void setMercado(Loja mercado) {
         this.mercado = mercado;
     }
 }

@@ -4,7 +4,6 @@ import br.com.schumaker.gfx.FrLogin;
 import br.com.schumaker.util.HsCommons;
 import br.com.schumaker.util.HsDriverChecker;
 import br.com.schumaker.util.HsMessage;
-import com.sun.awt.AWTUtilities;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 

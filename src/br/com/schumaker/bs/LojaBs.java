@@ -1,7 +1,7 @@
 package br.com.schumaker.bs;
 
 import br.com.schumaker.model.Cliente;
-import br.com.schumaker.model.Mercado;
+import br.com.schumaker.model.Loja;
 import java.util.List;
 
 /**
@@ -10,16 +10,16 @@ import java.util.List;
  * @version 1.0.0
  * @since 1.0.0
  */
-public interface MercadoBs {
-    Mercado obter(Integer id);
-    List<Mercado> listar();
-    List<Mercado> like(String s);
+public interface LojaBs {
+    Loja obter(Integer id);
+    List<Loja> listar();
+    List<Loja> like(String s);
     Cliente getClienteSessao();
-    Mercado getMercadoSessao();
+    Loja getMercadoSessao();
     void mostrarPerfil(String action);
     void gerenciarSessao();
     boolean verificarNome(String nome);
-    void cadastrar(Mercado mercado);
-    void atualizar(Mercado mercado);
-    void deletar(Mercado mercado); 
+    void cadastrar(Loja mercado);
+    void atualizar(Loja mercado);
+    void deletar(Loja mercado); 
 }
