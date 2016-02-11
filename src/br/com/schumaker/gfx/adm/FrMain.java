@@ -91,7 +91,7 @@ public class FrMain extends JFrame {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 238, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 239, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -104,7 +104,7 @@ public class FrMain extends JFrame {
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jDesktop)
+            .addComponent(jDesktop, javax.swing.GroupLayout.DEFAULT_SIZE, 0, Short.MAX_VALUE)
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -128,6 +128,7 @@ public class FrMain extends JFrame {
 
         jmArquivo.setText("Arquivo");
 
+        jmLogoff.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/schumaker/res/icons/group_24.png"))); // NOI18N
         jmLogoff.setText("Logoff");
         jmLogoff.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -136,6 +137,7 @@ public class FrMain extends JFrame {
         });
         jmArquivo.add(jmLogoff);
 
+        jmFechar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/schumaker/res/icons/stop_24.png"))); // NOI18N
         jmFechar.setText("Fechar");
         jmFechar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -148,6 +150,7 @@ public class FrMain extends JFrame {
 
         jmEditar.setText("Editar");
 
+        jmAlterarSenha.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/schumaker/res/icons/lock_24.png"))); // NOI18N
         jmAlterarSenha.setText("Alterar Senha");
         jmAlterarSenha.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -160,6 +163,7 @@ public class FrMain extends JFrame {
 
         jmExibir.setText("Exibir");
 
+        jmPerfilUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/schumaker/res/icons/user_24.png"))); // NOI18N
         jmPerfilUsuario.setText("Perfil Usuário");
         jmPerfilUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -180,6 +184,7 @@ public class FrMain extends JFrame {
 
         jmAjuda.setText("Ajuda");
 
+        jmTopicosDeAjuda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/schumaker/res/icons/help_24.png"))); // NOI18N
         jmTopicosDeAjuda.setText("Tópicos de Ajuda");
         jmTopicosDeAjuda.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -188,6 +193,7 @@ public class FrMain extends JFrame {
         });
         jmAjuda.add(jmTopicosDeAjuda);
 
+        jmEnviarMensagem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/schumaker/res/icons/mail_24.png"))); // NOI18N
         jmEnviarMensagem.setText("Enviar Mensagem");
         jmEnviarMensagem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -196,6 +202,7 @@ public class FrMain extends JFrame {
         });
         jmAjuda.add(jmEnviarMensagem);
 
+        jmSobre.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/schumaker/res/icons/sinfo_24.png"))); // NOI18N
         jmSobre.setText("Sobre");
         jmSobre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
