@@ -30,7 +30,9 @@ public class LogDaoImpl implements LogDao {
             System.err.println(e);
         } finally {
             try {
-                pst.close();
+                if(pst != null){
+                    pst.close();
+                }
                 conn.close();
             } catch (SQLException e) {
                 System.err.println(e);

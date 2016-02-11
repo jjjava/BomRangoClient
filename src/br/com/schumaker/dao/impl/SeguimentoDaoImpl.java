@@ -43,6 +43,7 @@ public class SeguimentoDaoImpl implements SeguimentoDao {
                 //---add na lista
                 seguimentos.add(seguimento);
             }
+            pst.close();
         } catch (SQLException ex) {
             System.err.println(ex);
             LogBsImpl.getInstance().inserirLog(this.getClass().getSimpleName(), ex.getMessage());
@@ -72,6 +73,7 @@ public class SeguimentoDaoImpl implements SeguimentoDao {
                 //---add na lista
                 seguimentos.add(seguimento);
             }
+            pst.close();
         } catch (SQLException ex) {
             System.err.println(ex);
             LogBsImpl.getInstance().inserirLog(this.getClass().getSimpleName(), ex.getMessage());

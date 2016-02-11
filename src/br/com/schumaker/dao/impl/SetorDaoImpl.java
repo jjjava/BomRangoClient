@@ -36,6 +36,7 @@ public class SetorDaoImpl implements SetorDao {
                 categoria.setNome(rs.getString("nome"));
                 categoria.setDescricao(rs.getString("descricao"));
             }
+            pst.close();
         } catch (SQLException ex) {
             System.err.println(ex);
             LogBsImpl.getInstance().inserirLog(this.getClass().getSimpleName(), ex.getMessage());
@@ -64,6 +65,7 @@ public class SetorDaoImpl implements SetorDao {
                 categoria.setNome(rs.getString("nome"));
                 categoria.setDescricao(rs.getString("descricao"));
             }
+            pst.close();
         } catch (SQLException ex) {
             System.err.println(ex);
             LogBsImpl.getInstance().inserirLog(this.getClass().getSimpleName(), ex.getMessage());
@@ -95,6 +97,7 @@ public class SetorDaoImpl implements SetorDao {
                 //---add na lista
                 categorias.add(categoria);
             }
+            pst.close();
         } catch (SQLException ex) {
             System.err.println(ex);
             LogBsImpl.getInstance().inserirLog(this.getClass().getSimpleName(), ex.getMessage());
@@ -126,6 +129,7 @@ public class SetorDaoImpl implements SetorDao {
                 //adiciona a lista
                 categorias.add(categoria);
             }
+            pst.close();
         } catch (SQLException ex) {
             System.err.println(ex);
             LogBsImpl.getInstance().inserirLog(this.getClass().getSimpleName(), ex.getMessage());
@@ -151,6 +155,7 @@ public class SetorDaoImpl implements SetorDao {
             while (rs.next()) {
                 validado = true;
             }
+            pst.close();
         } catch (SQLException ex) {
             System.err.println(ex);
             LogBsImpl.getInstance().inserirLog(this.getClass().getSimpleName(), ex.getMessage());
@@ -184,7 +189,9 @@ public class SetorDaoImpl implements SetorDao {
             LogBsImpl.getInstance().inserirLog(this.getClass().getSimpleName(), ex.getMessage());
         } finally {
             try {
-                pst.close();
+                if(pst != null){
+                    pst.close();
+                }
                 conn.close();
             } catch (SQLException ex) {
                 System.err.println(ex);
@@ -214,7 +221,9 @@ public class SetorDaoImpl implements SetorDao {
             LogBsImpl.getInstance().inserirLog(this.getClass().getSimpleName(), ex.getMessage());
         } finally {
             try {
-                pst.close();
+                if(pst != null){
+                    pst.close();
+                }
                 conn.close();
             } catch (SQLException ex) {
                 System.err.println(ex);

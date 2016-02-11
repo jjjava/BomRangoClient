@@ -32,6 +32,7 @@ public class FabricanteDaoImpl implements FabricanteDao {
                 fabricante.setNome(rs.getString("nome"));
                 fabricante.setSite(rs.getString("site"));
             }
+            pst.close();
         } catch (SQLException ex) {
             System.err.println(ex);
             LogBsImpl.getInstance().inserirLog(this.getClass().getSimpleName(), ex.getMessage());
@@ -59,6 +60,7 @@ public class FabricanteDaoImpl implements FabricanteDao {
                 fabricante.setNome(rs.getString("nome"));
                 fabricante.setSite(rs.getString("site"));
             }
+            pst.close();
         } catch (SQLException ex) {
             System.err.println(ex);
             LogBsImpl.getInstance().inserirLog(this.getClass().getSimpleName(), ex.getMessage());
@@ -89,6 +91,7 @@ public class FabricanteDaoImpl implements FabricanteDao {
                 //---add na lista
                 fabricantes.add(fabricante);
             }
+            pst.close();
         } catch (SQLException ex) {
             System.err.println(ex);
             LogBsImpl.getInstance().inserirLog(this.getClass().getSimpleName(), ex.getMessage());
@@ -119,6 +122,7 @@ public class FabricanteDaoImpl implements FabricanteDao {
                 //---add na lista
                 fabricantes.add(fabricante);
             }
+            pst.close();
         } catch (SQLException ex) {
             System.err.println(ex);
             LogBsImpl.getInstance().inserirLog(this.getClass().getSimpleName(), ex.getMessage());
@@ -144,6 +148,7 @@ public class FabricanteDaoImpl implements FabricanteDao {
             while (rs.next()) {
                 validado = true;
             }
+            pst.close();
         } catch (SQLException ex) {
             System.err.println(ex);
             LogBsImpl.getInstance().inserirLog(this.getClass().getSimpleName(), ex.getMessage());
@@ -184,7 +189,9 @@ public class FabricanteDaoImpl implements FabricanteDao {
             LogBsImpl.getInstance().inserirLog(this.getClass().getSimpleName(), ex.getMessage());
         } finally {
             try {
-                pst.close();
+                if(pst != null){
+                    pst.close();
+                }
                 conn.close();
             } catch (SQLException ex) {
                 System.err.println(ex);
@@ -223,7 +230,9 @@ public class FabricanteDaoImpl implements FabricanteDao {
             LogBsImpl.getInstance().inserirLog(this.getClass().getSimpleName(), ex.getMessage());
         } finally {
             try {
-                pst.close();
+                if(pst != null){
+                    pst.close();
+                }
                 conn.close();
             } catch (SQLException ex) {
                 System.err.println(ex);

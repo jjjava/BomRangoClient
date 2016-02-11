@@ -186,7 +186,9 @@ public class CidadeDaoImpl implements CidadeDao {
             LogBsImpl.getInstance().inserirLog(this.getClass().getSimpleName(), ex.getMessage());
         } finally {
             try {
-                pst.close();
+                if (pst != null) {
+                    pst.close();
+                }
                 conn.close();
             } catch (SQLException ex) {
                 System.err.println(ex);
@@ -217,7 +219,9 @@ public class CidadeDaoImpl implements CidadeDao {
             LogBsImpl.getInstance().inserirLog(this.getClass().getSimpleName(), ex.getMessage());
         } finally {
             try {
-                pst.close();
+                if (pst != null) {
+                    pst.close();
+                }
                 conn.close();
             } catch (SQLException ex) {
                 System.err.println(ex);

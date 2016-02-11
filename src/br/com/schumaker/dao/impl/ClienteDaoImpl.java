@@ -37,6 +37,7 @@ public class ClienteDaoImpl implements ClienteDao {
                 cliente.setEmail(rs.getString("email"));
                 cliente.setSenha(rs.getString("senha"));//duvida se carregar ou nao 
             }
+            pst.close();
         } catch (SQLException ex) {
             System.err.println(ex);
             LogBsImpl.getInstance().inserirLog(this.getClass().getSimpleName(), ex.getMessage());
@@ -65,6 +66,7 @@ public class ClienteDaoImpl implements ClienteDao {
                 cliente.setEmail(rs.getString("email"));
                 cliente.setSenha(rs.getString("senha"));//duvida se carregar ou nao 
             }
+            pst.close();
         } catch (SQLException ex) {
             System.err.println(ex);
             LogBsImpl.getInstance().inserirLog(this.getClass().getSimpleName(), ex.getMessage());
@@ -97,6 +99,7 @@ public class ClienteDaoImpl implements ClienteDao {
                 //adiciona a lista
                 clientes.add(cliente);
             }
+            pst.close();
         } catch (SQLException ex) {
             System.err.println(ex);
             LogBsImpl.getInstance().inserirLog(this.getClass().getSimpleName(), ex.getMessage());
@@ -129,6 +132,7 @@ public class ClienteDaoImpl implements ClienteDao {
                 //adiciona a lista
                 clientes.add(cliente);
             }
+            pst.close();
         } catch (SQLException ex) {
             System.err.println(ex);
             LogBsImpl.getInstance().inserirLog(this.getClass().getSimpleName(), ex.getMessage());
@@ -154,6 +158,7 @@ public class ClienteDaoImpl implements ClienteDao {
             while (rs.next()) {
                 validado = true;
             }
+            pst.close();
         } catch (SQLException ex) {
             System.err.println(ex);
             LogBsImpl.getInstance().inserirLog(this.getClass().getSimpleName(), ex.getMessage());
@@ -179,6 +184,7 @@ public class ClienteDaoImpl implements ClienteDao {
             while (rs.next()) {
                 validado = true;
             }
+            pst.close();
         } catch (SQLException ex) {
             System.err.println(ex);
             LogBsImpl.getInstance().inserirLog(this.getClass().getSimpleName(), ex.getMessage());
@@ -221,7 +227,9 @@ public class ClienteDaoImpl implements ClienteDao {
             LogBsImpl.getInstance().inserirLog(this.getClass().getSimpleName(), ex.getMessage());
         } finally {
             try {
-                pst.close();
+                if(pst != null){
+                    pst.close();
+                }
                 conn.close();
             } catch (SQLException ex) {
                 System.err.println(ex);
@@ -261,7 +269,9 @@ public class ClienteDaoImpl implements ClienteDao {
             LogBsImpl.getInstance().inserirLog(this.getClass().getSimpleName(), ex.getMessage());
         } finally {
             try {
-                pst.close();
+                if(pst != null){
+                    pst.close();
+                }
                 conn.close();
             } catch (SQLException ex) {
                 System.err.println(ex);

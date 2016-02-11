@@ -34,6 +34,7 @@ public class DensidadeDaoImpl implements DensidadeDao {
                 densidade.setId(rs.getInt("id"));
                 densidade.setNome(rs.getString("nome"));
             }
+            pst.close();
         } catch (SQLException ex) {
             System.err.println(ex);
             LogBsImpl.getInstance().inserirLog(this.getClass().getSimpleName(), ex.getMessage());
@@ -122,6 +123,7 @@ public class DensidadeDaoImpl implements DensidadeDao {
                 //---add na lista
                 densidades.add(densidade);
             }
+            pst.close();
         } catch (SQLException ex) {
             System.err.println(ex);
             LogBsImpl.getInstance().inserirLog(this.getClass().getSimpleName(), ex.getMessage());
@@ -146,6 +148,7 @@ public class DensidadeDaoImpl implements DensidadeDao {
             while (rs.next()) {
                 validado = true;
             }
+            pst.close();
         } catch (SQLException e) {
             System.err.println(e);
         } finally {
@@ -174,7 +177,9 @@ public class DensidadeDaoImpl implements DensidadeDao {
             System.err.println(e);
         } finally {
             try {
-                pst.close();
+                if (pst != null) {
+                    pst.close();
+                }
                 conn.close();
             } catch (SQLException e) {
                 System.err.println(e);
@@ -202,7 +207,9 @@ public class DensidadeDaoImpl implements DensidadeDao {
             LogBsImpl.getInstance().inserirLog(this.getClass().getSimpleName(), ex.getMessage());
         } finally {
             try {
-                pst.close();
+                if (pst != null) {
+                    pst.close();
+                }
                 conn.close();
             } catch (SQLException ex) {
                 System.err.println(ex);

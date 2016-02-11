@@ -54,6 +54,7 @@ public class ProdutoDaoImpl implements ProdutoDao {
                 produto.setImagem(rs.getString("imagem"));
                 produto.setAtivo(rs.getInt("ativo"));
             }
+            pst.close();
         } catch (SQLException ex) {
             System.err.println(ex);
             LogBsImpl.getInstance().inserirLog(this.getClass().getSimpleName(), ex.getMessage());
@@ -94,6 +95,7 @@ public class ProdutoDaoImpl implements ProdutoDao {
                 //---add na lista
                 produtos.add(produto);
             }
+            pst.close();
         } catch (SQLException ex) {
             System.err.println(ex);
             LogBsImpl.getInstance().inserirLog(this.getClass().getSimpleName(), ex.getMessage());
@@ -134,6 +136,7 @@ public class ProdutoDaoImpl implements ProdutoDao {
                 //---add na lista
                 produtos.add(produto);
             }
+            pst.close();
         } catch (SQLException ex) {
             System.err.println(ex);
             LogBsImpl.getInstance().inserirLog(this.getClass().getSimpleName(), ex.getMessage());
@@ -174,6 +177,7 @@ public class ProdutoDaoImpl implements ProdutoDao {
                 //---add na lista
                 produtos.add(produto);
             }
+            pst.close();
         } catch (SQLException ex) {
             System.err.println(ex);
             LogBsImpl.getInstance().inserirLog(this.getClass().getSimpleName(), ex.getMessage());
@@ -214,6 +218,7 @@ public class ProdutoDaoImpl implements ProdutoDao {
                 //---add na lista
                 produtos.add(produto);
             }
+            pst.close();
         } catch (SQLException ex) {
             System.err.println(ex);
             LogBsImpl.getInstance().inserirLog(this.getClass().getSimpleName(), ex.getMessage());
@@ -256,6 +261,7 @@ public class ProdutoDaoImpl implements ProdutoDao {
                 produtos.add(produto);
                 k++;
             }
+            pst.close();
         } catch (SQLException ex) {
             System.err.println(ex);
             LogBsImpl.getInstance().inserirLog(this.getClass().getSimpleName(), ex.getMessage());
@@ -484,7 +490,9 @@ public class ProdutoDaoImpl implements ProdutoDao {
             LogBsImpl.getInstance().inserirLog(this.getClass().getSimpleName(), ex.getMessage());
         } finally {
             try {
-                pst.close();
+                if(pst != null){
+                    pst.close();
+                }
                 conn.close();
             } catch (SQLException ex) {
                 System.err.println(ex);

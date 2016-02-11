@@ -24,8 +24,8 @@ import java.util.List;
  * @since 1.0.0
  */
 public class LojaDaoImpl implements LojaDao {
-    
-    public LojaDaoImpl(){
+
+    public LojaDaoImpl() {
     }
 
     @Override
@@ -46,13 +46,14 @@ public class LojaDaoImpl implements LojaDao {
                 mercado.setCartoes(rs.getString("cartoes"));
                 mercado.setCnpj(rs.getString("cnpj"));
                 mercado.setHorarioFunc(rs.getString("horariofunc"));
-             //   mercado.setFundacao(rs.getString("fundacao"));
+                //   mercado.setFundacao(rs.getString("fundacao"));
                 mercado.setSobre(rs.getString("sobre"));
                 mercado.setEstacionamento(rs.getInt("estacionamento"));
                 //ojbetos
                 mercado.setCidade(getMyCidade(rs.getInt("idcidade")));
                 mercado.setEstado(getMyEstado(rs.getInt("idestado")));
             }
+            pst.close();
         } catch (SQLException ex) {
             System.err.println(ex);
             LogBsImpl.getInstance().inserirLog(this.getClass().getSimpleName(), ex.getMessage());
@@ -86,7 +87,7 @@ public class LojaDaoImpl implements LojaDao {
                 mercado.setCartoes(rs.getString("cartoes"));
                 mercado.setCnpj(rs.getString("cnpj"));
                 mercado.setHorarioFunc(rs.getString("horariofunc"));
-             //   mercado.setFundacao(rs.getString("fundacao"));
+                //   mercado.setFundacao(rs.getString("fundacao"));
                 mercado.setSobre(rs.getString("sobre"));
                 mercado.setEstacionamento(rs.getInt("estacionamento"));
                 //ojbetos
@@ -95,6 +96,7 @@ public class LojaDaoImpl implements LojaDao {
                 //---add na lista
                 mercados.add(mercado);
             }
+            pst.close();
         } catch (SQLException ex) {
             System.err.println(ex);
             LogBsImpl.getInstance().inserirLog(this.getClass().getSimpleName(), ex.getMessage());
@@ -128,7 +130,7 @@ public class LojaDaoImpl implements LojaDao {
                 mercado.setCartoes(rs.getString("cartoes"));
                 mercado.setCnpj(rs.getString("cnpj"));
             //    mercado.setHorarioFunc(rs.getString("horariofunc"));
-            //    mercado.setFundacao(rs.getString("fundacao"));
+                //    mercado.setFundacao(rs.getString("fundacao"));
                 mercado.setSobre(rs.getString("sobre"));
                 mercado.setEstacionamento(rs.getInt("estacionamento"));
                 //ojbetos
@@ -137,6 +139,7 @@ public class LojaDaoImpl implements LojaDao {
                 //---add na lista
                 mercados.add(mercado);
             }
+            pst.close();
         } catch (SQLException ex) {
             System.err.println(ex);
             LogBsImpl.getInstance().inserirLog(this.getClass().getSimpleName(), ex.getMessage());
@@ -179,6 +182,7 @@ public class LojaDaoImpl implements LojaDao {
                 //---add na lista
                 mercados.add(mercado);
             }
+            pst.close();
         } catch (SQLException ex) {
             System.err.println(ex);
             LogBsImpl.getInstance().inserirLog(this.getClass().getSimpleName(), ex.getMessage());
@@ -204,6 +208,7 @@ public class LojaDaoImpl implements LojaDao {
             while (rs.next()) {
                 validado = true;
             }
+            pst.close();
         } catch (SQLException ex) {
             System.err.println(ex);
             LogBsImpl.getInstance().inserirLog(this.getClass().getSimpleName(), ex.getMessage());
@@ -248,7 +253,7 @@ public class LojaDaoImpl implements LojaDao {
             File image = new File(mercado.getImage());
             FileInputStream fis = new FileInputStream(image);
             pst.setBinaryStream(17, fis, (int) image.length());
-            
+
             pst.setString(18, mercado.getImagemNome());
 
             pst.setInt(19, mercado.getAtivo());
@@ -261,7 +266,9 @@ public class LojaDaoImpl implements LojaDao {
             LogBsImpl.getInstance().inserirLog(this.getClass().getSimpleName(), ex.getMessage());
         } finally {
             try {
-                pst.close();
+                if (pst != null) {
+                    pst.close();
+                }
                 conn.close();
             } catch (SQLException ex) {
                 System.err.println(ex);

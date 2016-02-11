@@ -27,6 +27,7 @@ public class ServerDaoImpl implements ServerDao {
             while (rs.next()) {
                 status = rs.getInt("status");
             }
+            pst.close();
         } catch (SQLException ex) {
             System.err.println(ex);
             LogBsImpl.getInstance().inserirLog(this.getClass().getSimpleName(), ex.getMessage());
@@ -67,7 +68,9 @@ public class ServerDaoImpl implements ServerDao {
             LogBsImpl.getInstance().inserirLog(this.getClass().getSimpleName(), ex.getMessage());
         } finally {
             try {
-                pst.close();
+                if(pst != null){
+                    pst.close();
+                }
                 conn.close();
             } catch (SQLException ex) {
                 System.err.println(ex);
@@ -88,6 +91,7 @@ public class ServerDaoImpl implements ServerDao {
             while (rs.next()) {
                 status = rs.getInt("id");
             }
+            pst.close();
         } catch (SQLException ex) {
             status = 0;
             System.err.println(ex);
