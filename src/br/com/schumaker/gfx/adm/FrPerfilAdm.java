@@ -12,8 +12,9 @@ public class FrPerfilAdm extends javax.swing.JFrame {
 
     public FrPerfilAdm() {
         this.initComponents();
+        this.setLocationRelativeTo(null);
         jlNome.setText(jlNome.getText() + " " + HsSessionAdm.getInstance().getAdm().getNome());
-        jLEmail.setText(jlNome.getText() + " " + HsSessionAdm.getInstance().getAdm().getEmail());
+        jlEmail.setText(jlEmail.getText() + " " + HsSessionAdm.getInstance().getAdm().getEmail());
     }
 
     @SuppressWarnings("unchecked")
@@ -21,7 +22,7 @@ public class FrPerfilAdm extends javax.swing.JFrame {
     private void initComponents() {
 
         jlNome = new javax.swing.JLabel();
-        jLEmail = new javax.swing.JLabel();
+        jlEmail = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -30,9 +31,14 @@ public class FrPerfilAdm extends javax.swing.JFrame {
 
         jlNome.setText("Usuário logado:");
 
-        jLEmail.setText("Email cadastrado:");
+        jlEmail.setText("Email cadastrado:");
 
         jButton1.setText("OK");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -41,7 +47,7 @@ public class FrPerfilAdm extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(15, 15, 15)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLEmail)
+                    .addComponent(jlEmail)
                     .addComponent(jlNome))
                 .addContainerGap(334, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -55,7 +61,7 @@ public class FrPerfilAdm extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jlNome)
                 .addGap(18, 18, 18)
-                .addComponent(jLEmail)
+                .addComponent(jlEmail)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 78, Short.MAX_VALUE)
                 .addComponent(jButton1)
                 .addGap(14, 14, 14))
@@ -64,9 +70,14 @@ public class FrPerfilAdm extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+
+        this.dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLEmail;
+    private javax.swing.JLabel jlEmail;
     private javax.swing.JLabel jlNome;
     // End of variables declaration//GEN-END:variables
 }

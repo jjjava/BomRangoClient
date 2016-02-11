@@ -64,9 +64,9 @@ public class FrMainBsImpl implements FrMainBs {
 
     @Override
     public void fechar() {
-        int v = JOptionPane.showConfirmDialog(null, "Bom Rango", "Deseja fechar?", JOptionPane.YES_NO_OPTION);
+        int v = JOptionPane.showConfirmDialog(null, "Rede Encarte", "Deseja fechar?", JOptionPane.YES_NO_OPTION);
         if (v == 0) {
-            System.exit(0);
+            System.exit(2);
         }
     }
 

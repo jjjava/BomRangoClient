@@ -1,6 +1,7 @@
 package br.com.schumaker.gfx;
 
 import br.com.schumaker.util.HsCommons;
+import java.awt.Toolkit;
 import java.lang.management.ManagementFactory;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
@@ -16,6 +17,7 @@ public class FrSobre extends javax.swing.JFrame {
 
     public FrSobre() {
         this.initComponents();
+        this.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("br/com/schumaker/res/icons/srch_24.png")));
         try {
             com.sun.management.OperatingSystemMXBean mxbean = (com.sun.management.OperatingSystemMXBean) ManagementFactory.getOperatingSystemMXBean();
             java_version.setText("Versão do Java: " + System.getProperty("java.version"));

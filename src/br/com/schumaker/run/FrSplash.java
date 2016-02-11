@@ -4,6 +4,7 @@ import br.com.schumaker.gfx.FrLogin;
 import br.com.schumaker.util.HsCommons;
 import br.com.schumaker.util.HsDriverChecker;
 import br.com.schumaker.util.HsMessage;
+import java.awt.Toolkit;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
@@ -18,6 +19,7 @@ public class FrSplash extends JFrame implements Runnable {
     public FrSplash() {
         super("Carregando...");
         setUndecorated(true);
+        this.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/br/com/schumaker/res/icons/cart_32.png")));
 //        AWTUtilities.setWindowOpacity(this, 0.77777777F);
         this.initComponents();
         this.jProgressBar.setString("Inicializando...");

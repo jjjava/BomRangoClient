@@ -1,6 +1,6 @@
 package br.com.schumaker.gfx.adm;
 
-import br.com.schumaker.bs.impl.FrMainBsImpl;
+import br.com.schumaker.bs.impl.FrMainAdmBsImpl;
 import br.com.schumaker.model.HsSessionAdm;
 import javax.swing.JFrame;
 import javax.swing.tree.DefaultMutableTreeNode;
@@ -70,9 +70,7 @@ public class FrMain extends JFrame {
         jmAlterarSenha = new javax.swing.JMenuItem();
         jmExibir = new javax.swing.JMenu();
         jmPerfilUsuario = new javax.swing.JMenuItem();
-        jmMostrarPerfilMercado = new javax.swing.JMenuItem();
         jmAjuda = new javax.swing.JMenu();
-        jmTopicosDeAjuda = new javax.swing.JMenuItem();
         jmEnviarMensagem = new javax.swing.JMenuItem();
         jmSobre = new javax.swing.JMenuItem();
 
@@ -172,26 +170,9 @@ public class FrMain extends JFrame {
         });
         jmExibir.add(jmPerfilUsuario);
 
-        jmMostrarPerfilMercado.setText("Perfil Mercado");
-        jmMostrarPerfilMercado.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jmMostrarPerfilMercadoActionPerformed(evt);
-            }
-        });
-        jmExibir.add(jmMostrarPerfilMercado);
-
         jMenuBar1.add(jmExibir);
 
         jmAjuda.setText("Ajuda");
-
-        jmTopicosDeAjuda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/schumaker/res/icons/help_24.png"))); // NOI18N
-        jmTopicosDeAjuda.setText("Tópicos de Ajuda");
-        jmTopicosDeAjuda.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jmTopicosDeAjudaActionPerformed(evt);
-            }
-        });
-        jmAjuda.add(jmTopicosDeAjuda);
 
         jmEnviarMensagem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/schumaker/res/icons/mail_24.png"))); // NOI18N
         jmEnviarMensagem.setText("Enviar Mensagem");
@@ -278,35 +259,27 @@ public class FrMain extends JFrame {
     }//GEN-LAST:event_jtMenuTreeMouseClicked
 
     private void jmLogoffActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmLogoffActionPerformed
-        FrMainBsImpl.getInstance().doLogoff(this);
+        FrMainAdmBsImpl.getInstance().doLogoff(this);
     }//GEN-LAST:event_jmLogoffActionPerformed
 
     private void jmFecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmFecharActionPerformed
-        FrMainBsImpl.getInstance().fechar();
+        FrMainAdmBsImpl.getInstance().fechar();
     }//GEN-LAST:event_jmFecharActionPerformed
 
     private void jmAlterarSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmAlterarSenhaActionPerformed
-        FrMainBsImpl.getInstance().alterarSenha();
+        FrMainAdmBsImpl.getInstance().alterarSenha();
     }//GEN-LAST:event_jmAlterarSenhaActionPerformed
 
     private void jmPerfilUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmPerfilUsuarioActionPerformed
-        FrMainBsImpl.getInstance().showPerfilUsuario();
+        FrMainAdmBsImpl.getInstance().showPerfilAdm();
     }//GEN-LAST:event_jmPerfilUsuarioActionPerformed
 
-    private void jmMostrarPerfilMercadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmMostrarPerfilMercadoActionPerformed
-        FrMainBsImpl.getInstance().showPerfilMercado();
-    }//GEN-LAST:event_jmMostrarPerfilMercadoActionPerformed
-
-    private void jmTopicosDeAjudaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmTopicosDeAjudaActionPerformed
-        FrMainBsImpl.getInstance().showTopicosAjuda();
-    }//GEN-LAST:event_jmTopicosDeAjudaActionPerformed
-
     private void jmEnviarMensagemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmEnviarMensagemActionPerformed
-        FrMainBsImpl.getInstance().showEnviarMensagem();
+        FrMainAdmBsImpl.getInstance().showEnviarMensagem();
     }//GEN-LAST:event_jmEnviarMensagemActionPerformed
 
     private void jmSobreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmSobreActionPerformed
-        FrMainBsImpl.getInstance().showSobre();
+        FrMainAdmBsImpl.getInstance().showSobre();
     }//GEN-LAST:event_jmSobreActionPerformed
 
     private DefaultMutableTreeNode root;
@@ -338,10 +311,8 @@ public class FrMain extends JFrame {
     private javax.swing.JMenu jmExibir;
     private javax.swing.JMenuItem jmFechar;
     private javax.swing.JMenuItem jmLogoff;
-    private javax.swing.JMenuItem jmMostrarPerfilMercado;
     private javax.swing.JMenuItem jmPerfilUsuario;
     private javax.swing.JMenuItem jmSobre;
-    private javax.swing.JMenuItem jmTopicosDeAjuda;
     private javax.swing.JTree jtMenuTree;
     // End of variables declaration//GEN-END:variables
 }
