@@ -13,7 +13,7 @@ import java.util.List;
 
 /**
  *
- * @author hudson schumaker HStudio - @BomRango 12/01/2015
+ * @author Hudson Schumaker HStudio - @BomRango 12/01/2015
  * @version 1.0.0
  * @since 1.0.0
  */
@@ -24,23 +24,26 @@ public class BairroDaoImpl implements BairroDao {
 
     @Override
     public Bairro obter(Integer id) {
-        String sql = "select * from redeencarte.tb_bairro where tb_bairro.id = " + id;
+
         Connection conn = HsConnection.getConnection();
+        PreparedStatement pst = null;
         Bairro bairro = new Bairro();
         try {
-            PreparedStatement pst = conn.prepareStatement(sql);
+            pst = conn.prepareStatement("select * from redeencarte.tb_bairro where tb_bairro.id = " + id);
             ResultSet rs = pst.executeQuery();
             while (rs.next()) {
                 bairro.setId(rs.getInt("id"));
                 bairro.setIdCidade(rs.getInt("idcidade"));
                 bairro.setNome(rs.getString("nome"));
             }
-            pst.close();
         } catch (SQLException ex) {
             System.err.println(ex);
             LogBsImpl.getInstance().inserirLog(this.getClass().getSimpleName(), ex.getMessage());
         } finally {
             try {
+                if (pst != null) {
+                    pst.close();
+                }
                 conn.close();
             } catch (SQLException ex) {
                 System.err.println(ex);
@@ -53,10 +56,10 @@ public class BairroDaoImpl implements BairroDao {
     @Override
     public List<Bairro> listar() {
         List<Bairro> bairros = new ArrayList<>();
-        String sql = "select * from redeencarte.tb_bairro order by bairro.nome";
+        PreparedStatement pst = null;
         Connection conn = HsConnection.getConnection();
         try {
-            PreparedStatement pst = conn.prepareStatement(sql);
+            pst = conn.prepareStatement("select * from redeencarte.tb_bairro order by bairro.nome");
             ResultSet rs = pst.executeQuery();
             while (rs.next()) {
                 Bairro bairro = new Bairro();
@@ -66,12 +69,14 @@ public class BairroDaoImpl implements BairroDao {
                 //---add na lista
                 bairros.add(bairro);
             }
-            pst.close();
         } catch (SQLException ex) {
             System.err.println(ex);
             LogBsImpl.getInstance().inserirLog(this.getClass().getSimpleName(), ex.getMessage());
         } finally {
             try {
+                if (pst != null) {
+                    pst.close();
+                }
                 conn.close();
             } catch (SQLException ex) {
                 System.err.println(ex);
@@ -83,10 +88,10 @@ public class BairroDaoImpl implements BairroDao {
 
     public List<Bairro> listar(int id) {
         List<Bairro> bairros = new ArrayList<>();
-        String sql = "select * from redeencarte.tb_bairro where idcidade = " + id + " ";
+        PreparedStatement pst = null;
         Connection conn = HsConnection.getConnection();
         try {
-            PreparedStatement pst = conn.prepareStatement(sql);
+            pst = conn.prepareStatement("select * from redeencarte.tb_bairro where idcidade = " + id + " ");
             ResultSet rs = pst.executeQuery();
             while (rs.next()) {
                 Bairro bairro = new Bairro();
@@ -96,12 +101,14 @@ public class BairroDaoImpl implements BairroDao {
                 //---add na lista
                 bairros.add(bairro);
             }
-            pst.close();
         } catch (SQLException ex) {
             System.err.println(ex);
             LogBsImpl.getInstance().inserirLog(this.getClass().getSimpleName(), ex.getMessage());
         } finally {
             try {
+                if (pst != null) {
+                    pst.close();
+                }
                 conn.close();
             } catch (SQLException ex) {
                 System.err.println(ex);
@@ -114,10 +121,10 @@ public class BairroDaoImpl implements BairroDao {
     @Override
     public List<Bairro> like(String s) {
         List<Bairro> bairros = new ArrayList<>();
-        String sql = "select * from compras.bairro where bairro.nome like '%" + s + "%' order by bairro.name";
+        PreparedStatement pst = null;
         Connection conn = HsConnection.getConnection();
         try {
-            PreparedStatement pst = conn.prepareStatement(sql);
+            pst = conn.prepareStatement("select * from compras.bairro where bairro.nome like '%" + s + "%' order by bairro.name");
             ResultSet rs = pst.executeQuery();
             while (rs.next()) {
                 Bairro bairro = new Bairro();
@@ -127,12 +134,14 @@ public class BairroDaoImpl implements BairroDao {
                 //---add na lista
                 bairros.add(bairro);
             }
-            pst.close();
         } catch (SQLException ex) {
             System.err.println(ex);
             LogBsImpl.getInstance().inserirLog(this.getClass().getSimpleName(), ex.getMessage());
         } finally {
             try {
+                if (pst != null) {
+                    pst.close();
+                }
                 conn.close();
             } catch (SQLException ex) {
                 System.err.println(ex);
@@ -145,20 +154,22 @@ public class BairroDaoImpl implements BairroDao {
     @Override
     public boolean verificarNome(String nome) {
         boolean validado = false;
-        String sql = "select * from compras.bairro where bairro.nome = '" + nome + "'";
+        PreparedStatement pst = null;
         Connection conn = HsConnection.getConnection();
         try {
-            PreparedStatement pst = conn.prepareStatement(sql);
+            pst = conn.prepareStatement("select * from compras.bairro where bairro.nome = '" + nome + "'");
             ResultSet rs = pst.executeQuery();
             while (rs.next()) {
                 validado = true;
             }
-            pst.close();
         } catch (SQLException e) {
             System.err.println(e);
             LogBsImpl.getInstance().inserirLog(this.getClass().getSimpleName(), e.getMessage());
         } finally {
             try {
+                if (pst != null) {
+                    pst.close();
+                }
                 conn.close();
             } catch (SQLException ex) {
                 System.err.println(ex);

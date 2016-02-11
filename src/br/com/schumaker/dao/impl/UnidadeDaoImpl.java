@@ -32,6 +32,7 @@ public class UnidadeDaoImpl implements UnidadeDao {
                 unidade.setNome(rs.getString("nome"));
                 unidade.setInfo(rs.getString("info"));
             }
+            pst.close();
         } catch (SQLException ex) {
             System.err.println(ex);
             LogBsImpl.getInstance().inserirLog(this.getClass().getSimpleName(), ex.getMessage());
@@ -59,6 +60,7 @@ public class UnidadeDaoImpl implements UnidadeDao {
                 unidade.setNome(rs.getString("nome"));
                 unidade.setInfo(rs.getString("info"));
             }
+            pst.close();
         } catch (SQLException ex) {
             System.err.println(ex);
             LogBsImpl.getInstance().inserirLog(this.getClass().getSimpleName(), ex.getMessage());
@@ -89,6 +91,7 @@ public class UnidadeDaoImpl implements UnidadeDao {
                 //---add na lista
                 unidades.add(unidade);
             }
+            pst.close();
         } catch (SQLException ex) {
             System.err.println(ex);
             LogBsImpl.getInstance().inserirLog(this.getClass().getSimpleName(), ex.getMessage());
@@ -119,6 +122,7 @@ public class UnidadeDaoImpl implements UnidadeDao {
                 //---add na lista
                 unidades.add(unidade);
             }
+            pst.close();
         } catch (SQLException ex) {
             System.err.println(ex);
             LogBsImpl.getInstance().inserirLog(this.getClass().getSimpleName(), ex.getMessage());
@@ -144,6 +148,7 @@ public class UnidadeDaoImpl implements UnidadeDao {
             while (rs.next()) {
                 validado = true;
             }
+            pst.close();
         } catch (SQLException e) {
             System.err.println(e);
         } finally {
@@ -182,7 +187,9 @@ public class UnidadeDaoImpl implements UnidadeDao {
             LogBsImpl.getInstance().inserirLog(this.getClass().getSimpleName(), ex.getMessage());
         } finally {
             try {
-                pst.close();
+                if(pst != null){
+                    pst.close();
+                }
                 conn.close();
             } catch (SQLException ex) {
                 System.err.println(ex);
@@ -213,7 +220,9 @@ public class UnidadeDaoImpl implements UnidadeDao {
             LogBsImpl.getInstance().inserirLog(this.getClass().getSimpleName(), ex.getMessage());
         } finally {
             try {
-                pst.close();
+                if(pst != null){
+                    pst.close();
+                }
                 conn.close();
             } catch (SQLException ex) {
                 System.err.println(ex);

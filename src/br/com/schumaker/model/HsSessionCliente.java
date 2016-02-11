@@ -22,7 +22,7 @@ public class HsSessionCliente {
     public boolean cleanSession() {
         cliente = null;
         mercado = null;
-        return (cliente == null && mercado == null);
+        return (true);
     }
 
     public Cliente getCliente() {

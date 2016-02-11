@@ -15,16 +15,17 @@ import java.util.List;
  * @author Hudson Schumaker Rede Encarte 27/01/16
  */
 public class AdmDaoImpl implements AdmDao {
-    
-    public AdmDaoImpl(){
+
+    public AdmDaoImpl() {
     }
 
     @Override
     public Adm obter(Integer id) {
         Connection conn = HsConnection.getConnection();
         Adm adm = new Adm();
+        PreparedStatement pst = null;
         try {
-            PreparedStatement pst = conn.prepareStatement("select * from redeencarte.tb_login where redeencarte.tb_login.id = " + id);
+            pst = conn.prepareStatement("select * from redeencarte.tb_login where redeencarte.tb_login.id = " + id);
             ResultSet rs = pst.executeQuery();
             while (rs.next()) {
                 adm.setId(rs.getInt("id"));
@@ -33,12 +34,14 @@ public class AdmDaoImpl implements AdmDao {
                 adm.setEmail(rs.getString("email"));
                 adm.setSenha(rs.getString("senha"));//duvida se carregar ou nao 
             }
-            pst.close();
         } catch (SQLException ex) {
             System.err.println(ex);
             LogBsImpl.getInstance().inserirLog(this.getClass().getSimpleName(), ex.getMessage());
         } finally {
             try {
+                if (pst != null) {
+                    pst.close();
+                }
                 conn.close();
             } catch (SQLException ex) {
                 System.err.println(ex);
@@ -52,8 +55,9 @@ public class AdmDaoImpl implements AdmDao {
     public Adm obter(String email) {
         Connection conn = HsConnection.getConnection();
         Adm adm = new Adm();
+        PreparedStatement pst = null;
         try {
-            PreparedStatement pst = conn.prepareStatement("select * from redeencarte.tb_login where redeencarte.tb_login.login = '" + email + "'");
+            pst = conn.prepareStatement("select * from redeencarte.tb_login where redeencarte.tb_login.login = '" + email + "'");
             ResultSet rs = pst.executeQuery();
             while (rs.next()) {
                 adm.setId(rs.getInt("id"));
@@ -62,12 +66,14 @@ public class AdmDaoImpl implements AdmDao {
                 adm.setEmail(rs.getString("email"));
                 adm.setSenha(rs.getString("senha"));//duvida se carregar ou nao 
             }
-            pst.close();
         } catch (SQLException ex) {
             System.err.println(ex);
             LogBsImpl.getInstance().inserirLog(this.getClass().getSimpleName(), ex.getMessage());
         } finally {
             try {
+                if (pst != null) {
+                    pst.close();
+                }
                 conn.close();
             } catch (SQLException ex) {
                 System.err.println(ex);
@@ -96,18 +102,21 @@ public class AdmDaoImpl implements AdmDao {
     public boolean validar(String cryptEmail, String cryptPassword) {
         boolean validado = false;
         Connection conn = HsConnection.getConnection();
+        PreparedStatement pst = null;
         try {
-            PreparedStatement pst = conn.prepareStatement("select * from redeencarte.tb_login where redeencarte.tb_login.login = '" + cryptEmail + "' and redeencarte.tb_login.senha = '" + cryptPassword + "'");
+            pst = conn.prepareStatement("select * from redeencarte.tb_login where redeencarte.tb_login.login = '" + cryptEmail + "' and redeencarte.tb_login.senha = '" + cryptPassword + "'");
             ResultSet rs = pst.executeQuery();
             while (rs.next()) {
                 validado = true;
             }
-            pst.close();
         } catch (SQLException ex) {
             System.err.println(ex);
             LogBsImpl.getInstance().inserirLog(this.getClass().getSimpleName(), ex.getMessage());
         } finally {
             try {
+                if (pst != null) {
+                    pst.close();
+                }
                 conn.close();
             } catch (SQLException ex) {
                 System.err.println(ex);

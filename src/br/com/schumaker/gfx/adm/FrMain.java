@@ -245,14 +245,13 @@ public class FrMain extends JFrame {
                     return;
                 }
                 if (nodeInfo.equals("Unidades")) {
-
                     return;
                 }
                 if (nodeInfo.equals("Usuários")) {
                     return;
                 }
                 if (nodeInfo.equals("Consultas")) {
-
+                    System.out.println("");
                 }
             }
         }

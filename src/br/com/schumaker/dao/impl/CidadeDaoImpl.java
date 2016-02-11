@@ -24,11 +24,10 @@ public class CidadeDaoImpl implements CidadeDao {
 
     @Override
     public Cidade obter(Integer id) {
-        String sql = "select * from redeencarte.cidade where cidade.id = " + id;
         Connection conn = HsConnection.getConnection();
         Cidade cidade = new Cidade();
         try {
-            PreparedStatement pst = conn.prepareStatement(sql);
+            PreparedStatement pst = conn.prepareStatement("select * from redeencarte.tb_cidade where redeencarte.tb_cidade.id = " + id);
             ResultSet rs = pst.executeQuery();
             while (rs.next()) {
                 cidade.setId(rs.getInt("id"));
@@ -53,10 +52,9 @@ public class CidadeDaoImpl implements CidadeDao {
     @Override
     public List<Cidade> listar() {
         List<Cidade> cidades = new ArrayList<>();
-        String sql = "select * from redeencarte.tb_cidade order by cidade.nome";
         Connection conn = HsConnection.getConnection();
         try {
-            PreparedStatement pst = conn.prepareStatement(sql);
+            PreparedStatement pst = conn.prepareStatement("select * from redeencarte.tb_cidade order by cidade.nome");
             ResultSet rs = pst.executeQuery();
             while (rs.next()) {
                 Cidade cidade = new Cidade();
@@ -83,10 +81,9 @@ public class CidadeDaoImpl implements CidadeDao {
 
     public List<Cidade> listar(int id) {
         List<Cidade> cidades = new ArrayList<>();
-        String sql = "select * from redeencarte.tb_cidade where idestado = " + id + " ";
         Connection conn = HsConnection.getConnection();
         try {
-            PreparedStatement pst = conn.prepareStatement(sql);
+            PreparedStatement pst = conn.prepareStatement("select * from redeencarte.tb_cidade where idestado = " + id);
             ResultSet rs = pst.executeQuery();
             while (rs.next()) {
                 Cidade cidade = new Cidade();
@@ -114,10 +111,9 @@ public class CidadeDaoImpl implements CidadeDao {
     @Override
     public List<Cidade> like(String s) {
         List<Cidade> cidades = new ArrayList<>();
-        String sql = "select * from compras.cidade where cidade.nome like '%" + s + "%' order by cidade.name";
         Connection conn = HsConnection.getConnection();
         try {
-            PreparedStatement pst = conn.prepareStatement(sql);
+            PreparedStatement pst = conn.prepareStatement("select * from redeencarte.tb_cidade where cidade.nome like '%" + s + "%' order by cidade.name");
             ResultSet rs = pst.executeQuery();
             while (rs.next()) {
                 Cidade cidade = new Cidade();
@@ -145,10 +141,9 @@ public class CidadeDaoImpl implements CidadeDao {
     @Override
     public boolean verificarNome(String nome) {
         boolean validado = false;
-        String sql = "select * from compras.cidade where cidade.nome = '" + nome + "'";
         Connection conn = HsConnection.getConnection();
         try {
-            PreparedStatement pst = conn.prepareStatement(sql);
+            PreparedStatement pst = conn.prepareStatement("select * from redeencarte.tb_cidade where cidade.nome = '" + nome + "'");
             ResultSet rs = pst.executeQuery();
             while (rs.next()) {
                 validado = true;
@@ -171,11 +166,10 @@ public class CidadeDaoImpl implements CidadeDao {
     @Override
     public boolean cadastrar(Cidade cidade) {
         boolean cadastrado = false;
-        String sql = "insert into compras.cliente ( idestado, nome ) values (?,?)";
         Connection conn = HsConnection.getConnection();
         PreparedStatement pst = null;
         try {
-            pst = conn.prepareStatement(sql);
+            pst = conn.prepareStatement("insert into redeencarte.tb_cidade ( idestado, nome ) values (?,?)");
             pst.setInt(1, cidade.getIdEstado());
             pst.setString(2, cidade.getNome());
             pst.execute();
@@ -201,12 +195,10 @@ public class CidadeDaoImpl implements CidadeDao {
     @Override
     public boolean atualizar(Cidade cidade) {
         boolean atualizado = false;
-        String sql = "update compras.cidade set cidade.idestado=?, cidade.nome=? "
-                + "where cidade.id=?";
         Connection conn = HsConnection.getConnection();
         PreparedStatement pst = null;
         try {
-            pst = conn.prepareStatement(sql);
+            pst = conn.prepareStatement("update redeencarte.tb_cidade set cidade.idestado=?, cidade.nome=? where cidade.id=?");
             pst.setInt(1, cidade.getIdEstado());
             pst.setString(2, cidade.getNome());
             //where
