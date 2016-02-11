@@ -3,7 +3,7 @@ package br.com.schumaker.bs.impl;
 import br.com.schumaker.bs.FrMainBs;
 import br.com.schumaker.gfx.FrAlterarSenha;
 import br.com.schumaker.gfx.FrLogin;
-import br.com.schumaker.gfx.FrMain;
+import br.com.schumaker.gfx.adm.FrMain;
 import br.com.schumaker.gfx.FrMensagem;
 import br.com.schumaker.gfx.FrSobre;
 import javax.swing.JOptionPane;

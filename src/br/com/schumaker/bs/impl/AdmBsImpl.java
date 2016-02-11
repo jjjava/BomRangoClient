@@ -4,7 +4,7 @@ import br.com.schumaker.bs.AdmBs;
 import br.com.schumaker.dao.impl.AdmDaoImpl;
 import br.com.schumaker.gfx.FrAlterarSenha;
 import br.com.schumaker.gfx.FrLogin;
-import br.com.schumaker.gfx.FrMain;
+import br.com.schumaker.gfx.adm.FrMain;
 import br.com.schumaker.model.Adm;
 import br.com.schumaker.model.HsSessionAdm;
 import br.com.schumaker.util.HsMessage;

@@ -1,6 +1,6 @@
 package br.com.schumaker.bs;
 
-import br.com.schumaker.gfx.FrMain;
+import br.com.schumaker.gfx.adm.FrMain;
 
 /**
  *
