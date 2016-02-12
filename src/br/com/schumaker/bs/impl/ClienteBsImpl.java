@@ -93,6 +93,7 @@ public class ClienteBsImpl implements ClienteBs {
         } else {
             if (cliente.getSenha().length() >= 6) {
                 if (cliente.getSenha().equals(cliente.getSenha2())) {
+                    cliente.setIdMercado(HsSessionCliente.getInstance().getMercado().getId());
                     if (new ClienteDaoImpl().cadastrar(cliente)) {
                         HsMessage.mostrarMensagem(JOptionPane.INFORMATION_MESSAGE, "Cadastrar - Usuário", "Usuário cadastrado com sucesso.");
                     } else {
