@@ -107,6 +107,26 @@ public class ClienteBsImpl implements ClienteBs {
             }
         }
     }
+    
+    public void cadastrarAdm(Cliente cliente) {
+        if (verificarEmail(cliente.getEmail())) {
+            HsMessage.mostrarMensagem(JOptionPane.ERROR_MESSAGE, "Cadastrar - Usuário", "Email já cadastrado.");
+        } else {
+            if (cliente.getSenha().length() >= 6) {
+                if (cliente.getSenha().equals(cliente.getSenha2())) {
+                    if (new ClienteDaoImpl().cadastrar(cliente)) {
+                        HsMessage.mostrarMensagem(JOptionPane.INFORMATION_MESSAGE, "Cadastrar - Usuário", "Usuário cadastrado com sucesso.");
+                    } else {
+                        HsMessage.mostrarMensagem(JOptionPane.ERROR_MESSAGE, "Cadastrar - Usuário", "Erro ao cadastrar usuário.");
+                    }
+                } else {
+                    HsMessage.mostrarMensagem(JOptionPane.ERROR_MESSAGE, "Cadastrar - Usuário", "Senhas não são iguais.");
+                }
+            } else {
+                HsMessage.mostrarMensagem(JOptionPane.ERROR_MESSAGE, "Cadastrar - Usuário", "Senhas muito curta.");
+            }
+        }
+    }
 
     @Override
     public void atualizar(Cliente cliente) {

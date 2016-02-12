@@ -181,6 +181,9 @@
               <StringArray count="0"/>
             </Property>
           </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JComboBox(new LojaBsImpl().getNomesToArray());"/>
+          </AuxValues>
         </Component>
       </SubComponents>
     </Container>

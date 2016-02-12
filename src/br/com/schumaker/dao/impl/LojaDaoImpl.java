@@ -19,7 +19,7 @@ import java.util.List;
 
 /**
  *
- * @author hudson schumaker HStudio - @BomRango 06/06/2015
+ * @author Hudson Schumaker HStudio - @BomRango 06/06/2015
  * @version 1.0.0
  * @since 1.0.0
  */
@@ -41,11 +41,11 @@ public class LojaDaoImpl implements LojaDao {
                 mercado.setIdDensidade(rs.getInt("iddensidade"));
                 mercado.setNome(rs.getString("nome"));
                 mercado.setEndereco(rs.getString("endereco"));
-                mercado.setTelefone(rs.getString("telefone"));
+                mercado.setTelefone(rs.getString("tel"));
                 mercado.setSite(rs.getString("site"));
                 mercado.setCartoes(rs.getString("cartoes"));
                 mercado.setCnpj(rs.getString("cnpj"));
-                mercado.setHorarioFunc(rs.getString("horariofunc"));
+                mercado.setHorarioFunc(rs.getString("horario"));
                 //   mercado.setFundacao(rs.getString("fundacao"));
                 mercado.setSobre(rs.getString("sobre"));
                 mercado.setEstacionamento(rs.getInt("estacionamento"));
@@ -71,10 +71,9 @@ public class LojaDaoImpl implements LojaDao {
     @Override
     public List<Loja> listar() {
         List<Loja> mercados = new ArrayList<>();
-        String sql = "select * from redeencarte.tb_loja";
         Connection conn = HsConnection.getConnection();
         try {
-            PreparedStatement pst = conn.prepareStatement(sql);
+            PreparedStatement pst = conn.prepareStatement("select * from redeencarte.tb_loja");
             ResultSet rs = pst.executeQuery();
             while (rs.next()) {
                 Loja mercado = new Loja();
@@ -82,14 +81,14 @@ public class LojaDaoImpl implements LojaDao {
                 mercado.setIdDensidade(rs.getInt("iddensidade"));
                 mercado.setNome(rs.getString("nome"));
                 mercado.setEndereco(rs.getString("endereco"));
-                mercado.setTelefone(rs.getString("telefone"));
+                mercado.setTelefone(rs.getString("tel"));
                 mercado.setSite(rs.getString("site"));
                 mercado.setCartoes(rs.getString("cartoes"));
                 mercado.setCnpj(rs.getString("cnpj"));
-                mercado.setHorarioFunc(rs.getString("horariofunc"));
+                mercado.setHorarioFunc(rs.getString("horario"));
                 //   mercado.setFundacao(rs.getString("fundacao"));
                 mercado.setSobre(rs.getString("sobre"));
-                mercado.setEstacionamento(rs.getInt("estacionamento"));
+                mercado.setEstacionamento(rs.getInt("garagem"));
                 //ojbetos
                 mercado.setCidade(getMyCidade(rs.getInt("idcidade")));
                 mercado.setEstado(getMyEstado(rs.getInt("idestado")));
@@ -125,11 +124,11 @@ public class LojaDaoImpl implements LojaDao {
                 mercado.setIdDensidade(rs.getInt("iddensidade"));
                 mercado.setNome(rs.getString("nome"));
                 mercado.setEndereco(rs.getString("endereco"));
-                mercado.setTelefone(rs.getString("telefone"));
+                mercado.setTelefone(rs.getString("tel"));
                 mercado.setSite(rs.getString("site"));
                 mercado.setCartoes(rs.getString("cartoes"));
                 mercado.setCnpj(rs.getString("cnpj"));
-            //    mercado.setHorarioFunc(rs.getString("horariofunc"));
+                mercado.setHorarioFunc(rs.getString("horario"));
                 //    mercado.setFundacao(rs.getString("fundacao"));
                 mercado.setSobre(rs.getString("sobre"));
                 mercado.setEstacionamento(rs.getInt("estacionamento"));
@@ -168,7 +167,7 @@ public class LojaDaoImpl implements LojaDao {
                 mercado.setIdDensidade(rs.getInt("iddensidade"));
                 mercado.setNome(rs.getString("nome"));
                 mercado.setEndereco(rs.getString("endereco"));
-                mercado.setTelefone(rs.getString("telefone"));
+                mercado.setTelefone(rs.getString("tel"));
                 mercado.setSite(rs.getString("site"));
                 mercado.setCartoes(rs.getString("cartoes"));
                 mercado.setCnpj(rs.getString("cnpj"));

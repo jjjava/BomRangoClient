@@ -2,6 +2,7 @@ package br.com.schumaker.bs.impl;
 
 import br.com.schumaker.bs.LojaBs;
 import br.com.schumaker.dao.impl.LojaDaoImpl;
+import br.com.schumaker.model.Cidade;
 import br.com.schumaker.model.Cliente;
 import br.com.schumaker.model.HsSessionCliente;
 import br.com.schumaker.model.Loja;
@@ -18,8 +19,8 @@ import javax.swing.JOptionPane;
  * @since 1.0.0
  */
 public class LojaBsImpl implements LojaBs {
-    
-    public LojaBsImpl(){
+
+    public LojaBsImpl() {
     }
 
     @Override
@@ -95,5 +96,14 @@ public class LojaBsImpl implements LojaBs {
     @Override
     public Loja getMercadoSessao() {
         return HsSessionCliente.getInstance().getMercado();
+    }
+
+    public String[] getNomesToArray() {
+        List<Loja> lista = listar();
+        String nomes[] = new String[lista.size()];
+        for (int k = 0; k < lista.size(); k++) {
+            nomes[k] = lista.get(k).getNome();
+        }
+        return nomes;
     }
 }

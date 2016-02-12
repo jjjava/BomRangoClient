@@ -250,6 +250,10 @@ public class FrMain extends JFrame {
                     return;
                 }
                 if (nodeInfo.equals("Usuários")) {
+                    IfCadClienteAdm ifCadClienteAdm = new IfCadClienteAdm();
+                    ifCadClienteAdm.setSize(jDesktop.getWidth(), jDesktop.getHeight() - 40);
+                    jDesktop.add(ifCadClienteAdm);
+                    ifCadClienteAdm.toFront();
                     return;
                 }
                 if (nodeInfo.equals("Consultas")) {

@@ -1,6 +1,7 @@
 package br.com.schumaker.gfx.adm;
 
 import br.com.schumaker.bs.impl.ClienteBsImpl;
+import br.com.schumaker.bs.impl.LojaBsImpl;
 import br.com.schumaker.model.Cliente;
 
 /**
@@ -10,14 +11,14 @@ import br.com.schumaker.model.Cliente;
  * @since 1.0.0
  */
 public class IfCadClienteAdm extends javax.swing.JInternalFrame {
-
+    
     public IfCadClienteAdm() {
         super("Cadastro de fabricante", true, true, true, true);
         this.initComponents();
         this.setIconifiable(true);
         this.setVisible(true);
     }
-
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -34,7 +35,7 @@ public class IfCadClienteAdm extends javax.swing.JInternalFrame {
         jLabel3 = new javax.swing.JLabel();
         tfSenha2 = new javax.swing.JPasswordField();
         jLabel5 = new javax.swing.JLabel();
-        jcLoja = new javax.swing.JComboBox();
+        jcLoja = new javax.swing.JComboBox(new LojaBsImpl().getNomesToArray());
 
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
@@ -145,6 +146,7 @@ public class IfCadClienteAdm extends javax.swing.JInternalFrame {
 
     private void btGravarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btGravarActionPerformed
         Cliente cliente = new Cliente();
+        cliente.setIdMercado(jcLoja.getSelectedIndex() + 1);
         cliente.setNome(tfNome.getText());
         cliente.setEmail(tfEmail.getText());
         cliente.setSenha(tfSenha1.getText());
