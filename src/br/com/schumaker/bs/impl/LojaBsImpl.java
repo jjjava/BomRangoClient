@@ -2,7 +2,6 @@ package br.com.schumaker.bs.impl;
 
 import br.com.schumaker.bs.LojaBs;
 import br.com.schumaker.dao.impl.LojaDaoImpl;
-import br.com.schumaker.hsfiles.HsFiles;
 import br.com.schumaker.model.Cliente;
 import br.com.schumaker.model.HsSessionCliente;
 import br.com.schumaker.model.Loja;
@@ -14,11 +13,14 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author hudson schumaker HStudio - @BomRango 06/06/2015
+ * @author Hudson Schumaker HStudio - @BomRango 06/06/2015
  * @version 1.0.0
  * @since 1.0.0
  */
 public class LojaBsImpl implements LojaBs {
+    
+    public LojaBsImpl(){
+    }
 
     @Override
     public Loja obter(Integer id) {
@@ -43,30 +45,30 @@ public class LojaBsImpl implements LojaBs {
     @Override
     public void cadastrar(Loja mercado) {
         if (new LojaDaoImpl().verificarNome(mercado.getNome())) {
-            HsMessage.mostrarMensagem(JOptionPane.WARNING_MESSAGE, "Cadastro - Mercado", "Já existe um mercado com esse nome.");
+            HsMessage.mostrarMensagem(JOptionPane.WARNING_MESSAGE, "Cadastro - Loja", "Já existe uma loja com esse nome.");
         } else {
             mercado.setImagemNome(HsUUID.getAnUUID() + "." + HsFileTools.getFileExtension(HsFileTools.getClearName(mercado.getImage())));
             if (new LojaDaoImpl().cadastrar(mercado)) {
                 HsMessage.mostrarMensagem(JOptionPane.INFORMATION_MESSAGE, "Cadastro - Loja", "Loja cadastrado do sucesso.");
             } else {
-                HsMessage.mostrarMensagem(JOptionPane.WARNING_MESSAGE, "Cadastro - Mercado", "Erro ao cadastrar mercado.");
+                HsMessage.mostrarMensagem(JOptionPane.WARNING_MESSAGE, "Cadastro - Loja", "Erro ao cadastrar loja.");
             }
         }
     }
 
     @Override
     public void atualizar(Loja mercado) {
-        HsMessage.mostrarMensagem(JOptionPane.WARNING_MESSAGE, "Mercado", "Sem suporte ainda.");
+        HsMessage.mostrarMensagem(JOptionPane.WARNING_MESSAGE, "Loja", "Sem suporte ainda.");
     }
 
     @Override
     public void deletar(Loja mercado) {
-        HsMessage.mostrarMensagem(JOptionPane.WARNING_MESSAGE, "Mercado", "Sem suporte ainda.");
+        HsMessage.mostrarMensagem(JOptionPane.WARNING_MESSAGE, "Loja", "Sem suporte ainda.");
     }
 
     @Override
     public void mostrarPerfil(String action) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        HsMessage.mostrarMensagem(JOptionPane.WARNING_MESSAGE, "Loja", "Sem suporte ainda.");
     }
 
     @Override

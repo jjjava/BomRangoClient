@@ -71,7 +71,7 @@ public class LojaDaoImpl implements LojaDao {
     @Override
     public List<Loja> listar() {
         List<Loja> mercados = new ArrayList<>();
-        String sql = "select * from redeencarte.tb_loja order by redeencarte.tb_loja.nome";
+        String sql = "select * from redeencarte.tb_loja";
         Connection conn = HsConnection.getConnection();
         try {
             PreparedStatement pst = conn.prepareStatement(sql);
