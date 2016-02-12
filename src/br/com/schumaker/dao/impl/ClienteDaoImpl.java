@@ -13,7 +13,7 @@ import java.util.List;
 
 /**
  *
- * @author hudson schumaker HStudio - @BomRango 13/01/2015
+ * @author Hudson Schumaker HStudio - @BomRango 13/01/2015
  * @version 1.0.0
  * @since 1.0.0
  */
@@ -26,9 +26,10 @@ public class ClienteDaoImpl implements ClienteDao {
     public Cliente obter(Integer id) {
         String sql = "select * from redeencarte.tb_cliente where redeencarte.tb_cliente.id = " + id;
         Connection conn = HsConnection.getConnection();
+        PreparedStatement pst = null;
         Cliente cliente = new Cliente();
         try {
-            PreparedStatement pst = conn.prepareStatement(sql);
+            pst = conn.prepareStatement(sql);
             ResultSet rs = pst.executeQuery();
             while (rs.next()) {
                 cliente.setId(rs.getInt("id"));
@@ -37,12 +38,14 @@ public class ClienteDaoImpl implements ClienteDao {
                 cliente.setEmail(rs.getString("email"));
                 cliente.setSenha(rs.getString("senha"));//duvida se carregar ou nao 
             }
-            pst.close();
         } catch (SQLException ex) {
             System.err.println(ex);
             LogBsImpl.getInstance().inserirLog(this.getClass().getSimpleName(), ex.getMessage());
         } finally {
             try {
+                if(pst != null){
+                    pst.close();
+                }
                 conn.close();
             } catch (SQLException ex) {
                 System.err.println(ex);
@@ -53,25 +56,27 @@ public class ClienteDaoImpl implements ClienteDao {
     }
 
     public Cliente obter(String email) {
-        String sql = "select * from redeencarte.tb_cliente where redeencarte.tb_cliente.email = '" + email + "'";
+        PreparedStatement pst = null;
         Connection conn = HsConnection.getConnection();
         Cliente cliente = new Cliente();
         try {
-            PreparedStatement pst = conn.prepareStatement(sql);
+            pst = conn.prepareStatement("select * from redeencarte.tb_cliente where redeencarte.tb_cliente.email = '" + email + "'");
             ResultSet rs = pst.executeQuery();
             while (rs.next()) {
                 cliente.setId(rs.getInt("id"));
-                cliente.setIdMercado(rs.getInt("idmercado"));
+                cliente.setIdMercado(rs.getInt("idloja"));
                 cliente.setNome(rs.getString("nome"));
                 cliente.setEmail(rs.getString("email"));
                 cliente.setSenha(rs.getString("senha"));//duvida se carregar ou nao 
             }
-            pst.close();
         } catch (SQLException ex) {
             System.err.println(ex);
             LogBsImpl.getInstance().inserirLog(this.getClass().getSimpleName(), ex.getMessage());
         } finally {
             try {
+                if(pst != null){
+                    pst.close();
+                }
                 conn.close();
             } catch (SQLException ex) {
                 System.err.println(ex);
@@ -83,28 +88,30 @@ public class ClienteDaoImpl implements ClienteDao {
 
     @Override
     public List<Cliente> listar() {
-        String sql = "select * from redeencarte.tb_cliente order by redeencarte.tb_cliente.nome";
         Connection conn = HsConnection.getConnection();
+        PreparedStatement pst = null;
         List<Cliente> clientes = new ArrayList<>();
         try {
-            PreparedStatement pst = conn.prepareStatement(sql);
+            pst = conn.prepareStatement("select * from redeencarte.tb_cliente order by redeencarte.tb_cliente.nome");
             ResultSet rs = pst.executeQuery();
             while (rs.next()) {
                 Cliente cliente = new Cliente();
                 cliente.setId(rs.getInt("id"));
-                cliente.setIdMercado(rs.getInt("idmercado"));
+                cliente.setIdMercado(rs.getInt("idloj"));
                 cliente.setNome(rs.getString("nome"));
                 cliente.setEmail(rs.getString("email"));
                 cliente.setSenha(rs.getString("senha"));//duvida se carregar ou nao 
                 //adiciona a lista
                 clientes.add(cliente);
             }
-            pst.close();
         } catch (SQLException ex) {
             System.err.println(ex);
             LogBsImpl.getInstance().inserirLog(this.getClass().getSimpleName(), ex.getMessage());
         } finally {
             try {
+                if(pst != null){
+                    pst.close();
+                }
                 conn.close();
             } catch (SQLException ex) {
                 System.err.println(ex);
@@ -116,28 +123,30 @@ public class ClienteDaoImpl implements ClienteDao {
 
     @Override
     public List<Cliente> like(String nome) {
-        String sql = "select * from redeencarte.tb_cliente where redeencarte.tb_cliente.nome like '%" + nome + "%' order by redeencarte.tb_cliente.nome";
         Connection conn = HsConnection.getConnection();
+        PreparedStatement pst = null;
         List<Cliente> clientes = new ArrayList<>();
         try {
-            PreparedStatement pst = conn.prepareStatement(sql);
+            pst = conn.prepareStatement("select * from redeencarte.tb_cliente where redeencarte.tb_cliente.nome like '%" + nome + "%' order by redeencarte.tb_cliente.nome");
             ResultSet rs = pst.executeQuery();
             while (rs.next()) {
                 Cliente cliente = new Cliente();
                 cliente.setId(rs.getInt("id"));
-                cliente.setIdMercado(rs.getInt("idmercado"));
+                cliente.setIdMercado(rs.getInt("idloja"));
                 cliente.setNome(rs.getString("nome"));
                 cliente.setEmail(rs.getString("email"));
                 cliente.setSenha(rs.getString("senha"));//duvida se carregar ou nao 
                 //adiciona a lista
                 clientes.add(cliente);
             }
-            pst.close();
         } catch (SQLException ex) {
             System.err.println(ex);
             LogBsImpl.getInstance().inserirLog(this.getClass().getSimpleName(), ex.getMessage());
         } finally {
             try {
+                if(pst != null){
+                    pst.close();
+                }
                 conn.close();
             } catch (SQLException ex) {
                 System.err.println(ex);
@@ -150,20 +159,22 @@ public class ClienteDaoImpl implements ClienteDao {
     @Override
     public boolean validar(String cryptEmail, String cryptPassword) {//recebe dados criptografados
         boolean validado = false;
-        String sql = "select * from redeencarte.tb_cliente where redeencarte.tb_cliente.email = '" + cryptEmail + "' and redeencarte.tb_cliente.senha = '" + cryptPassword + "'";
         Connection conn = HsConnection.getConnection();
+         PreparedStatement pst = null;
         try {
-            PreparedStatement pst = conn.prepareStatement(sql);
+            pst = conn.prepareStatement("select * from redeencarte.tb_cliente where redeencarte.tb_cliente.email = '" + cryptEmail + "' and redeencarte.tb_cliente.senha = '" + cryptPassword + "'");
             ResultSet rs = pst.executeQuery();
             while (rs.next()) {
                 validado = true;
             }
-            pst.close();
         } catch (SQLException ex) {
             System.err.println(ex);
             LogBsImpl.getInstance().inserirLog(this.getClass().getSimpleName(), ex.getMessage());
         } finally {
             try {
+                if(pst != null){
+                    pst.close();
+                }
                 conn.close();
             } catch (SQLException ex) {
                 System.err.println(ex);
@@ -176,20 +187,22 @@ public class ClienteDaoImpl implements ClienteDao {
     @Override
     public boolean verificarEmail(String email) {
         boolean validado = false;
-        String sql = "select * from redeencarte.tb_cliente where redeencarte.tb_cliente.email = '" + email + "'";
         Connection conn = HsConnection.getConnection();
+        PreparedStatement pst = null;
         try {
-            PreparedStatement pst = conn.prepareStatement(sql);
+            pst = conn.prepareStatement("select * from redeencarte.tb_cliente where redeencarte.tb_cliente.email = '" + email + "'");
             ResultSet rs = pst.executeQuery();
             while (rs.next()) {
                 validado = true;
             }
-            pst.close();
         } catch (SQLException ex) {
             System.err.println(ex);
             LogBsImpl.getInstance().inserirLog(this.getClass().getSimpleName(), ex.getMessage());
         } finally {
             try {
+                if(pst != null){
+                    pst.close();
+                }
                 conn.close();
             } catch (SQLException ex) {
                 System.err.println(ex);
@@ -202,7 +215,7 @@ public class ClienteDaoImpl implements ClienteDao {
     @Override
     public boolean cadastrar(Cliente cliente) {
         boolean cadastrado = false;
-        String sql = "insert into redeencarte.tb_cliente (idmercado, nome, email, senha) values (?,?,?,?)";
+        String sql = "insert into redeencarte.tb_cliente (idloja, nome, email, senha) values (?,?,?,?)";
         Connection conn = HsConnection.getConnection();
         PreparedStatement pst = null;
         try {

@@ -2,6 +2,7 @@ package br.com.schumaker.gfx.adm;
 
 import br.com.schumaker.bs.impl.FrMainAdmBsImpl;
 import br.com.schumaker.model.HsSessionAdm;
+import java.awt.Toolkit;
 import javax.swing.JFrame;
 import javax.swing.tree.DefaultMutableTreeNode;
 
@@ -15,10 +16,11 @@ public class FrMain extends JFrame {
 
     public FrMain() {
         super("Rede Encarte");
-        //this.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        this.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/br/com/schumaker/res/icons/cart_32.png")));
+        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         this.createTree();
         this.initComponents();
-        this.setSize(1024, 768);
+        //this.setSize(1024, 768);
         this.setLocationRelativeTo(null);
     }
 
