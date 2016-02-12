@@ -2,7 +2,7 @@ package br.com.schumaker.model;
 
 /**
  *
- * @author hudson schumaker HStudio - @BomRango 13/01/2015
+ * @author Hudson Schumaker HStudio - @BomRango 13/01/2015
  * @version 1.0.0
  * @since 1.0.0
  */
@@ -13,6 +13,8 @@ public class Cliente {
     private String nome;
     private String email;
     private String senha;
+    private String senha2;
+    
 
     public Integer getId() {
         return id;
@@ -52,5 +54,13 @@ public class Cliente {
 
     public void setIdMercado(Integer idMercado) {
         this.idMercado = idMercado;
+    }
+
+    public String getSenha2() {
+        return senha2;
+    }
+
+    public void setSenha2(String senha2) {
+        this.senha2 = senha2;
     }
 }

@@ -88,10 +88,22 @@ public class ClienteBsImpl implements ClienteBs {
 
     @Override
     public void cadastrar(Cliente cliente) {
-        if (new ClienteDaoImpl().cadastrar(cliente)) {
-            HsMessage.mostrarMensagem(JOptionPane.INFORMATION_MESSAGE, "Cadastrar - Cliente", "Cliente cadastrado com sucesso.");
+        if (verificarEmail(cliente.getEmail())) {
+            HsMessage.mostrarMensagem(JOptionPane.ERROR_MESSAGE, "Cadastrar - Usuário", "Email já cadastrado.");
         } else {
-            HsMessage.mostrarMensagem(JOptionPane.ERROR_MESSAGE, "Cadastrar - Cliente", "Erro ao cadastrar cliente.");
+            if (cliente.getSenha().length() >= 6) {
+                if (cliente.getSenha().equals(cliente.getSenha2())) {
+                    if (new ClienteDaoImpl().cadastrar(cliente)) {
+                        HsMessage.mostrarMensagem(JOptionPane.INFORMATION_MESSAGE, "Cadastrar - Usuário", "Usuário cadastrado com sucesso.");
+                    } else {
+                        HsMessage.mostrarMensagem(JOptionPane.ERROR_MESSAGE, "Cadastrar - Usuário", "Erro ao cadastrar usuário.");
+                    }
+                } else {
+                    HsMessage.mostrarMensagem(JOptionPane.ERROR_MESSAGE, "Cadastrar - Usuário", "Senhas não são iguais.");
+                }
+            } else {
+                HsMessage.mostrarMensagem(JOptionPane.ERROR_MESSAGE, "Cadastrar - Usuário", "Senhas muito curta.");
+            }
         }
     }
 
@@ -124,10 +136,10 @@ public class ClienteBsImpl implements ClienteBs {
             Cliente cliente = obter(email);
             SendBrief send = new SendBrief();
             send.setTo(email);
-            send.setSubject("Esqueci minha senha @BOMRAGO");
-            send.setMessage("Olá, "+cliente.getNome()+"\n"
-            +"Sua senha de acesso é:\n"+cliente.getSenha()+"\n\n\n"
-            +"Equipe BomRango");
+            send.setSubject("Esqueci minha senha Rede Encarte");
+            send.setMessage("Olá, " + cliente.getNome() + "\n"
+                    + "Sua senha de acesso é:\n" + cliente.getSenha() + "\n\n\n"
+                    + "Equipe Rede Encarte");
 
             if (send.sendMessage()) {
                 HsMessage.mostrarMensagem(JOptionPane.INFORMATION_MESSAGE, "Enviar Mensagem", "Mensagem enviada com sucesso.");
