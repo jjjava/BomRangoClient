@@ -2,7 +2,7 @@ package br.com.schumaker.model;
 
 /**
  *
- * @author hudson schumaker HStudio - @BomRango 13/01/2015
+ * @author Hudson Schumaker HStudio - @BomRango 13/01/2015
  * @version 1.0.0
  * @since 1.0.0
  */
@@ -51,5 +51,10 @@ public class Cidade {
 
     public void setIdEstado(Integer idEstado) {
         this.idEstado = idEstado;
+    }
+
+    @Override
+    public String toString() {
+        return "Cidade{" + "id=" + id + ", idEstado=" + idEstado + ", nome=" + nome + '}';
     }
 }

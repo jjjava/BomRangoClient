@@ -15,7 +15,7 @@ import javax.swing.JTextField;
 
 /**
  *
- * @author hudson schumaker HStudio - @BomRango 06/06/2015
+ * @author Hdson Schumaker HStudio - @BomRango 06/06/2015
  * @version 1.0.0
  * @since 1.0.0
  */

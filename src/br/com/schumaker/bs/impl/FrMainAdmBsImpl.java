@@ -61,7 +61,7 @@ public class FrMainAdmBsImpl implements FrMainAdmBs {
 
     @Override
     public void alterarSenha() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        new AdmBsImpl().alterarSenha(null, null, null);
     }
 
 }

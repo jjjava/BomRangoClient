@@ -12,7 +12,9 @@ import java.util.List;
 
 /**
  *
- * @author Hudson Schumaker Rede Encarte 27/01/16
+ * @author Hudson Schumaker HStudio - @BomRango 07/01/2015
+ * @version 1.0.0
+ * @since 1.0.0
  */
 public class AdmDaoImpl implements AdmDao {
 

@@ -5,14 +5,13 @@ import br.com.schumaker.model.HsSessionCliente;
 
 /**
  *
- * @author hudson schumaker HStudio - @BomRango 14/06/2015
+ * @author Hudson Schumaker HStudio - @BomRango 14/06/2015
  * @version 1.0.0
  * @since 1.0.0
  */
 public class FrMensagem extends javax.swing.JFrame {
 
     public FrMensagem() {
-        
         this.initComponents();
         tfDe.setText(HsSessionCliente.getInstance().getCliente().getEmail());
         this.setLocationRelativeTo(null);

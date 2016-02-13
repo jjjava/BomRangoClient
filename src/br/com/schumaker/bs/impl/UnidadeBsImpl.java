@@ -15,6 +15,9 @@ import javax.swing.JOptionPane;
  */
 public class UnidadeBsImpl implements UnidadeBs {
 
+    public UnidadeBsImpl() {
+    }
+
     @Override
     public Unidade obter(Integer id) {
         return new UnidadeDaoImpl().obter(id);
@@ -64,11 +67,11 @@ public class UnidadeBsImpl implements UnidadeBs {
 
     @Override
     public void atualizar(Unidade unidade) {
-        HsMessage.mostrarMensagem(JOptionPane.WARNING_MESSAGE, "Atualizar - Unidade", "Ação não suportada.");
+        new UnidadeDaoImpl().atualizar(unidade);
     }
 
     @Override
     public void deletar(Unidade unidade) {
-        HsMessage.mostrarMensagem(JOptionPane.WARNING_MESSAGE, "Atualizar - Unidade", "Ação não suportada.");
+        new UnidadeDaoImpl().deletar(unidade);
     }
 }

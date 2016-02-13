@@ -2,7 +2,7 @@ package br.com.schumaker.model;
 
 /**
  *
- * @author hudson schumaker HStudio - @BomRango 07/01/2015
+ * @author Hudson Schumaker HStudio - @BomRango 07/01/2015
  * @version 1.0.0
  * @since 1.0.0
  */
@@ -37,6 +37,13 @@ public class Loja {
         this.id = id;
     }
 
+    public Loja(Integer id, Integer idSeguimento, Integer idDensidade, String nome) {
+        this.id = id;
+        this.idSeguimento = idSeguimento;
+        this.idDensidade = idDensidade;
+        this.nome = nome;
+    }
+    
     public Integer getId() {
         return id;
     }

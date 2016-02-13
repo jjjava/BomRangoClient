@@ -10,11 +10,14 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author hudson schumaker HStudio - @BomRangoClient 06/06/2015
+ * @author Hudson Schumaker HStudio - @BomRangoClient 06/06/2015
  * @version 1.0.0
  * @since 1.0.0
  */
 public class CidadeBsImpl implements CidadeBs {
+    
+    public CidadeBsImpl(){
+    }
 
     @Override
     public Cidade obter(Integer id) {

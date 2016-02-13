@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.com.schumaker.dao;
 
 import br.com.schumaker.model.Seguimento;
@@ -10,7 +5,9 @@ import java.util.List;
 
 /**
  *
- * @author Hudson Schumaker
+ * @author Hudson Schumaker HStudio - @BomRango 07/01/2015
+ * @version 1.0.0
+ * @since 1.0.0
  */
 public interface SeguimentoDao {
     Seguimento obter(Integer id);

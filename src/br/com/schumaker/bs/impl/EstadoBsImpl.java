@@ -8,9 +8,12 @@ import java.util.List;
 
 /**
  *
- * @author Hudson Schumaker
+ * @author Hudson Schumaker HStudio - @BomRangoClient 06/06/2015
  */
 public class EstadoBsImpl implements EstadoBs {
+    
+    public EstadoBsImpl(){
+    }
 
     @Override
     public Estado obter(Integer id) {

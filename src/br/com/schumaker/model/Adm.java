@@ -14,6 +14,32 @@ public class Adm {
     private String login;
     private String senha;
 
+    public Adm() {
+    }
+
+    public Adm(Integer id) {
+        this.id = id;
+    }
+
+    public Adm(Integer id, String nome) {
+        this.id = id;
+        this.nome = nome;
+    }
+
+    public Adm(Integer id, String nome, String email) {
+        this.id = id;
+        this.nome = nome;
+        this.email = email;
+    }
+
+    public Adm(Integer id, String nome, String email, String login, String senha) {
+        this.id = id;
+        this.nome = nome;
+        this.email = email;
+        this.login = login;
+        this.senha = senha;
+    }
+    
     public Integer getId() {
         return id;
     }
@@ -52,5 +78,10 @@ public class Adm {
 
     public void setLogin(String login) {
         this.login = login;
+    }
+
+    @Override
+    public String toString() {
+        return "Adm{" + "id=" + id + ", nome=" + nome + ", email=" + email + ", login=" + login + ", senha=" + senha + '}';
     }
 }

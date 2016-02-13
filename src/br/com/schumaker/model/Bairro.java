@@ -2,7 +2,9 @@ package br.com.schumaker.model;
 
 /**
  *
- * @author hudson schumaker RedeEncarte
+ * @author Hudson Schumaker - HStudio 21/01/2015
+ * @version 1.0.0
+ * @since 1.0.0
  */
 public class Bairro {
     private Integer id;
@@ -50,5 +52,9 @@ public class Bairro {
     public void setNome(String nome) {
         this.nome = nome;
     }
-    
+
+    @Override
+    public String toString() {
+        return "Bairro{" + "id=" + id + ", idCidade=" + idCidade + ", nome=" + nome + '}';
+    }
 }

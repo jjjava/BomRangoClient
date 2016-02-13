@@ -9,17 +9,20 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author hudson schumaker HStudio - @BomRango 06/06/2015
+ * @author Hudson Schumaker HStudio - @BomRango 06/06/2015
  * @version 1.0.0
  * @since 1.0.0
  */
 public class SetorBsImpl implements SetorBs {
 
+    public SetorBsImpl() {
+    }
+
     @Override
     public Setor obter(Integer id) {
         return new SetorDaoImpl().obter(id);
     }
-    
+
     @Override
     public Setor obter(String nome) {
         return new SetorDaoImpl().obter(nome);
@@ -39,11 +42,11 @@ public class SetorBsImpl implements SetorBs {
     public boolean verificarNome(String nome) {
         return new SetorDaoImpl().verificarNome(nome);
     }
-    
-     public String [] getNomesToArray(){
+
+    public String[] getNomesToArray() {
         List<Setor> lista = listar();
         String nomes[] = new String[lista.size()];
-        for(int k=0;k<lista.size();k++){
+        for (int k = 0; k < lista.size(); k++) {
             nomes[k] = lista.get(k).getNome();
         }
         return nomes;
@@ -64,11 +67,11 @@ public class SetorBsImpl implements SetorBs {
 
     @Override
     public void atualizar(Setor setor) {
-        HsMessage.mostrarMensagem(JOptionPane.WARNING_MESSAGE, "Setor", "Não suportado ainda.");
+        new SetorDaoImpl().atualizar(setor);
     }
 
     @Override
     public void deletar(Setor setor) {
-        HsMessage.mostrarMensagem(JOptionPane.WARNING_MESSAGE, "Setor", "Não suportado ainda.");
+        new SetorDaoImpl().deletar(setor);
     }
 }

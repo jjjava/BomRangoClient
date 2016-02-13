@@ -2,7 +2,7 @@ package br.com.schumaker.model;
 
 /**
  *
- * @author hudson schumaker HStudio - @BomRango 04/02/2015
+ * @author Hudson Schumaker HStudio - @BomRango 04/02/2015
  * @version 1.0.0
  * @since 1.0.0
  */
@@ -15,6 +15,17 @@ public class Log {
     public Log(){  
     }
 
+    public Log(int id) {
+        this.id = id;
+    }
+
+    public Log(int id, String clazz, String error, String date) {
+        this.id = id;
+        this.clazz = clazz;
+        this.error = error;
+        this.date = date;
+    }
+    
     public int getId() {
         return id;
     }
@@ -46,4 +57,10 @@ public class Log {
     public void setDate(String date) {
         this.date = date;
     }
+
+    @Override
+    public String toString() {
+        return "Log{" + "id=" + id + ", clazz=" + clazz + ", error=" + error + ", date=" + date + '}';
+    }
+    
 }

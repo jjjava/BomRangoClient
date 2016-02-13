@@ -1,5 +1,6 @@
 package br.com.schumaker.gfx;
 
+import br.com.schumaker.bs.impl.LogBsImpl;
 import br.com.schumaker.util.HsCommons;
 import java.awt.Toolkit;
 import java.lang.management.ManagementFactory;
@@ -9,7 +10,7 @@ import java.text.DecimalFormat;
 
 /**
  *
- * @author hudson schumaker HStudio - @BomRango 14/06/2015
+ * @author Hudson Schumaker HStudio - @BomRango 14/06/2015
  * @version 1.0.0
  * @since 1.0.0
  */
@@ -38,7 +39,6 @@ public class FrSobre extends javax.swing.JFrame {
             DecimalFormat decimal = new DecimalFormat("0.00");
             size = decimal.format(((d / 1024) / 1024) / 1024) + " GB";
             memory_ram.setText("Total memória RAM: " + size);
-
             processor_num.setText("Número de processadores: " + Runtime.getRuntime().availableProcessors());
 
             Long ll = Runtime.getRuntime().maxMemory();
@@ -56,6 +56,7 @@ public class FrSobre extends javax.swing.JFrame {
 
         } catch (UnknownHostException ex) {
             System.err.println(ex);
+            LogBsImpl.getInstance().inserirLog(this.getClass().getSimpleName(), ex.getMessage());
         }
         this.setLocationRelativeTo(null);
     }

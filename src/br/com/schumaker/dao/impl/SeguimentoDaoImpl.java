@@ -13,9 +13,14 @@ import java.util.List;
 
 /**
  *
- * @author Hudson Schumaker
+ * @author Hudson Schumaker HStudio - @BomRango 12/01/2015
+ * @version 1.0.0
+ * @since 1.0.0
  */
 public class SeguimentoDaoImpl implements SeguimentoDao {
+    
+    public SeguimentoDaoImpl(){
+    }
 
     @Override
     public Seguimento obter(Integer id) {

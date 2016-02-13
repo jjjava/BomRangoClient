@@ -6,7 +6,7 @@ import java.sql.SQLException;
 
 /**
  *
- * @author hudson schumaker HStudio - @BomRango 06/06/2015
+ * @author Hudson Schumaker HStudio - @BomRango 06/06/2015
  * @version 1.0.0
  * @since 1.0.0
  */
@@ -16,8 +16,8 @@ public class HsConnection {
         Connection conn = null;
         try {
             Class.forName("com.mysql.jdbc.Driver").newInstance();
-            String URL = "jdbc:mysql://200.98.143.1:3306/redeencarte";
-            conn = DriverManager.getConnection(URL, "hudson", "P@ssw0rd");
+            String URL = "jdbc:mysql://xx:xx/xxxx";
+            conn = DriverManager.getConnection(URL, "xxx", "xxx");
         } catch (SQLException | ClassNotFoundException | InstantiationException | IllegalAccessException ex) {
             System.err.println(ex);
         }

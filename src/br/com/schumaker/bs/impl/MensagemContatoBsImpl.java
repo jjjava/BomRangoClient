@@ -14,6 +14,9 @@ import javax.swing.JOptionPane;
  *
  */
 public class MensagemContatoBsImpl implements MensagemContatoBs {
+    
+    public MensagemContatoBsImpl(){
+    }
 
     @Override
     public void enviarMensagem(MensagemContato sms) {

@@ -2,7 +2,9 @@ package br.com.schumaker.model;
 
 /**
  *
- * @author hudson schuamker
+ * @author Hudson Schumaker HStudio - @BomRango 25/01/2015
+ * @version 1.0.0
+ * @since 1.0.0
  */
 public class Seguimento {
     private int id;
@@ -12,6 +14,21 @@ public class Seguimento {
     public Seguimento(){
     }
 
+    public Seguimento(int id) {
+        this.id = id;
+    }
+
+    public Seguimento(int id, String nome) {
+        this.id = id;
+        this.nome = nome;
+    }
+
+    public Seguimento(int id, String nome, String info) {
+        this.id = id;
+        this.nome = nome;
+        this.info = info;
+    }
+    
     public int getId() {
         return id;
     }
@@ -35,4 +52,10 @@ public class Seguimento {
     public void setInfo(String info) {
         this.info = info;
     }
+
+    @Override
+    public String toString() {
+        return "Seguimento{" + "id=" + id + ", nome=" + nome + ", info=" + info + '}';
+    }
+    
 }

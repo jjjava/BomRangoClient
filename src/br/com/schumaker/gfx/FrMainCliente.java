@@ -9,7 +9,7 @@ import javax.swing.tree.DefaultMutableTreeNode;
 
 /**
  *
- * @author hudson schumaker HStudio - @BomRango 06/06/2015
+ * @author Hudson Schumaker HStudio - @BomRango 06/06/2015
  * @version 1.0.0
  * @since 1.0.0
  */
@@ -19,7 +19,6 @@ public class FrMainCliente extends javax.swing.JFrame {
         super("Rede Encarte");
         this.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/br/com/schumaker/res/icons/cart_32.png")));
         //this.setExtendedState(JFrame.MAXIMIZED_BOTH);
-        
         this.createTree();
         this.initComponents();
         this.setSize(1024, 768);

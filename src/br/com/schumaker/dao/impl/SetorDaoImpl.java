@@ -147,20 +147,22 @@ public class SetorDaoImpl implements SetorDao {
     @Override
     public boolean verificarNome(String nome) {
         boolean validado = false;
-        String sql = "select * from redeencarte.tb_setor where redeencarte.tb_setor.nome = '" + nome + "'";
         Connection conn = HsConnection.getConnection();
+        PreparedStatement pst = null;
         try {
-            PreparedStatement pst = conn.prepareStatement(sql);
+            pst = conn.prepareStatement("select * from redeencarte.tb_setor where redeencarte.tb_setor.nome = '" + nome + "'");
             ResultSet rs = pst.executeQuery();
             while (rs.next()) {
                 validado = true;
             }
-            pst.close();
         } catch (SQLException ex) {
             System.err.println(ex);
             LogBsImpl.getInstance().inserirLog(this.getClass().getSimpleName(), ex.getMessage());
         } finally {
             try {
+                if(pst != null){
+                    pst.close();
+                }
                 conn.close();
             } catch (SQLException ex) {
                 System.err.println(ex);
@@ -173,11 +175,10 @@ public class SetorDaoImpl implements SetorDao {
     @Override
     public boolean cadastrar(Setor setor) {
         boolean cadastrado = false;
-        String sql = "insert into redeencarte.tb_setor ( idseguimento, nome, descricao ) values (?,?,?)";
         Connection conn = HsConnection.getConnection();
         PreparedStatement pst = null;
         try {
-            pst = conn.prepareStatement(sql);
+            pst = conn.prepareStatement("insert into redeencarte.tb_setor ( idseguimento, nome, descricao ) values (?,?,?)");
             pst.setInt(1, setor.getIdSeguimento());
             pst.setString(2, setor.getNome());
             pst.setString(3, setor.getDescricao());
@@ -204,11 +205,10 @@ public class SetorDaoImpl implements SetorDao {
     @Override
     public boolean atualizar(Setor setor) {
         boolean atualizado = false;
-        String sql = "update redeencarte.tb_setor set redeencarte.tb_setor.nome=?, redeencarte.tb_setor.descricao=? where redeencarte.tb_setor.id=?";
         Connection conn = HsConnection.getConnection();
         PreparedStatement pst = null;
         try {
-            pst = conn.prepareStatement(sql);
+            pst = conn.prepareStatement("update redeencarte.tb_setor set redeencarte.tb_setor.nome=?, redeencarte.tb_setor.descricao=? where redeencarte.tb_setor.id=?");
             pst.setString(1, setor.getNome());
             pst.setString(2, setor.getDescricao());
             //where

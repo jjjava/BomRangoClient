@@ -9,11 +9,14 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author hudson schumaker HStudio - @BomRango 06/06/2015
+ * @author Hudson Schumaker HStudio - @BomRango 06/06/2015
  * @version 1.0.0
  * @since 1.0.0
  */
 public class FabricanteBsImpl implements FabricanteBs {
+
+    public FabricanteBsImpl() {
+    }
 
     @Override
     public Fabricante obter(Integer id) {
@@ -64,11 +67,11 @@ public class FabricanteBsImpl implements FabricanteBs {
 
     @Override
     public void atualizar(Fabricante fabricante) {
-        HsMessage.mostrarMensagem(JOptionPane.WARNING_MESSAGE, "Fabricante", "Ação não suportada.");
+        new FabricanteDaoImpl().atualizar(fabricante);
     }
 
     @Override
     public void deletar(Fabricante fabricante) {
-        HsMessage.mostrarMensagem(JOptionPane.WARNING_MESSAGE, "Fabricante", "Ação não suportada.");
+        new FabricanteDaoImpl().deletar(fabricante);
     }
 }

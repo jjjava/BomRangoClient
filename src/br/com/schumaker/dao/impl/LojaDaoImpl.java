@@ -30,11 +30,11 @@ public class LojaDaoImpl implements LojaDao {
 
     @Override
     public Loja obter(Integer id) {
-        String sql = "select * redeencarte.tb_loja where redeencarte.tb_loja.id = " + id;
         Connection conn = HsConnection.getConnection();
+        PreparedStatement pst = null;
         Loja mercado = new Loja();
         try {
-            PreparedStatement pst = conn.prepareStatement(sql);
+            pst = conn.prepareStatement("select * redeencarte.tb_loja where redeencarte.tb_loja.id = " + id);
             ResultSet rs = pst.executeQuery();
             while (rs.next()) {
                 mercado.setId(rs.getInt("id"));
@@ -53,12 +53,14 @@ public class LojaDaoImpl implements LojaDao {
                 mercado.setCidade(getMyCidade(rs.getInt("idcidade")));
                 mercado.setEstado(getMyEstado(rs.getInt("idestado")));
             }
-            pst.close();
         } catch (SQLException ex) {
             System.err.println(ex);
             LogBsImpl.getInstance().inserirLog(this.getClass().getSimpleName(), ex.getMessage());
         } finally {
             try {
+                if (pst != null) {
+                    pst.close();
+                }
                 conn.close();
             } catch (SQLException ex) {
                 System.err.println(ex);
@@ -225,12 +227,10 @@ public class LojaDaoImpl implements LojaDao {
     @Override
     public boolean cadastrar(Loja mercado) {
         boolean cadastrado = false;
-        String sql = "insert into redeencarte.tb_loja (idseguimento,iddensidade,idestado,idcidade,idbairro,nome,endereco,tel,site,email,cartoes,razaosocial,cnpj,ie,garagem,sobre,"
-                + "imagem,nomeimagem,status ) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
         Connection conn = HsConnection.getConnection();
         PreparedStatement pst = null;
         try {
-            pst = conn.prepareStatement(sql);
+            pst = conn.prepareStatement("insert into redeencarte.tb_loja (idseguimento,iddensidade,idestado,idcidade,idbairro,nome,endereco,tel,site,email,cartoes,razaosocial,cnpj,ie,garagem,sobre,imagem,nomeimagem,status ) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
             pst.setInt(1, mercado.getIdSeguimento());
             pst.setInt(2, mercado.getIdDensidade());
             pst.setInt(3, mercado.getEstado());
@@ -248,15 +248,13 @@ public class LojaDaoImpl implements LojaDao {
             pst.setString(15, mercado.getHorarioFunc());
             pst.setInt(15, mercado.getEstacionamento());
             pst.setString(16, mercado.getSobre());
-
+            //IMAGEM DO PRODUTO
             File image = new File(mercado.getImage());
             FileInputStream fis = new FileInputStream(image);
             pst.setBinaryStream(17, fis, (int) image.length());
 
             pst.setString(18, mercado.getImagemNome());
-
             pst.setInt(19, mercado.getAtivo());
-
             pst.execute();
             cadastrado = true;
         } catch (SQLException | FileNotFoundException ex) {

@@ -12,7 +12,7 @@ import javax.mail.internet.MimeMessage;
 
 /**
  *
- * @author hudson schumaker HStudio - @BomRango 14/06/2015
+ * @author Hudson Schumaker - HStudio 21/07/2014
  * @version 1.0.0
  * @since 1.0.0
  */

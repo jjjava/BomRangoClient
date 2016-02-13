@@ -14,7 +14,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author Hudson Schumaker Rede Encarte 27/01/16
+ * @author Hudson Schumaker HStudio - Rede Encarte 27/01/16
  */
 public class AdmBsImpl implements AdmBs {
 

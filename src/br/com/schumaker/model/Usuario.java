@@ -2,7 +2,7 @@ package br.com.schumaker.model;
 
 /**
  *
- * @author hudson schumaker HStudio - @BomRango 12/01/2015
+ * @author Hudson Schumaker HStudio - @BomRango 12/01/2015
  * @version 1.0.0
  * @since 1.0.0
  */
@@ -12,6 +12,32 @@ public class Usuario {
     private String nome;
     private String email;
     private String senha;
+
+    public Usuario() {
+    }
+
+    public Usuario(Integer id) {
+        this.id = id;
+    }
+
+    public Usuario(Integer id, String nome, String email) {
+        this.id = id;
+        this.nome = nome;
+        this.email = email;
+    }
+
+    public Usuario(String nome, String email, String senha) {
+        this.nome = nome;
+        this.email = email;
+        this.senha = senha;
+    }
+    
+    public Usuario(Integer id, String nome, String email, String senha) {
+        this.id = id;
+        this.nome = nome;
+        this.email = email;
+        this.senha = senha;
+    }
 
     public Integer getId() {
         return id;

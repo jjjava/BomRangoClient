@@ -27,6 +27,7 @@ public class Produto {
 
     public Produto(Integer id) {
         this.id = id;
+        preco = 0.0;
     }
 
     public Integer getId() {

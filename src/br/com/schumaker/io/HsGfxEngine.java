@@ -13,7 +13,7 @@ import javax.imageio.ImageIO;
 
 /**
  *
- * @author hudson schumaker HStudio - @BomRango 29/01/2015
+ * @author Hudson Schumaker HStudio - @BomRango 29/01/2015
  * @version 1.0.0
  * @since 1.0.0
  */

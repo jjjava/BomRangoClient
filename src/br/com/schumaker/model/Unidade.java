@@ -19,11 +19,22 @@ public class Unidade {
         this.id = id;
     }
 
+    public Unidade(Integer id, String nome) {
+        this.id = id;
+        this.nome = nome;
+    }
+
     public Unidade(String nome, String info) {
         this.nome = nome;
         this.info = info;
     }
-    
+
+    public Unidade(Integer id, String nome, String info) {
+        this.id = id;
+        this.nome = nome;
+        this.info = info;
+    }
+
     public Integer getId() {
         return id;
     }
@@ -47,9 +58,9 @@ public class Unidade {
     public void setInfo(String descricao) {
         this.info = descricao;
     }
-    
+
     @Override
-    public String toString(){//para aparecer no combobox
+    public String toString() {//para aparecer no combobox
         return getNome();
     }
 }

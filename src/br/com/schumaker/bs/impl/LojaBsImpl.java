@@ -2,7 +2,6 @@ package br.com.schumaker.bs.impl;
 
 import br.com.schumaker.bs.LojaBs;
 import br.com.schumaker.dao.impl.LojaDaoImpl;
-import br.com.schumaker.model.Cidade;
 import br.com.schumaker.model.Cliente;
 import br.com.schumaker.model.HsSessionCliente;
 import br.com.schumaker.model.Loja;

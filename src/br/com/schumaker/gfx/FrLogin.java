@@ -1,13 +1,6 @@
 package br.com.schumaker.gfx;
 
-import br.com.schumaker.bs.impl.AdmBsImpl;
-import br.com.schumaker.bs.impl.ClienteBsImpl;
 import br.com.schumaker.bs.impl.LoginBsImpl;
-import br.com.schumaker.bs.impl.ServerBsImpl;
-import br.com.schumaker.model.Adm;
-import br.com.schumaker.model.Cliente;
-import br.com.schumaker.util.HsMessage;
-import javax.swing.JOptionPane;
 
 /**
  *

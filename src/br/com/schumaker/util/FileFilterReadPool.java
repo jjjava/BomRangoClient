@@ -5,13 +5,15 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
  *
- * @author Hudson Schumaker Singleton Eager
+ * @author Hudson Schumaker HStudio - @BomRango 05/06/2015
+ * @version 1.0.0
+ * @since 1.0.0
  */
 public class FileFilterReadPool implements Pool<FileNameExtensionFilter> {
 
     private static final FileFilterReadPool INSTANCE = new FileFilterReadPool();
     private final ArrayList<FileNameExtensionFilter> fileFilter;
-    private int initialSize;
+    private final int initialSize;
 
     private FileFilterReadPool() {
         fileFilter = new ArrayList<>();

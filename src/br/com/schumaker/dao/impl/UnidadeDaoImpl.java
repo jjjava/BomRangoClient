@@ -18,6 +18,10 @@ import java.util.List;
  * @since 1.0.0
  */
 public class UnidadeDaoImpl implements UnidadeDao {
+    
+    public UnidadeDaoImpl(){
+        
+    }
 
     @Override
     public Unidade obter(Integer id) {

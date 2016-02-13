@@ -9,9 +9,12 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author hudsonschumaker
+ * @author Hudson Schumaker HStudio
  */
 public class EnviarMensagemBsImpl implements EnviarMensagemBs{
+    
+    public EnviarMensagemBsImpl(){
+    }
 
     @Override
     public void enviarMensagem(FrMensagem frsms,String assunto, String texto) {

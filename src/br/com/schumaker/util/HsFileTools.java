@@ -5,7 +5,9 @@ import java.io.File;
 
 /**
  *
- * @author hudson
+ * @author Hudson Schumaker HStudio - @BomRango 13/01/2015
+ * @version 1.0.0
+ * @since 1.0.0
  */
 public class HsFileTools {
 

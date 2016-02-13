@@ -20,6 +20,9 @@ import javax.swing.JOptionPane;
  * @since 1.0.0
  */
 public class ClienteBsImpl implements ClienteBs {
+    
+    public ClienteBsImpl(){
+    }
 
     @Override
     public Cliente obter(Integer id) {

@@ -4,9 +4,9 @@ import java.util.UUID;
 
 /**
  *
- * @author hudson schumaker @Samurai 1.0.20 08/11/15
+ * @author Hudson Schumaker HStudio - @BomRango 13/01/2015
  * @version 1.0.0
- * @since 1.0.20
+ * @since 1.0.0
  */
 public class HsUUID {
 

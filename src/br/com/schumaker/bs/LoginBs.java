@@ -4,7 +4,7 @@ import br.com.schumaker.gfx.FrLogin;
 
 /**
  *
- * @author Hudson Schumaker Rede Encarte 27/01/16
+ * @author Hudson Schumaker HStudio -  Rede Encarte 27/01/16
  */
 public interface LoginBs {
     

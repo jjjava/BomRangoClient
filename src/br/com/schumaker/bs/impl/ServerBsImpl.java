@@ -10,6 +10,9 @@ import br.com.schumaker.dao.impl.ServerDaoImpl;
  * @since 1.0.0
  */
 public class ServerBsImpl implements ServerBs {
+    
+    public ServerBsImpl(){
+    }
 
     @Override
     public boolean getStatus() {

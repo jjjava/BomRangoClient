@@ -10,7 +10,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author hudson schumaker HStudio - @BomRango 14/06/2015
+ * @author Hudson Schumaker HStudio - @BomRango 14/06/2015
  * @version 1.0.0
  * @since 1.0.0
  */
@@ -20,7 +20,7 @@ public class FrSplash extends JFrame implements Runnable {
         super("Carregando...");
         this.setUndecorated(true);
         this.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/br/com/schumaker/res/icons/cart_32.png")));
-//        AWTUtilities.setWindowOpacity(this, 0.77777777F);
+//      AWTUtilities.setWindowOpacity(this, 0.77777777F);
         this.initComponents();
         this.jProgressBar.setString("Inicializando...");
         this.setLocationRelativeTo(null);
@@ -76,7 +76,7 @@ public class FrSplash extends JFrame implements Runnable {
             frLogin.setVisible(true);
             this.dispose();
         } else {
-            HsMessage.mostrarMensagem(JOptionPane.ERROR_MESSAGE, "Rede Encarte", "Impossível acessar servidor");
+            HsMessage.mostrarMensagem(JOptionPane.ERROR_MESSAGE, "Rede Encarte", "Impossível acessar servidor.");
         }
     }
 

@@ -2,7 +2,7 @@ package br.com.schumaker.model;
 
 /**
  *
- * @author hudson schumaker HStudio - @BomRango 07/01/2015
+ * @author Hudson Schumaker HStudio - @BomRango 07/01/2015
  * @version 1.0.0
  * @since 1.0.0
  */
@@ -44,4 +44,10 @@ public class Pesquisa {
     public void setVezes(Integer vezes) {
         this.vezes = vezes;
     }
+
+    @Override
+    public String toString() {
+        return "Pesquisa{" + "id=" + id + ", nome=" + nome + ", vezes=" + vezes + '}';
+    }
+    
 }

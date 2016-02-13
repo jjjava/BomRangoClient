@@ -7,54 +7,54 @@ import java.util.List;
 
 /**
  *
- * @author Hudson Schumaker
+ * @author Hudson Schumaker HStudio - @BomRango 04/02/2015
  */
-public class SeguimentoBsImpl implements SeguimentoBs{
+public class SeguimentoBsImpl implements SeguimentoBs {
 
     @Override
     public Seguimento obter(Integer id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return new SeguimentoDaoImpl().obter(id);
     }
 
     @Override
     public Seguimento obter(String nome) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return new SeguimentoDaoImpl().obter(nome);
     }
 
     @Override
     public List<Seguimento> listar() {
         return new SeguimentoDaoImpl().listar();
     }
-    
+
     public List<Seguimento> listar(int id) {
         return new SeguimentoDaoImpl().listar(id);
     }
 
     @Override
     public List<Seguimento> like(String s) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return new SeguimentoDaoImpl().like(s);
     }
 
     @Override
     public boolean verificarNome(String nome) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return new SeguimentoDaoImpl().verificarNome(nome);
     }
 
     @Override
     public void cadastrar(Seguimento seg) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        new SeguimentoDaoImpl().cadastrar(seg);
     }
 
     @Override
     public void atualizar(Seguimento seg) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        new SeguimentoDaoImpl().atualizar(seg);
     }
 
     @Override
     public void deletar(Seguimento seg) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        new SeguimentoDaoImpl().deletar(seg);
     }
-    
+
     public String[] getNomesToArray() {
         List<Seguimento> lista = listar();
         String nomes[] = new String[lista.size()];

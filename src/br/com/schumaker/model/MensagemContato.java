@@ -13,6 +13,16 @@ public class MensagemContato {
     private String assunto;
     private String message;
 
+    public MensagemContato() {
+    }
+
+    public MensagemContato(String nome, String email, String assunto, String message) {
+        this.nome = nome;
+        this.email = email;
+        this.assunto = assunto;
+        this.message = message;
+    }
+    
     public String getNome() {
         return nome;
     }
@@ -44,4 +54,10 @@ public class MensagemContato {
     public void setMessage(String message) {
         this.message = message;
     }
+
+    @Override
+    public String toString() {
+        return "MensagemContato{" + "nome=" + nome + ", email=" + email + ", assunto=" + assunto + ", message=" + message + '}';
+    }
+    
 }
