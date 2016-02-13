@@ -218,49 +218,84 @@ public class FrMain extends JFrame {
             Object nodeInfo = node.getUserObject();
             if (node.isLeaf()) {
                 if (nodeInfo.equals("Lojas")) {
-                    IfCadLoja ifCadMercado = new IfCadLoja();
-                    ifCadMercado.setSize(jDesktop.getWidth(), jDesktop.getHeight() - 40);
-                    jDesktop.add(ifCadMercado);
-                    ifCadMercado.toFront();
+                    new Thread() {
+                        @Override
+                        public void run() {
+                            IfCadLoja ifCadMercado = new IfCadLoja();
+                            ifCadMercado.setSize(jDesktop.getWidth(), jDesktop.getHeight() - 40);
+                            jDesktop.add(ifCadMercado);
+                            ifCadMercado.toFront();
+                        }
+                    }.start();
                     return;
                 }
                 if (nodeInfo.equals("Produtos")) {
-                    IfCadProduto ifCadProd = new IfCadProduto();
-                    ifCadProd.setSize(jDesktop.getWidth(), jDesktop.getHeight() - 40);
-                    jDesktop.add(ifCadProd);
-                    ifCadProd.toFront();
+                    new Thread() {
+                        @Override
+                        public void run() {
+                            IfCadProduto ifCadProd = new IfCadProduto();
+                            ifCadProd.setSize(jDesktop.getWidth(), jDesktop.getHeight() - 40);
+                            jDesktop.add(ifCadProd);
+                            ifCadProd.toFront();
+                        }
+                    }.start();
                     return;
                 }
                 if (nodeInfo.equals("Fabricantes")) {
-                    IfCadFabricante ifCadFabricante = new IfCadFabricante();
-                    ifCadFabricante.setSize(jDesktop.getWidth(), jDesktop.getHeight() - 40);
-                    jDesktop.add(ifCadFabricante);
-                    ifCadFabricante.toFront();
+                    new Thread() {
+                        @Override
+                        public void run() {
+                            IfCadFabricante ifCadFabricante = new IfCadFabricante();
+                            ifCadFabricante.setSize(jDesktop.getWidth(), jDesktop.getHeight() - 40);
+                            jDesktop.add(ifCadFabricante);
+                            ifCadFabricante.toFront();
+                        }
+                    }.start();
                     return;
                 }
                 if (nodeInfo.equals("Setores")) {
-                    IfCadSetor ifCadSetor = new IfCadSetor();
-                    ifCadSetor.setSize(jDesktop.getWidth(), jDesktop.getHeight() - 40);
-                    jDesktop.add(ifCadSetor);
-                    ifCadSetor.toFront();
+                    new Thread() {
+                        @Override
+                        public void run() {
+                            IfCadSetor ifCadSetor = new IfCadSetor();
+                            ifCadSetor.setSize(jDesktop.getWidth(), jDesktop.getHeight() - 40);
+                            jDesktop.add(ifCadSetor);
+                            ifCadSetor.toFront();
+                        }
+                    }.start();
                     return;
                 }
                 if (nodeInfo.equals("Unidades")) {
-                    IfCadUnidade ifCadUnidade = new IfCadUnidade();
-                    ifCadUnidade.setSize(jDesktop.getWidth(), jDesktop.getHeight() - 40);
-                    jDesktop.add(ifCadUnidade);
-                    ifCadUnidade.toFront();
+                    new Thread() {
+                        @Override
+                        public void run() {
+                            IfCadUnidade ifCadUnidade = new IfCadUnidade();
+                            ifCadUnidade.setSize(jDesktop.getWidth(), jDesktop.getHeight() - 40);
+                            jDesktop.add(ifCadUnidade);
+                            ifCadUnidade.toFront();
+                        }
+                    }.start();
                     return;
                 }
                 if (nodeInfo.equals("Usuários")) {
-                    IfCadClienteAdm ifCadClienteAdm = new IfCadClienteAdm();
-                    ifCadClienteAdm.setSize(jDesktop.getWidth(), jDesktop.getHeight() - 40);
-                    jDesktop.add(ifCadClienteAdm);
-                    ifCadClienteAdm.toFront();
+                    new Thread() {
+                        @Override
+                        public void run() {
+                            IfCadClienteAdm ifCadClienteAdm = new IfCadClienteAdm();
+                            ifCadClienteAdm.setSize(jDesktop.getWidth(), jDesktop.getHeight() - 40);
+                            jDesktop.add(ifCadClienteAdm);
+                            ifCadClienteAdm.toFront();
+                        }
+                    }.start();
                     return;
                 }
                 if (nodeInfo.equals("Consultas")) {
-                    System.out.println("");
+                    new Thread() {
+                        @Override
+                        public void run() {
+
+                        }
+                    }.start();
                 }
             }
         }

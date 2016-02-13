@@ -26,7 +26,7 @@ public class FrPerfilAdm extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Perfil");
+        setTitle("Perfil - Adm");
         setResizable(false);
 
         jlNome.setText("Usuário logado:");

@@ -13,7 +13,7 @@ import br.com.schumaker.model.Cliente;
 public class IfCadClienteAdm extends javax.swing.JInternalFrame {
     
     public IfCadClienteAdm() {
-        super("Cadastro de fabricante", true, true, true, true);
+        super("Cadastro de cliente", true, true, true, true);
         this.initComponents();
         this.setIconifiable(true);
         this.setVisible(true);
