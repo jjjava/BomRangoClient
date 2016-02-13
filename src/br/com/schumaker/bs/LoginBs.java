@@ -1,16 +1,14 @@
 package br.com.schumaker.bs;
 
-import br.com.schumaker.model.Adm;
-import br.com.schumaker.model.Cliente;
+import br.com.schumaker.gfx.FrLogin;
 
 /**
  *
- * @author hudson schumaker Rede Encarte 27/01/16
+ * @author Hudson Schumaker Rede Encarte 27/01/16
  */
 public interface LoginBs {
     
-    boolean verifyTypeLogin(String name);
-    boolean validarCliente(Cliente cliente);
-    boolean validarAdm(Adm adm);
-    
+    boolean verifyTypeLogin(String nome);
+    void doLogin(String email, String senha, FrLogin frLogin);
+    void forgotPassword(String email, String senha);
 }

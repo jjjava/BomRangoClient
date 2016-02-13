@@ -2,7 +2,7 @@ package br.com.schumaker.model;
 
 /**
  *
- * @author hudson schumaker HStudio - @BomRango 07/01/2015
+ * @author Hudson Schumaker HStudio - @BomRango 07/01/2015
  * @version 1.0.0
  * @since 1.0.0
  */
@@ -10,6 +10,7 @@ public class Produto {
 
     private Integer id;
     private String nome;
+    private String tipo;
     private String descricao;
     private Double preco;
     private Double quantidade;
@@ -148,10 +149,16 @@ public class Produto {
         return idcategoria.getId();
     }
 
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+
     @Override
     public String toString() {
         return "Produto{" + "id=" + id + ", nome=" + nome + ", descricao=" + descricao + ", preco=" + preco + ", quantidade=" + quantidade + ", idmercado=" + idmercado + ", idfabricante=" + idfabricante + ", idcategoria=" + idcategoria + ", unidade=" + unidade + ", imagem=" + imagem + ", ativo=" + ativo + '}';
     }
-    
-    
 }

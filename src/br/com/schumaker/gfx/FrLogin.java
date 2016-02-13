@@ -11,7 +11,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author hudson schumaker HStudio - @BomRango 07/06/2015
+ * @author Hudson Schumaker HStudio - @BomRango 07/06/2015
  * @version 1.0.0
  * @since 1.0.0
  */
@@ -28,9 +28,9 @@ public class FrLogin extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jtEmail = new javax.swing.JTextField();
+        tfEmail = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        jpSenha = new javax.swing.JPasswordField();
+        tfSenha = new javax.swing.JPasswordField();
         btCancelar = new javax.swing.JButton();
         btLogar = new javax.swing.JButton();
         btEsqueci = new javax.swing.JButton();
@@ -45,9 +45,9 @@ public class FrLogin extends javax.swing.JFrame {
 
         jLabel2.setText("Senha:");
 
-        jpSenha.addActionListener(new java.awt.event.ActionListener() {
+        tfSenha.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jpSenhaActionPerformed(evt);
+                tfSenhaActionPerformed(evt);
             }
         });
 
@@ -92,11 +92,11 @@ public class FrLogin extends javax.swing.JFrame {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel1)
                                 .addGap(18, 18, 18)
-                                .addComponent(jtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(tfEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel2)
                                 .addGap(18, 18, 18)
-                                .addComponent(jpSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(tfSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap(32, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -105,11 +105,11 @@ public class FrLogin extends javax.swing.JFrame {
                 .addGap(16, 16, 16)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tfEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(22, 22, 22)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jpSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tfSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btCancelar)
@@ -139,49 +139,23 @@ public class FrLogin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btLogarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLogarActionPerformed
-        doLogin();
+        LoginBsImpl.getInstance().doLogin(tfEmail.getText(), tfSenha.getText(), this);
     }//GEN-LAST:event_btLogarActionPerformed
 
     private void btCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCancelarActionPerformed
         System.exit(0);
     }//GEN-LAST:event_btCancelarActionPerformed
 
-    private void jpSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jpSenhaActionPerformed
-        doLogin();
-    }//GEN-LAST:event_jpSenhaActionPerformed
+    private void tfSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfSenhaActionPerformed
+        LoginBsImpl.getInstance().doLogin(tfEmail.getText(), tfSenha.getText(), this);
+    }//GEN-LAST:event_tfSenhaActionPerformed
 
     private void btEsqueciActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEsqueciActionPerformed
         forgotPassword();
     }//GEN-LAST:event_btEsqueciActionPerformed
 
-    private void doLogin() {
-        if (LoginBsImpl.getInstance().verifyTypeLogin(jtEmail.getText())) {
-            Adm adm = new Adm();
-            adm.setLogin(jtEmail.getText());
-            adm.setSenha(jpSenha.getText());
-            new AdmBsImpl().validar(adm, this);
-        } else {
-            if (new ServerBsImpl().getStatus()) {
-                Cliente cliente = new Cliente();
-                cliente.setEmail(jtEmail.getText());
-                cliente.setSenha(jpSenha.getText());
-                new ClienteBsImpl().validar(cliente, this);
-            } else {
-                HsMessage.mostrarMensagem(JOptionPane.WARNING_MESSAGE, "Rede Encarte", "Servidor em manutenção.");
-            }
-        }
-    }
-
     private void forgotPassword() {
-        if (LoginBsImpl.getInstance().verifyTypeLogin(jtEmail.getText())) {
-            new AdmBsImpl().esqueceuSenha(jtEmail.getText());
-        } else {
-            if (new ServerBsImpl().getStatus()) {
-                new ClienteBsImpl().esqueceuSenha(jtEmail.getText());
-            } else {
-                HsMessage.mostrarMensagem(JOptionPane.WARNING_MESSAGE, "Rede Encarte", "Servidor em manutenção.");
-            }
-        }
+        
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -191,7 +165,7 @@ public class FrLogin extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPasswordField jpSenha;
-    private javax.swing.JTextField jtEmail;
+    private javax.swing.JTextField tfEmail;
+    private javax.swing.JPasswordField tfSenha;
     // End of variables declaration//GEN-END:variables
 }

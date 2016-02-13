@@ -14,9 +14,12 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author hudson schumaker Rede Encarte 27/01/16
+ * @author Hudson Schumaker Rede Encarte 27/01/16
  */
 public class AdmBsImpl implements AdmBs {
+
+    public AdmBsImpl() {
+    }
 
     @Override
     public Adm obter(Integer id) {
@@ -30,17 +33,17 @@ public class AdmBsImpl implements AdmBs {
 
     @Override
     public List<Adm> listar() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return new AdmDaoImpl().listar();
     }
 
     @Override
     public List<Adm> like(String s) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return new AdmDaoImpl().like(s);
     }
 
     @Override
     public boolean verificarEmail(String email) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return new AdmDaoImpl().verificarEmail(email);
     }
 
     @Override
@@ -52,7 +55,7 @@ public class AdmBsImpl implements AdmBs {
             new FrMain().setVisible(true);
         } else {
             login.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
-            HsMessage.mostrarMensagem(JOptionPane.WARNING_MESSAGE, "Login", "Email ou Senha incorretos.");
+            HsMessage.mostrarMensagem(JOptionPane.WARNING_MESSAGE, "Login", "Email e/ou Senha incorreto(s).");
         }
     }
 
@@ -63,16 +66,16 @@ public class AdmBsImpl implements AdmBs {
 
     @Override
     public boolean verificarNome(String nome) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return new AdmDaoImpl().verificarEmail(nome);
     }
 
     @Override
     public void alterarSenha(FrAlterarSenha fr, String senhaAtual, String senhaNova) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        HsMessage.mostrarMensagem(JOptionPane.WARNING_MESSAGE, "Login", "ñ.");
     }
 
     @Override
     public void esqueceuSenha(String email) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        HsMessage.mostrarMensagem(JOptionPane.WARNING_MESSAGE, "Login", "ñ.");
     }
 }
