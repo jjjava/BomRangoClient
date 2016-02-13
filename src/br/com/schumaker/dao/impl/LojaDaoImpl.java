@@ -30,12 +30,13 @@ public class LojaDaoImpl implements LojaDao {
 
     @Override
     public Loja obter(Integer id) {
+        Loja mercado = new Loja();
         Connection conn = HsConnection.getConnection();
         PreparedStatement pst = null;
-        Loja mercado = new Loja();
+        ResultSet rs = null;
         try {
             pst = conn.prepareStatement("select * redeencarte.tb_loja where redeencarte.tb_loja.id = " + id);
-            ResultSet rs = pst.executeQuery();
+            rs = pst.executeQuery();
             while (rs.next()) {
                 mercado.setId(rs.getInt("id"));
                 mercado.setIdDensidade(rs.getInt("iddensidade"));
@@ -61,6 +62,9 @@ public class LojaDaoImpl implements LojaDao {
                 if (pst != null) {
                     pst.close();
                 }
+                if (rs != null) {
+                    rs.close();
+                }
                 conn.close();
             } catch (SQLException ex) {
                 System.err.println(ex);
@@ -74,9 +78,11 @@ public class LojaDaoImpl implements LojaDao {
     public List<Loja> listar() {
         List<Loja> mercados = new ArrayList<>();
         Connection conn = HsConnection.getConnection();
+        PreparedStatement pst = null;
+        ResultSet rs = null;
         try {
-            PreparedStatement pst = conn.prepareStatement("select * from redeencarte.tb_loja");
-            ResultSet rs = pst.executeQuery();
+            pst = conn.prepareStatement("select * from redeencarte.tb_loja");
+            rs = pst.executeQuery();
             while (rs.next()) {
                 Loja mercado = new Loja();
                 mercado.setId(rs.getInt("id"));
@@ -97,12 +103,17 @@ public class LojaDaoImpl implements LojaDao {
                 //---add na lista
                 mercados.add(mercado);
             }
-            pst.close();
         } catch (SQLException ex) {
             System.err.println(ex);
             LogBsImpl.getInstance().inserirLog(this.getClass().getSimpleName(), ex.getMessage());
         } finally {
             try {
+                if (pst != null) {
+                    pst.close();
+                }
+                if (rs != null) {
+                    rs.close();
+                }
                 conn.close();
             } catch (SQLException ex) {
                 System.err.println(ex);
@@ -117,9 +128,11 @@ public class LojaDaoImpl implements LojaDao {
         List<Loja> mercados = new ArrayList<>();
         String sql = "select * from redeencarte.tb_loja where redeencarte.tb_loja.nome like '%" + s + "%' order by redeencarte.tb_loja.nome";
         Connection conn = HsConnection.getConnection();
+        PreparedStatement pst = null;
+        ResultSet rs = null;
         try {
-            PreparedStatement pst = conn.prepareStatement(sql);
-            ResultSet rs = pst.executeQuery();
+            pst = conn.prepareStatement(sql);
+            rs = pst.executeQuery();
             while (rs.next()) {
                 Loja mercado = new Loja();
                 mercado.setId(rs.getInt("id"));
@@ -140,12 +153,17 @@ public class LojaDaoImpl implements LojaDao {
                 //---add na lista
                 mercados.add(mercado);
             }
-            pst.close();
         } catch (SQLException ex) {
             System.err.println(ex);
             LogBsImpl.getInstance().inserirLog(this.getClass().getSimpleName(), ex.getMessage());
         } finally {
             try {
+                if (pst != null) {
+                    pst.close();
+                }
+                if (rs != null) {
+                    rs.close();
+                }
                 conn.close();
             } catch (SQLException ex) {
                 System.err.println(ex);
@@ -160,9 +178,11 @@ public class LojaDaoImpl implements LojaDao {
         List<Loja> mercados = new ArrayList<>();
         String sql = "select * from redeencarte.tb_loja where redeencarte.tb_loja.iddensidade =" + idDensidade + " order by redeencarte.tb_loja.nome";
         Connection conn = HsConnection.getConnection();
+        PreparedStatement pst = null;
+        ResultSet rs = null;
         try {
-            PreparedStatement pst = conn.prepareStatement(sql);
-            ResultSet rs = pst.executeQuery();
+            pst = conn.prepareStatement(sql);
+            rs = pst.executeQuery();
             while (rs.next()) {
                 Loja mercado = new Loja();
                 mercado.setId(rs.getInt("id"));
@@ -189,6 +209,12 @@ public class LojaDaoImpl implements LojaDao {
             LogBsImpl.getInstance().inserirLog(this.getClass().getSimpleName(), ex.getMessage());
         } finally {
             try {
+                if (pst != null) {
+                    pst.close();
+                }
+                if (rs != null) {
+                    rs.close();
+                }
                 conn.close();
             } catch (SQLException ex) {
                 System.err.println(ex);
@@ -203,9 +229,11 @@ public class LojaDaoImpl implements LojaDao {
         boolean validado = false;
         String sql = "select * from redeencarte.tb_loja where redeencarte.tb_loja.nome = '" + nome + "'";
         Connection conn = HsConnection.getConnection();
+        PreparedStatement pst = null;
+        ResultSet rs = null;
         try {
-            PreparedStatement pst = conn.prepareStatement(sql);
-            ResultSet rs = pst.executeQuery();
+            pst = conn.prepareStatement(sql);
+            rs = pst.executeQuery();
             while (rs.next()) {
                 validado = true;
             }
@@ -215,6 +243,12 @@ public class LojaDaoImpl implements LojaDao {
             LogBsImpl.getInstance().inserirLog(this.getClass().getSimpleName(), ex.getMessage());
         } finally {
             try {
+                if (pst != null) {
+                    pst.close();
+                }
+                if (rs != null) {
+                    rs.close();
+                }
                 conn.close();
             } catch (SQLException ex) {
                 System.err.println(ex);
