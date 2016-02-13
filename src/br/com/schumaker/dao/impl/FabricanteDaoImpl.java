@@ -97,7 +97,7 @@ public class FabricanteDaoImpl implements FabricanteDao {
         PreparedStatement pst = null;
         ResultSet rs = null;
         try {
-            pst = conn.prepareStatement("select * from redeencarte.tb_fabricante order by redeencarte.tb_fabricante.nome");
+            pst = conn.prepareStatement("select * from redeencarte.tb_fabricante");
             rs = pst.executeQuery();
             while (rs.next()) {
                 Fabricante fabricante = new Fabricante();

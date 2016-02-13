@@ -2,8 +2,8 @@ package br.com.schumaker.model;
 
 /**
  *
- * @author Hudson Schumaker HStudio - @BomRango 07/01/2015
- * @version 1.0.0
+ * @author Hudson Schumaker HStudio - @BomRango 07/01/2016
+ * @version 2.0.0
  * @since 1.0.0
  */
 public class Produto {
@@ -11,6 +11,7 @@ public class Produto {
     private Integer id;
     private String nome;
     private String tipo;
+    private String embalagem;
     private String descricao;
     private Double preco;
     private Double quantidade;
@@ -156,6 +157,14 @@ public class Produto {
 
     public void setTipo(String tipo) {
         this.tipo = tipo;
+    }
+
+    public String getEmbalagem() {
+        return embalagem;
+    }
+
+    public void setEmbalagem(String embalagem) {
+        this.embalagem = embalagem;
     }
 
     @Override

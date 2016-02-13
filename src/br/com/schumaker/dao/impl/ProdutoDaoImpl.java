@@ -22,7 +22,7 @@ import java.util.List;
 
 /**
  *
- * @author hudson schumaker HStudio - @BomRango 07/01/2015
+ * @author Hudson Schumaker HStudio - @BomRango 07/01/2015
  * @version 1.0.0
  * @since 1.0.0
  */
@@ -410,8 +410,8 @@ public class ProdutoDaoImpl implements ProdutoDao {
     @Override
     public boolean cadastrar(Produto produto) {
         boolean cadastrado = false;
-        String sql = "insert into compras.produto (nome, descricao, preco, quantidade, idmercado, idfabricante, idcategoria, unidade, imagem, ativo) "
-                + " values (?,?,?,?,?,?,?,?,?,?)";
+        String sql = "insert into redeencarte.tb_produto (nome,tipo,idfabricante,idcategoria,embalagem,idunidade,qtd,imagem,ativo) "
+                + " values (?,?,?,?,?,?,?,?,?)";
         Connection conn = HsConnection.getConnection();
         PreparedStatement pst = null;
         FileInputStream fis = null;
@@ -423,13 +423,12 @@ public class ProdutoDaoImpl implements ProdutoDao {
 
             pst = conn.prepareStatement(sql);
             pst.setString(1, produto.getNome());
-            pst.setString(2, produto.getDescricao());
-            pst.setDouble(3, produto.getPreco());
-            pst.setDouble(4, produto.getQuantidade());
-            pst.setInt(5, produto.getIdMercado());
-            pst.setInt(6, produto.getIdFabricante());
-            pst.setInt(7, produto.getIdSetor());
-            pst.setInt(8, produto.getUnidade());
+            pst.setString(2, produto.getTipo());
+            pst.setInt(3, produto.getIdFabricante());
+            pst.setInt(4, produto.getIdSetor());
+            pst.setString(5, produto.getEmbalagem());
+            pst.setInt(6, produto.getUnidade());
+            pst.setDouble(7, produto.getQuantidade());
             pst.setBinaryStream(9, fis, file.length());
             pst.setInt(10, produto.getAtivo());
 
@@ -451,9 +450,13 @@ public class ProdutoDaoImpl implements ProdutoDao {
             LogBsImpl.getInstance().inserirLog(this.getClass().getSimpleName(), ex.getMessage());
         } finally {
             try {
-                pst.close();
+                if (pst != null) {
+                    pst.close();
+                }
+                if (fis != null) {
+                    fis.close();
+                }
                 conn.close();
-                fis.close();
             } catch (SQLException | IOException ex) {
                 System.err.println(ex);
                 LogBsImpl.getInstance().inserirLog(this.getClass().getSimpleName(), ex.getMessage());
@@ -490,7 +493,7 @@ public class ProdutoDaoImpl implements ProdutoDao {
             LogBsImpl.getInstance().inserirLog(this.getClass().getSimpleName(), ex.getMessage());
         } finally {
             try {
-                if(pst != null){
+                if (pst != null) {
                     pst.close();
                 }
                 conn.close();
