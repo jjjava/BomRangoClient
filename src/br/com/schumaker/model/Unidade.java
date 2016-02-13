@@ -2,7 +2,7 @@ package br.com.schumaker.model;
 
 /**
  *
- * @author hudson schumaker HStudio - @BomRango 07/01/2015
+ * @author Hudson Schumaker HStudio - @BomRango 07/01/2015
  * @version 1.0.0
  * @since 1.0.0
  */
@@ -19,6 +19,11 @@ public class Unidade {
         this.id = id;
     }
 
+    public Unidade(String nome, String info) {
+        this.nome = nome;
+        this.info = info;
+    }
+    
     public Integer getId() {
         return id;
     }

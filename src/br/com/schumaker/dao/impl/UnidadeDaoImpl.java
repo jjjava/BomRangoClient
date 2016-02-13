@@ -13,7 +13,7 @@ import java.util.List;
 
 /**
  *
- * @author hudson schumaker HStudio - @BomRango 07/01/2015
+ * @author Hudson Schumaker HStudio - @BomRango 07/01/2015
  * @version 1.0.0
  * @since 1.0.0
  */
@@ -78,10 +78,10 @@ public class UnidadeDaoImpl implements UnidadeDao {
     @Override
     public List<Unidade> listar() {
         List<Unidade> unidades = new ArrayList<>();
-        String sql = "select * from redeencarte.tb_unidade order by redeencarte.tb_unidade.nome";
         Connection conn = HsConnection.getConnection();
+        PreparedStatement pst = null;
         try {
-            PreparedStatement pst = conn.prepareStatement(sql);
+            pst = conn.prepareStatement("select * from redeencarte.tb_unidade");
             ResultSet rs = pst.executeQuery();
             while (rs.next()) {
                 Unidade unidade = new Unidade();
@@ -91,12 +91,14 @@ public class UnidadeDaoImpl implements UnidadeDao {
                 //---add na lista
                 unidades.add(unidade);
             }
-            pst.close();
         } catch (SQLException ex) {
             System.err.println(ex);
             LogBsImpl.getInstance().inserirLog(this.getClass().getSimpleName(), ex.getMessage());
         } finally {
             try {
+                if (pst != null) {
+                    pst.close();
+                }
                 conn.close();
             } catch (SQLException ex) {
                 System.err.println(ex);
@@ -140,7 +142,7 @@ public class UnidadeDaoImpl implements UnidadeDao {
     @Override
     public boolean verificarNome(String nome) {
         boolean validado = false;
-        String sql = "select * from redeencarte.tb_unidade where redeencarte.tb_unidade.nome = '" + nome + "' order by redeencarte.tb_unidade.nome";
+        String sql = "select * from redeencarte.tb_unidade where redeencarte.tb_unidade.nome = '" + nome + "'";
         Connection conn = HsConnection.getConnection();
         try {
             PreparedStatement pst = conn.prepareStatement(sql);
@@ -164,12 +166,11 @@ public class UnidadeDaoImpl implements UnidadeDao {
     @Override
     public boolean cadastrar(Unidade unidade) {
         boolean cadastrado = false;
-        String sql = "insert into redeencarte.tb_unidade ( nome, info ) values (?,?)";
         Connection conn = HsConnection.getConnection();
         PreparedStatement pst = null;
         try {
             conn.setAutoCommit(false);
-            pst = conn.prepareStatement(sql);
+            pst = conn.prepareStatement("insert into redeencarte.tb_unidade ( nome, info ) values (?,?)");
             pst.setString(1, unidade.getNome());
             pst.setString(2, unidade.getInfo());
             pst.execute();
@@ -187,7 +188,7 @@ public class UnidadeDaoImpl implements UnidadeDao {
             LogBsImpl.getInstance().inserirLog(this.getClass().getSimpleName(), ex.getMessage());
         } finally {
             try {
-                if(pst != null){
+                if (pst != null) {
                     pst.close();
                 }
                 conn.close();
@@ -220,7 +221,7 @@ public class UnidadeDaoImpl implements UnidadeDao {
             LogBsImpl.getInstance().inserirLog(this.getClass().getSimpleName(), ex.getMessage());
         } finally {
             try {
-                if(pst != null){
+                if (pst != null) {
                     pst.close();
                 }
                 conn.close();

@@ -8,7 +8,7 @@ import javax.swing.tree.DefaultMutableTreeNode;
 
 /**
  *
- * @author hudson schumaker HStudio - @BomRango 06/06/2015
+ * @author Hudson Schumaker HStudio - @BomRango 06/06/2015
  * @version 1.0.0
  * @since 1.0.0
  */
@@ -50,7 +50,6 @@ public class FrMain extends JFrame {
 
         consultas = new DefaultMutableTreeNode("Consultas");//menu
         root.add(consultas);
-
     }
 
     @SuppressWarnings("unchecked")
@@ -247,6 +246,10 @@ public class FrMain extends JFrame {
                     return;
                 }
                 if (nodeInfo.equals("Unidades")) {
+                    IfCadUnidade ifCadUnidade = new IfCadUnidade();
+                    ifCadUnidade.setSize(jDesktop.getWidth(), jDesktop.getHeight() - 40);
+                    jDesktop.add(ifCadUnidade);
+                    ifCadUnidade.toFront();
                     return;
                 }
                 if (nodeInfo.equals("Usuários")) {
