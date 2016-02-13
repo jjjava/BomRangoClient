@@ -25,25 +25,33 @@ public class EstadoDaoImpl implements EstadoDao {
 
     @Override
     public Estado obter(Integer id) {
-        String sql = "select * from redeencarte.tb_estado where redeencarte.tb_estado.id = " + id;
-        Connection conn = HsConnection.getConnection();
         Estado estado = new Estado();
+        Connection conn = HsConnection.getConnection();
+        PreparedStatement pst = null;
+        ResultSet rs = null;
         try {
-            PreparedStatement pst = conn.prepareStatement(sql);
-            ResultSet rs = pst.executeQuery();
+            pst = conn.prepareStatement("select * from redeencarte.tb_estado where redeencarte.tb_estado.id = " + id);
+            rs = pst.executeQuery();
             while (rs.next()) {
                 estado.setId(rs.getInt("id"));
                 estado.setNome(rs.getString("nome"));
                 estado.setUf(rs.getString("uf"));
             }
-            pst.close();
-        } catch (SQLException e) {
-            System.err.println(e);//throw new RuntimeException(e);
+        } catch (SQLException ex) {
+            System.err.println(ex);
+            LogBsImpl.getInstance().inserirLog(this.getClass().getSimpleName(), ex.getMessage());
         } finally {
             try {
+                if (pst != null) {
+                    pst.close();
+                }
+                if (rs != null) {
+                    rs.close();
+                }
                 conn.close();
-            } catch (SQLException e) {
-                System.err.println(e);//throw new RuntimeException(e);
+            } catch (SQLException ex) {
+                System.err.println(ex);
+                LogBsImpl.getInstance().inserirLog(this.getClass().getSimpleName(), ex.getMessage());
             }
         }
         return estado;
@@ -52,11 +60,12 @@ public class EstadoDaoImpl implements EstadoDao {
     @Override
     public List<Estado> listar() {
         List<Estado> estados = new ArrayList<>();
-        String sql = "select * from redeencarte.tb_estado order by redeencarte.tb_estado.nome";
         Connection conn = HsConnection.getConnection();
+        PreparedStatement pst = null;
+        ResultSet rs = null;
         try {
-            PreparedStatement pst = conn.prepareStatement(sql);
-            ResultSet rs = pst.executeQuery();
+            pst = conn.prepareStatement("select * from redeencarte.tb_estado order by redeencarte.tb_estado.nome");
+            rs = pst.executeQuery();
             while (rs.next()) {
                 Estado estado = new Estado();
                 estado.setId(rs.getInt("id"));
@@ -65,12 +74,17 @@ public class EstadoDaoImpl implements EstadoDao {
                 //---add na lista
                 estados.add(estado);
             }
-            pst.close();
         } catch (SQLException ex) {
             System.err.println(ex);
             LogBsImpl.getInstance().inserirLog(this.getClass().getSimpleName(), ex.getMessage());
         } finally {
             try {
+                if (pst != null) {
+                    pst.close();
+                }
+                if (rs != null) {
+                    rs.close();
+                }
                 conn.close();
             } catch (SQLException ex) {
                 System.err.println(ex);
@@ -83,11 +97,12 @@ public class EstadoDaoImpl implements EstadoDao {
     @Override
     public List<Estado> like(String s) {
         List<Estado> estados = new ArrayList<>();
-        String sql = "select * from compras.estado where estado.nome like '%" + s + "%' order by estado.nome";
         Connection conn = HsConnection.getConnection();
+        PreparedStatement pst = null;
+        ResultSet rs = null;
         try {
-            PreparedStatement pst = conn.prepareStatement(sql);
-            ResultSet rs = pst.executeQuery();
+            pst = conn.prepareStatement("select * from compras.estado where estado.nome like '%" + s + "%' order by estado.nome");
+            rs = pst.executeQuery();
             while (rs.next()) {
                 Estado estado = new Estado();
                 estado.setId(rs.getInt("id"));
@@ -96,14 +111,21 @@ public class EstadoDaoImpl implements EstadoDao {
                 //---add na lista
                 estados.add(estado);
             }
-            pst.close();
         } catch (SQLException e) {
             System.err.println(e);
+            LogBsImpl.getInstance().inserirLog(this.getClass().getSimpleName(), e.getMessage());
         } finally {
             try {
+                if (pst != null) {
+                    pst.close();
+                }
+                if (rs != null) {
+                    rs.close();
+                }
                 conn.close();
             } catch (SQLException e) {
                 System.err.println(e);
+                LogBsImpl.getInstance().inserirLog(this.getClass().getSimpleName(), e.getMessage());
             }
         }
         return estados;
@@ -126,7 +148,7 @@ public class EstadoDaoImpl implements EstadoDao {
             System.err.println(e);
         } finally {
             try {
-                if(pst != null){
+                if (pst != null) {
                     pst.close();
                 }
                 conn.close();
@@ -156,7 +178,7 @@ public class EstadoDaoImpl implements EstadoDao {
             System.err.println(e);
         } finally {
             try {
-                if(pst != null){
+                if (pst != null) {
                     pst.close();
                 }
                 conn.close();
@@ -175,22 +197,30 @@ public class EstadoDaoImpl implements EstadoDao {
     @Override
     public boolean verificarNome(String nome) {
         boolean validado = false;
-        String sql = "select * from compras.estado where estado.nome = '" + nome + "'";
         Connection conn = HsConnection.getConnection();
+        PreparedStatement pst = null;
+        ResultSet rs = null;
         try {
-            PreparedStatement pst = conn.prepareStatement(sql);
-            ResultSet rs = pst.executeQuery();
+            pst = conn.prepareStatement("select * from compras.estado where estado.nome = '" + nome + "'");
+            rs = pst.executeQuery();
             while (rs.next()) {
                 validado = true;
             }
-            pst.close();
         } catch (SQLException e) {
             System.err.println(e);
+            LogBsImpl.getInstance().inserirLog(this.getClass().getSimpleName(), e.getMessage());
         } finally {
             try {
+                if (pst != null) {
+                    pst.close();
+                }
+                if (rs != null) {
+                    rs.close();
+                }
                 conn.close();
             } catch (SQLException e) {
                 System.err.println(e);
+                LogBsImpl.getInstance().inserirLog(this.getClass().getSimpleName(), e.getMessage());
             }
         }
         return validado;
@@ -199,22 +229,30 @@ public class EstadoDaoImpl implements EstadoDao {
     @Override
     public boolean verificarUf(String uf) {
         boolean validado = false;
-        String sql = "select * from compras.estado where estado.uf = '" + uf + "'";
         Connection conn = HsConnection.getConnection();
+        PreparedStatement pst = null;
+        ResultSet rs = null;
         try {
-            PreparedStatement pst = conn.prepareStatement(sql);
-            ResultSet rs = pst.executeQuery();
+            pst = conn.prepareStatement("select * from compras.estado where estado.uf = '" + uf + "'");
+            rs = pst.executeQuery();
             while (rs.next()) {
                 validado = true;
             }
-            pst.close();
         } catch (SQLException e) {
             System.err.println(e);
+            LogBsImpl.getInstance().inserirLog(this.getClass().getSimpleName(), e.getMessage());
         } finally {
             try {
+                if (pst != null) {
+                    pst.close();
+                }
+                if (rs != null) {
+                    rs.close();
+                }
                 conn.close();
             } catch (SQLException e) {
                 System.err.println(e);
+                LogBsImpl.getInstance().inserirLog(this.getClass().getSimpleName(), e.getMessage());
             }
         }
         return validado;
@@ -223,23 +261,31 @@ public class EstadoDaoImpl implements EstadoDao {
     @Override
     public boolean verificarCidadeNoEstado(Cidade cidade) {
         boolean verificado = false;
-        String sql = "select * from compras.cidade where cidade.id = " + cidade.getId() + " and "
-                + "cidade.idestado = " + cidade.getIdEstado();
+        String sql = "select * from compras.cidade where cidade.id = " + cidade.getId() + " and cidade.idestado = " + cidade.getIdEstado();
         Connection conn = HsConnection.getConnection();
+        PreparedStatement pst = null;
+        ResultSet rs = null;
         try {
-            PreparedStatement pst = conn.prepareStatement(sql);
-            ResultSet rs = pst.executeQuery();
+            pst = conn.prepareStatement(sql);
+            rs = pst.executeQuery();
             while (rs.next()) {
                 verificado = true;
             }
-            pst.close();
         } catch (SQLException e) {
             System.err.println(e);
+            LogBsImpl.getInstance().inserirLog(this.getClass().getSimpleName(), e.getMessage());
         } finally {
             try {
+                if (pst != null) {
+                    pst.close();
+                }
+                if (rs != null) {
+                    rs.close();
+                }
                 conn.close();
             } catch (SQLException e) {
                 System.err.println(e);
+                LogBsImpl.getInstance().inserirLog(this.getClass().getSimpleName(), e.getMessage());
             }
         }
         return verificado;

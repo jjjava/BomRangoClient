@@ -26,9 +26,10 @@ public class AdmDaoImpl implements AdmDao {
         Connection conn = HsConnection.getConnection();
         Adm adm = new Adm();
         PreparedStatement pst = null;
+        ResultSet rs = null;
         try {
             pst = conn.prepareStatement("select * from redeencarte.tb_login where redeencarte.tb_login.id = " + id);
-            ResultSet rs = pst.executeQuery();
+            rs = pst.executeQuery();
             while (rs.next()) {
                 adm.setId(rs.getInt("id"));
                 adm.setNome(rs.getString("nome"));
@@ -44,6 +45,9 @@ public class AdmDaoImpl implements AdmDao {
                 if (pst != null) {
                     pst.close();
                 }
+                if (rs != null) {
+                    rs.close();
+                }
                 conn.close();
             } catch (SQLException ex) {
                 System.err.println(ex);
@@ -58,9 +62,10 @@ public class AdmDaoImpl implements AdmDao {
         Connection conn = HsConnection.getConnection();
         Adm adm = new Adm();
         PreparedStatement pst = null;
+        ResultSet rs = null;
         try {
             pst = conn.prepareStatement("select * from redeencarte.tb_login where redeencarte.tb_login.login = '" + email + "'");
-            ResultSet rs = pst.executeQuery();
+            rs = pst.executeQuery();
             while (rs.next()) {
                 adm.setId(rs.getInt("id"));
                 adm.setNome(rs.getString("nome"));
@@ -75,6 +80,9 @@ public class AdmDaoImpl implements AdmDao {
             try {
                 if (pst != null) {
                     pst.close();
+                }
+                if (rs != null) {
+                    rs.close();
                 }
                 conn.close();
             } catch (SQLException ex) {
@@ -105,9 +113,10 @@ public class AdmDaoImpl implements AdmDao {
         boolean validado = false;
         Connection conn = HsConnection.getConnection();
         PreparedStatement pst = null;
+        ResultSet rs = null;
         try {
             pst = conn.prepareStatement("select * from redeencarte.tb_login where redeencarte.tb_login.login = '" + cryptEmail + "' and redeencarte.tb_login.senha = '" + cryptPassword + "'");
-            ResultSet rs = pst.executeQuery();
+            rs = pst.executeQuery();
             while (rs.next()) {
                 validado = true;
             }
@@ -118,6 +127,9 @@ public class AdmDaoImpl implements AdmDao {
             try {
                 if (pst != null) {
                     pst.close();
+                }
+                if (rs != null) {
+                    rs.close();
                 }
                 conn.close();
             } catch (SQLException ex) {

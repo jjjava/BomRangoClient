@@ -18,8 +18,8 @@ import java.util.List;
  * @since 1.0.0
  */
 public class SeguimentoDaoImpl implements SeguimentoDao {
-    
-    public SeguimentoDaoImpl(){
+
+    public SeguimentoDaoImpl() {
     }
 
     @Override
@@ -35,11 +35,12 @@ public class SeguimentoDaoImpl implements SeguimentoDao {
     @Override
     public List<Seguimento> listar() {
         List<Seguimento> seguimentos = new ArrayList<>();
-        String sql = "select * from redeencarte.tb_seguimento";
         Connection conn = HsConnection.getConnection();
+        PreparedStatement pst = null;
+        ResultSet rs = null;
         try {
-            PreparedStatement pst = conn.prepareStatement(sql);
-            ResultSet rs = pst.executeQuery();
+            pst = conn.prepareStatement("select * from redeencarte.tb_seguimento");
+            rs = pst.executeQuery();
             while (rs.next()) {
                 Seguimento seguimento = new Seguimento();
                 seguimento.setId(rs.getInt("id"));
@@ -48,12 +49,17 @@ public class SeguimentoDaoImpl implements SeguimentoDao {
                 //---add na lista
                 seguimentos.add(seguimento);
             }
-            pst.close();
         } catch (SQLException ex) {
             System.err.println(ex);
             LogBsImpl.getInstance().inserirLog(this.getClass().getSimpleName(), ex.getMessage());
         } finally {
             try {
+                if (pst != null) {
+                    pst.close();
+                }
+                if (rs != null) {
+                    rs.close();
+                }
                 conn.close();
             } catch (SQLException ex) {
                 System.err.println(ex);
@@ -65,11 +71,12 @@ public class SeguimentoDaoImpl implements SeguimentoDao {
 
     public List<Seguimento> listar(int id) {
         List<Seguimento> seguimentos = new ArrayList<>();
-        String sql = "select * from redeencarte.tb_seguimento where id = " + id;
         Connection conn = HsConnection.getConnection();
+        PreparedStatement pst = null;
+        ResultSet rs = null;
         try {
-            PreparedStatement pst = conn.prepareStatement(sql);
-            ResultSet rs = pst.executeQuery();
+            pst = conn.prepareStatement("select * from redeencarte.tb_seguimento where id = " + id);
+            rs = pst.executeQuery();
             while (rs.next()) {
                 Seguimento seguimento = new Seguimento();
                 seguimento.setId(rs.getInt("id"));
@@ -84,6 +91,12 @@ public class SeguimentoDaoImpl implements SeguimentoDao {
             LogBsImpl.getInstance().inserirLog(this.getClass().getSimpleName(), ex.getMessage());
         } finally {
             try {
+                if (pst != null) {
+                    pst.close();
+                }
+                if (rs != null) {
+                    rs.close();
+                }
                 conn.close();
             } catch (SQLException ex) {
                 System.err.println(ex);

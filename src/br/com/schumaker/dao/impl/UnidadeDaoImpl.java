@@ -18,30 +18,35 @@ import java.util.List;
  * @since 1.0.0
  */
 public class UnidadeDaoImpl implements UnidadeDao {
-    
-    public UnidadeDaoImpl(){
-        
+
+    public UnidadeDaoImpl() {
     }
 
     @Override
     public Unidade obter(Integer id) {
-        String sql = "select * from redeencarte.tb_unidade where redeencarte.tb_unidade.id = " + id;
-        Connection conn = HsConnection.getConnection();
         Unidade unidade = new Unidade();
+        Connection conn = HsConnection.getConnection();
+        PreparedStatement pst = null;
+        ResultSet rs = null;
         try {
-            PreparedStatement pst = conn.prepareStatement(sql);
-            ResultSet rs = pst.executeQuery();
+            pst = conn.prepareStatement("select * from redeencarte.tb_unidade where redeencarte.tb_unidade.id = " + id);
+            rs = pst.executeQuery();
             while (rs.next()) {
                 unidade.setId(rs.getInt("id"));
                 unidade.setNome(rs.getString("nome"));
                 unidade.setInfo(rs.getString("info"));
             }
-            pst.close();
         } catch (SQLException ex) {
             System.err.println(ex);
             LogBsImpl.getInstance().inserirLog(this.getClass().getSimpleName(), ex.getMessage());
         } finally {
             try {
+                if (pst != null) {
+                    pst.close();
+                }
+                if (rs != null) {
+                    rs.close();
+                }
                 conn.close();
             } catch (SQLException ex) {
                 System.err.println(ex);
@@ -53,23 +58,29 @@ public class UnidadeDaoImpl implements UnidadeDao {
 
     @Override
     public Unidade obter(String nome) {
-        String sql = "select * from redeencarte.tb_unidade where redeencarte.tb_unidade.nome = '" + nome + "'";
-        Connection conn = HsConnection.getConnection();
         Unidade unidade = new Unidade();
+        Connection conn = HsConnection.getConnection();
+        PreparedStatement pst = null;
+        ResultSet rs = null;
         try {
-            PreparedStatement pst = conn.prepareStatement(sql);
-            ResultSet rs = pst.executeQuery();
+            pst = conn.prepareStatement("select * from redeencarte.tb_unidade where redeencarte.tb_unidade.nome = '" + nome + "'");
+            rs = pst.executeQuery();
             while (rs.next()) {
                 unidade.setId(rs.getInt("id"));
                 unidade.setNome(rs.getString("nome"));
                 unidade.setInfo(rs.getString("info"));
             }
-            pst.close();
         } catch (SQLException ex) {
             System.err.println(ex);
             LogBsImpl.getInstance().inserirLog(this.getClass().getSimpleName(), ex.getMessage());
         } finally {
             try {
+                if (pst != null) {
+                    pst.close();
+                }
+                if (rs != null) {
+                    rs.close();
+                }
                 conn.close();
             } catch (SQLException ex) {
                 System.err.println(ex);
@@ -84,9 +95,10 @@ public class UnidadeDaoImpl implements UnidadeDao {
         List<Unidade> unidades = new ArrayList<>();
         Connection conn = HsConnection.getConnection();
         PreparedStatement pst = null;
+        ResultSet rs = null;
         try {
             pst = conn.prepareStatement("select * from redeencarte.tb_unidade");
-            ResultSet rs = pst.executeQuery();
+            rs = pst.executeQuery();
             while (rs.next()) {
                 Unidade unidade = new Unidade();
                 unidade.setId(rs.getInt("id"));
@@ -103,6 +115,9 @@ public class UnidadeDaoImpl implements UnidadeDao {
                 if (pst != null) {
                     pst.close();
                 }
+                if (rs != null) {
+                    rs.close();
+                }
                 conn.close();
             } catch (SQLException ex) {
                 System.err.println(ex);
@@ -115,11 +130,12 @@ public class UnidadeDaoImpl implements UnidadeDao {
     @Override
     public List<Unidade> like(String s) {
         List<Unidade> unidades = new ArrayList<>();
-        String sql = "select * from redeencarte.tb_unidade where redeencarte.tb_unidade.nome like '%" + s + "%' order by redeencarte.tb_unidade.nome";
         Connection conn = HsConnection.getConnection();
+        PreparedStatement pst = null;
+        ResultSet rs = null;
         try {
-            PreparedStatement pst = conn.prepareStatement(sql);
-            ResultSet rs = pst.executeQuery();
+            pst = conn.prepareStatement("select * from redeencarte.tb_unidade where redeencarte.tb_unidade.nome like '%" + s + "%' order by redeencarte.tb_unidade.nome");
+            rs = pst.executeQuery();
             while (rs.next()) {
                 Unidade unidade = new Unidade();
                 unidade.setId(rs.getInt("id"));
@@ -128,12 +144,17 @@ public class UnidadeDaoImpl implements UnidadeDao {
                 //---add na lista
                 unidades.add(unidade);
             }
-            pst.close();
         } catch (SQLException ex) {
             System.err.println(ex);
             LogBsImpl.getInstance().inserirLog(this.getClass().getSimpleName(), ex.getMessage());
         } finally {
             try {
+                if (pst != null) {
+                    pst.close();
+                }
+                if (rs != null) {
+                    rs.close();
+                }
                 conn.close();
             } catch (SQLException ex) {
                 System.err.println(ex);
@@ -146,19 +167,25 @@ public class UnidadeDaoImpl implements UnidadeDao {
     @Override
     public boolean verificarNome(String nome) {
         boolean validado = false;
-        String sql = "select * from redeencarte.tb_unidade where redeencarte.tb_unidade.nome = '" + nome + "'";
         Connection conn = HsConnection.getConnection();
+        PreparedStatement pst = null;
+        ResultSet rs = null;
         try {
-            PreparedStatement pst = conn.prepareStatement(sql);
-            ResultSet rs = pst.executeQuery();
+            pst = conn.prepareStatement("select * from redeencarte.tb_unidade where redeencarte.tb_unidade.nome = '" + nome + "'");
+            rs = pst.executeQuery();
             while (rs.next()) {
                 validado = true;
             }
-            pst.close();
         } catch (SQLException e) {
             System.err.println(e);
         } finally {
             try {
+                if (pst != null) {
+                    pst.close();
+                }
+                if (rs != null) {
+                    rs.close();
+                }
                 conn.close();
             } catch (SQLException e) {
                 System.err.println(e);
@@ -207,12 +234,10 @@ public class UnidadeDaoImpl implements UnidadeDao {
     @Override
     public boolean atualizar(Unidade unidade) {
         boolean atualizado = false;
-        String sql = "update redeencarte.tb_unidade set redeencarte.tb_unidade.nome=?, redeencarte.tb_unidade.info=? "
-                + "where redeencarte.tb_unidade.id=?";
         Connection conn = HsConnection.getConnection();
         PreparedStatement pst = null;
         try {
-            pst = conn.prepareStatement(sql);
+            pst = conn.prepareStatement("update redeencarte.tb_unidade set redeencarte.tb_unidade.nome=?, redeencarte.tb_unidade.info=? where redeencarte.tb_unidade.id=?");
             pst.setString(1, unidade.getNome());
             pst.setString(2, unidade.getInfo());
             //where

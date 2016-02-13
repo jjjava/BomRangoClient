@@ -24,9 +24,10 @@ public class ServerDaoImpl implements ServerDao {
         int status = -1;
         Connection conn = HsConnection.getConnection();
         PreparedStatement pst = null;
+        ResultSet rs = null;
         try {
             pst = conn.prepareStatement("select * from redeencarte.tb_server");
-            ResultSet rs = pst.executeQuery();
+            rs = pst.executeQuery();
             while (rs.next()) {
                 status = rs.getInt("status");
             }
@@ -37,6 +38,9 @@ public class ServerDaoImpl implements ServerDao {
             try {
                 if (pst != null) {
                     pst.close();
+                }
+                if (rs != null) {
+                    rs.close();
                 }
                 conn.close();
             } catch (SQLException ex) {
@@ -87,11 +91,12 @@ public class ServerDaoImpl implements ServerDao {
     @Override
     public boolean verifyConnection() {
         int status = -1;
-        PreparedStatement pst = null;
         Connection conn = HsConnection.getConnection();
+        PreparedStatement pst = null;
+        ResultSet rs = null;
         try {
             pst = conn.prepareStatement("select * from redeencarte.tb_server");
-            ResultSet rs = pst.executeQuery();
+            rs = pst.executeQuery();
             while (rs.next()) {
                 status = rs.getInt("id");
             }
@@ -103,6 +108,9 @@ public class ServerDaoImpl implements ServerDao {
             try {
                 if (pst != null) {
                     pst.close();
+                }
+                if (rs != null) {
+                    rs.close();
                 }
                 conn.close();
             } catch (SQLException ex) {

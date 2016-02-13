@@ -24,24 +24,30 @@ public class SetorDaoImpl implements SetorDao {
 
     @Override
     public Setor obter(Integer id) {
-        String sql = "select * from redeencarte.tb_setor where redeencarte.tb_setor.id = " + id;
-        Connection conn = HsConnection.getConnection();
         Setor categoria = new Setor();
+        Connection conn = HsConnection.getConnection();
+        PreparedStatement pst = null;
+        ResultSet rs = null;
         try {
-            PreparedStatement pst = conn.prepareStatement(sql);
-            ResultSet rs = pst.executeQuery();
+            pst = conn.prepareStatement("select * from redeencarte.tb_setor where redeencarte.tb_setor.id = " + id);
+            rs = pst.executeQuery();
             while (rs.next()) {
                 categoria.setId(rs.getInt("id"));
                 categoria.setIdSeguimento(rs.getInt("idseguimento"));
                 categoria.setNome(rs.getString("nome"));
                 categoria.setDescricao(rs.getString("descricao"));
             }
-            pst.close();
         } catch (SQLException ex) {
             System.err.println(ex);
             LogBsImpl.getInstance().inserirLog(this.getClass().getSimpleName(), ex.getMessage());
         } finally {
             try {
+                if (pst != null) {
+                    pst.close();
+                }
+                if (rs != null) {
+                    rs.close();
+                }
                 conn.close();
             } catch (SQLException ex) {
                 System.err.println(ex);
@@ -53,24 +59,30 @@ public class SetorDaoImpl implements SetorDao {
 
     @Override
     public Setor obter(String nome) {
-        String sql = "select * from redeencarte.tb_setor where redeencarte.tb_setor.nome = '" + nome + "'";
-        Connection conn = HsConnection.getConnection();
         Setor categoria = new Setor();
+        Connection conn = HsConnection.getConnection();
+        PreparedStatement pst = null;
+        ResultSet rs = null;
         try {
-            PreparedStatement pst = conn.prepareStatement(sql);
-            ResultSet rs = pst.executeQuery();
+            pst = conn.prepareStatement("select * from redeencarte.tb_setor where redeencarte.tb_setor.nome = '" + nome + "'");
+            rs = pst.executeQuery();
             while (rs.next()) {
                 categoria.setId(rs.getInt("id"));
                 categoria.setIdSeguimento(rs.getInt("idseguimento"));
                 categoria.setNome(rs.getString("nome"));
                 categoria.setDescricao(rs.getString("descricao"));
             }
-            pst.close();
         } catch (SQLException ex) {
             System.err.println(ex);
             LogBsImpl.getInstance().inserirLog(this.getClass().getSimpleName(), ex.getMessage());
         } finally {
             try {
+                if (pst != null) {
+                    pst.close();
+                }
+                if (rs != null) {
+                    rs.close();
+                }
                 conn.close();
             } catch (SQLException ex) {
                 System.err.println(ex);
@@ -83,11 +95,12 @@ public class SetorDaoImpl implements SetorDao {
     @Override
     public List<Setor> listar() {
         List<Setor> categorias = new ArrayList<>();
-        String sql = "select * from redeencarte.tb_setor order by redeencarte.tb_setor.nome";
         Connection conn = HsConnection.getConnection();
+        PreparedStatement pst = null;
+        ResultSet rs = null;
         try {
-            PreparedStatement pst = conn.prepareStatement(sql);
-            ResultSet rs = pst.executeQuery();
+            pst = conn.prepareStatement("select * from redeencarte.tb_setor");
+            rs = pst.executeQuery();
             while (rs.next()) {
                 Setor categoria = new Setor();
                 categoria.setId(rs.getInt("id"));
@@ -97,12 +110,17 @@ public class SetorDaoImpl implements SetorDao {
                 //---add na lista
                 categorias.add(categoria);
             }
-            pst.close();
         } catch (SQLException ex) {
             System.err.println(ex);
             LogBsImpl.getInstance().inserirLog(this.getClass().getSimpleName(), ex.getMessage());
         } finally {
             try {
+                if (pst != null) {
+                    pst.close();
+                }
+                if (rs != null) {
+                    rs.close();
+                }
                 conn.close();
             } catch (SQLException ex) {
                 System.err.println(ex);
@@ -117,9 +135,11 @@ public class SetorDaoImpl implements SetorDao {
         List<Setor> categorias = new ArrayList<>();
         String sql = "select * from redeencarte.tb_setor where redeencarte.tb_setor.nome like '%" + s + "%' order by redeencarte.tb_setor.nome";
         Connection conn = HsConnection.getConnection();
+        PreparedStatement pst = null;
+        ResultSet rs = null;
         try {
-            PreparedStatement pst = conn.prepareStatement(sql);
-            ResultSet rs = pst.executeQuery();
+            pst = conn.prepareStatement(sql);
+            rs = pst.executeQuery();
             while (rs.next()) {
                 Setor categoria = new Setor();
                 categoria.setId(rs.getInt("id"));
@@ -129,12 +149,17 @@ public class SetorDaoImpl implements SetorDao {
                 //adiciona a lista
                 categorias.add(categoria);
             }
-            pst.close();
         } catch (SQLException ex) {
             System.err.println(ex);
             LogBsImpl.getInstance().inserirLog(this.getClass().getSimpleName(), ex.getMessage());
         } finally {
             try {
+                if (pst != null) {
+                    pst.close();
+                }
+                if (rs != null) {
+                    rs.close();
+                }
                 conn.close();
             } catch (SQLException ex) {
                 System.err.println(ex);
@@ -149,9 +174,10 @@ public class SetorDaoImpl implements SetorDao {
         boolean validado = false;
         Connection conn = HsConnection.getConnection();
         PreparedStatement pst = null;
+        ResultSet rs = null;
         try {
             pst = conn.prepareStatement("select * from redeencarte.tb_setor where redeencarte.tb_setor.nome = '" + nome + "'");
-            ResultSet rs = pst.executeQuery();
+            rs = pst.executeQuery();
             while (rs.next()) {
                 validado = true;
             }
@@ -160,8 +186,11 @@ public class SetorDaoImpl implements SetorDao {
             LogBsImpl.getInstance().inserirLog(this.getClass().getSimpleName(), ex.getMessage());
         } finally {
             try {
-                if(pst != null){
+                if (pst != null) {
                     pst.close();
+                }
+                if (rs != null) {
+                    rs.close();
                 }
                 conn.close();
             } catch (SQLException ex) {
@@ -190,7 +219,7 @@ public class SetorDaoImpl implements SetorDao {
             LogBsImpl.getInstance().inserirLog(this.getClass().getSimpleName(), ex.getMessage());
         } finally {
             try {
-                if(pst != null){
+                if (pst != null) {
                     pst.close();
                 }
                 conn.close();
@@ -221,7 +250,7 @@ public class SetorDaoImpl implements SetorDao {
             LogBsImpl.getInstance().inserirLog(this.getClass().getSimpleName(), ex.getMessage());
         } finally {
             try {
-                if(pst != null){
+                if (pst != null) {
                     pst.close();
                 }
                 conn.close();

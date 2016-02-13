@@ -14,6 +14,9 @@ import java.sql.SQLException;
  * @since 1.0.0
  */
 public class LogDaoImpl implements LogDao {
+    
+    public LogDaoImpl(){    
+    }
 
     @Override
     public void cadastarLog(Log log) {

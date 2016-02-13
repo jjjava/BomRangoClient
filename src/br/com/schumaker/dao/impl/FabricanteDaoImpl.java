@@ -19,25 +19,34 @@ import java.util.List;
  */
 public class FabricanteDaoImpl implements FabricanteDao {
 
+    public FabricanteDaoImpl() {
+    }
+
     @Override
     public Fabricante obter(Integer id) {
-        String sql = "select * redeencarte.tb_fabricante where redeencarte.tb_fabricante.id = " + id;
-        Connection conn = HsConnection.getConnection();
         Fabricante fabricante = new Fabricante();
+        Connection conn = HsConnection.getConnection();
+        PreparedStatement pst = null;
+        ResultSet rs = null;
         try {
-            PreparedStatement pst = conn.prepareStatement(sql);
-            ResultSet rs = pst.executeQuery();
+            pst = conn.prepareStatement("select * redeencarte.tb_fabricante where redeencarte.tb_fabricante.id = " + id);
+            rs = pst.executeQuery();
             while (rs.next()) {
                 fabricante.setId(rs.getInt("id"));
                 fabricante.setNome(rs.getString("nome"));
                 fabricante.setSite(rs.getString("site"));
             }
-            pst.close();
         } catch (SQLException ex) {
             System.err.println(ex);
             LogBsImpl.getInstance().inserirLog(this.getClass().getSimpleName(), ex.getMessage());
         } finally {
             try {
+                if (pst != null) {
+                    pst.close();
+                }
+                if (rs != null) {
+                    rs.close();
+                }
                 conn.close();
             } catch (SQLException ex) {
                 System.err.println(ex);
@@ -49,23 +58,29 @@ public class FabricanteDaoImpl implements FabricanteDao {
 
     @Override
     public Fabricante obter(String nome) {
-        String sql = "select * from redeencarte.tb_fabricante where redeencarte.tb_fabricante.nome = '" + nome + "'";
-        Connection conn = HsConnection.getConnection();
         Fabricante fabricante = new Fabricante();
+        Connection conn = HsConnection.getConnection();
+        PreparedStatement pst = null;
+        ResultSet rs = null;
         try {
-            PreparedStatement pst = conn.prepareStatement(sql);
-            ResultSet rs = pst.executeQuery();
+            pst = conn.prepareStatement("select * from redeencarte.tb_fabricante where redeencarte.tb_fabricante.nome = '" + nome + "'");
+            rs = pst.executeQuery();
             while (rs.next()) {
                 fabricante.setId(rs.getInt("id"));
                 fabricante.setNome(rs.getString("nome"));
                 fabricante.setSite(rs.getString("site"));
             }
-            pst.close();
         } catch (SQLException ex) {
             System.err.println(ex);
             LogBsImpl.getInstance().inserirLog(this.getClass().getSimpleName(), ex.getMessage());
         } finally {
             try {
+                if (pst != null) {
+                    pst.close();
+                }
+                if (rs != null) {
+                    rs.close();
+                }
                 conn.close();
             } catch (SQLException ex) {
                 System.err.println(ex);
@@ -78,11 +93,12 @@ public class FabricanteDaoImpl implements FabricanteDao {
     @Override
     public List<Fabricante> listar() {
         List<Fabricante> fabricantes = new ArrayList<>();
-        String sql = "select * from redeencarte.tb_fabricante order by redeencarte.tb_fabricante.nome";
         Connection conn = HsConnection.getConnection();
+        PreparedStatement pst = null;
+        ResultSet rs = null;
         try {
-            PreparedStatement pst = conn.prepareStatement(sql);
-            ResultSet rs = pst.executeQuery();
+            pst = conn.prepareStatement("select * from redeencarte.tb_fabricante order by redeencarte.tb_fabricante.nome");
+            rs = pst.executeQuery();
             while (rs.next()) {
                 Fabricante fabricante = new Fabricante();
                 fabricante.setId(rs.getInt("id"));
@@ -91,12 +107,17 @@ public class FabricanteDaoImpl implements FabricanteDao {
                 //---add na lista
                 fabricantes.add(fabricante);
             }
-            pst.close();
         } catch (SQLException ex) {
             System.err.println(ex);
             LogBsImpl.getInstance().inserirLog(this.getClass().getSimpleName(), ex.getMessage());
         } finally {
             try {
+                if (pst != null) {
+                    pst.close();
+                }
+                if (rs != null) {
+                    rs.close();
+                }
                 conn.close();
             } catch (SQLException ex) {
                 System.err.println(ex);
@@ -109,11 +130,12 @@ public class FabricanteDaoImpl implements FabricanteDao {
     @Override
     public List<Fabricante> like(String s) {
         List<Fabricante> fabricantes = new ArrayList<>();
-        String sql = "select * from redeencarte.tb_fabricante where redeencarte.tb_fabricante.nome like '%" + s + "%' order by redeencarte.tb_fabricante.nome";
         Connection conn = HsConnection.getConnection();
+        PreparedStatement pst = null;
+        ResultSet rs = null;
         try {
-            PreparedStatement pst = conn.prepareStatement(sql);
-            ResultSet rs = pst.executeQuery();
+            pst = conn.prepareStatement("select * from redeencarte.tb_fabricante where redeencarte.tb_fabricante.nome like '%" + s + "%' order by redeencarte.tb_fabricante.nome");
+            rs = pst.executeQuery();
             while (rs.next()) {
                 Fabricante fabricante = new Fabricante();
                 fabricante.setId(rs.getInt("id"));
@@ -122,12 +144,17 @@ public class FabricanteDaoImpl implements FabricanteDao {
                 //---add na lista
                 fabricantes.add(fabricante);
             }
-            pst.close();
         } catch (SQLException ex) {
             System.err.println(ex);
             LogBsImpl.getInstance().inserirLog(this.getClass().getSimpleName(), ex.getMessage());
         } finally {
             try {
+                if (pst != null) {
+                    pst.close();
+                }
+                if (rs != null) {
+                    rs.close();
+                }
                 conn.close();
             } catch (SQLException ex) {
                 System.err.println(ex);
@@ -140,20 +167,26 @@ public class FabricanteDaoImpl implements FabricanteDao {
     @Override
     public boolean verificarNome(String nome) {
         boolean validado = false;
-        String sql = "select * from redeencarte.tb_fabricante where redeencarte.tb_fabricante.nome = '" + nome + "'";
         Connection conn = HsConnection.getConnection();
+        PreparedStatement pst = null;
+        ResultSet rs = null;
         try {
-            PreparedStatement pst = conn.prepareStatement(sql);
-            ResultSet rs = pst.executeQuery();
+            pst = conn.prepareStatement("select * from redeencarte.tb_fabricante where redeencarte.tb_fabricante.nome = '" + nome + "'");
+            rs = pst.executeQuery();
             while (rs.next()) {
                 validado = true;
             }
-            pst.close();
         } catch (SQLException ex) {
             System.err.println(ex);
             LogBsImpl.getInstance().inserirLog(this.getClass().getSimpleName(), ex.getMessage());
         } finally {
             try {
+                if (pst != null) {
+                    pst.close();
+                }
+                if (rs != null) {
+                    rs.close();
+                }
                 conn.close();
             } catch (SQLException ex) {
                 System.err.println(ex);
@@ -189,7 +222,7 @@ public class FabricanteDaoImpl implements FabricanteDao {
             LogBsImpl.getInstance().inserirLog(this.getClass().getSimpleName(), ex.getMessage());
         } finally {
             try {
-                if(pst != null){
+                if (pst != null) {
                     pst.close();
                 }
                 conn.close();
@@ -230,7 +263,7 @@ public class FabricanteDaoImpl implements FabricanteDao {
             LogBsImpl.getInstance().inserirLog(this.getClass().getSimpleName(), ex.getMessage());
         } finally {
             try {
-                if(pst != null){
+                if (pst != null) {
                     pst.close();
                 }
                 conn.close();

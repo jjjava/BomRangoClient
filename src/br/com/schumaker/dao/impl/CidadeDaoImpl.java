@@ -24,11 +24,13 @@ public class CidadeDaoImpl implements CidadeDao {
 
     @Override
     public Cidade obter(Integer id) {
-        Connection conn = HsConnection.getConnection();
         Cidade cidade = new Cidade();
+        Connection conn = HsConnection.getConnection();
+        PreparedStatement pst = null;
+        ResultSet rs = null;
         try {
-            PreparedStatement pst = conn.prepareStatement("select * from redeencarte.tb_cidade where redeencarte.tb_cidade.id = " + id);
-            ResultSet rs = pst.executeQuery();
+            pst = conn.prepareStatement("select * from redeencarte.tb_cidade where redeencarte.tb_cidade.id = " + id);
+            rs = pst.executeQuery();
             while (rs.next()) {
                 cidade.setId(rs.getInt("id"));
                 cidade.setIdEstado(rs.getInt("idestado"));
@@ -40,6 +42,12 @@ public class CidadeDaoImpl implements CidadeDao {
             LogBsImpl.getInstance().inserirLog(this.getClass().getSimpleName(), ex.getMessage());
         } finally {
             try {
+                if (pst != null) {
+                    pst.close();
+                }
+                if (rs != null) {
+                    rs.close();
+                }
                 conn.close();
             } catch (SQLException ex) {
                 System.err.println(ex);
@@ -53,9 +61,11 @@ public class CidadeDaoImpl implements CidadeDao {
     public List<Cidade> listar() {
         List<Cidade> cidades = new ArrayList<>();
         Connection conn = HsConnection.getConnection();
+        PreparedStatement pst = null;
+        ResultSet rs = null;
         try {
-            PreparedStatement pst = conn.prepareStatement("select * from redeencarte.tb_cidade order by cidade.nome");
-            ResultSet rs = pst.executeQuery();
+            pst = conn.prepareStatement("select * from redeencarte.tb_cidade order by cidade.nome");
+            rs = pst.executeQuery();
             while (rs.next()) {
                 Cidade cidade = new Cidade();
                 cidade.setId(rs.getInt("id"));
@@ -64,12 +74,17 @@ public class CidadeDaoImpl implements CidadeDao {
                 //---add na lista
                 cidades.add(cidade);
             }
-            pst.close();
         } catch (SQLException ex) {
             System.err.println(ex);
             LogBsImpl.getInstance().inserirLog(this.getClass().getSimpleName(), ex.getMessage());
         } finally {
             try {
+                if (pst != null) {
+                    pst.close();
+                }
+                if (rs != null) {
+                    rs.close();
+                }
                 conn.close();
             } catch (SQLException ex) {
                 System.err.println(ex);
@@ -82,9 +97,11 @@ public class CidadeDaoImpl implements CidadeDao {
     public List<Cidade> listar(int id) {
         List<Cidade> cidades = new ArrayList<>();
         Connection conn = HsConnection.getConnection();
+        PreparedStatement pst = null;
+        ResultSet rs = null;
         try {
-            PreparedStatement pst = conn.prepareStatement("select * from redeencarte.tb_cidade where idestado = " + id);
-            ResultSet rs = pst.executeQuery();
+            pst = conn.prepareStatement("select * from redeencarte.tb_cidade where idestado = " + id);
+            rs = pst.executeQuery();
             while (rs.next()) {
                 Cidade cidade = new Cidade();
                 cidade.setId(rs.getInt("id"));
@@ -99,6 +116,12 @@ public class CidadeDaoImpl implements CidadeDao {
             LogBsImpl.getInstance().inserirLog(this.getClass().getSimpleName(), ex.getMessage());
         } finally {
             try {
+                if (pst != null) {
+                    pst.close();
+                }
+                if (rs != null) {
+                    rs.close();
+                }
                 conn.close();
             } catch (SQLException ex) {
                 System.err.println(ex);
@@ -112,9 +135,11 @@ public class CidadeDaoImpl implements CidadeDao {
     public List<Cidade> like(String s) {
         List<Cidade> cidades = new ArrayList<>();
         Connection conn = HsConnection.getConnection();
+        PreparedStatement pst = null;
+        ResultSet rs = null;
         try {
-            PreparedStatement pst = conn.prepareStatement("select * from redeencarte.tb_cidade where cidade.nome like '%" + s + "%' order by cidade.name");
-            ResultSet rs = pst.executeQuery();
+            pst = conn.prepareStatement("select * from redeencarte.tb_cidade where cidade.nome like '%" + s + "%' order by cidade.name");
+            rs = pst.executeQuery();
             while (rs.next()) {
                 Cidade cidade = new Cidade();
                 cidade.setId(rs.getInt("id"));
@@ -123,12 +148,17 @@ public class CidadeDaoImpl implements CidadeDao {
                 //---add na lista
                 cidades.add(cidade);
             }
-            pst.close();
         } catch (SQLException ex) {
             System.err.println(ex);
             LogBsImpl.getInstance().inserirLog(this.getClass().getSimpleName(), ex.getMessage());
         } finally {
             try {
+                if (pst != null) {
+                    pst.close();
+                }
+                if (rs != null) {
+                    rs.close();
+                }
                 conn.close();
             } catch (SQLException ex) {
                 System.err.println(ex);
@@ -142,9 +172,11 @@ public class CidadeDaoImpl implements CidadeDao {
     public boolean verificarNome(String nome) {
         boolean validado = false;
         Connection conn = HsConnection.getConnection();
+        PreparedStatement pst = null;
+        ResultSet rs = null;
         try {
-            PreparedStatement pst = conn.prepareStatement("select * from redeencarte.tb_cidade where cidade.nome = '" + nome + "'");
-            ResultSet rs = pst.executeQuery();
+            pst = conn.prepareStatement("select * from redeencarte.tb_cidade where cidade.nome = '" + nome + "'");
+            rs = pst.executeQuery();
             while (rs.next()) {
                 validado = true;
             }
@@ -154,6 +186,12 @@ public class CidadeDaoImpl implements CidadeDao {
             LogBsImpl.getInstance().inserirLog(this.getClass().getSimpleName(), e.getMessage());
         } finally {
             try {
+                if (pst != null) {
+                    pst.close();
+                }
+                if (rs != null) {
+                    rs.close();
+                }
                 conn.close();
             } catch (SQLException ex) {
                 System.err.println(ex);

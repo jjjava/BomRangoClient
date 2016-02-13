@@ -24,13 +24,13 @@ public class BairroDaoImpl implements BairroDao {
 
     @Override
     public Bairro obter(Integer id) {
-
+        Bairro bairro = new Bairro();
         Connection conn = HsConnection.getConnection();
         PreparedStatement pst = null;
-        Bairro bairro = new Bairro();
+        ResultSet rs = null;
         try {
             pst = conn.prepareStatement("select * from redeencarte.tb_bairro where tb_bairro.id = " + id);
-            ResultSet rs = pst.executeQuery();
+            rs = pst.executeQuery();
             while (rs.next()) {
                 bairro.setId(rs.getInt("id"));
                 bairro.setIdCidade(rs.getInt("idcidade"));
@@ -43,6 +43,9 @@ public class BairroDaoImpl implements BairroDao {
             try {
                 if (pst != null) {
                     pst.close();
+                }
+                if (rs != null) {
+                    rs.close();
                 }
                 conn.close();
             } catch (SQLException ex) {
@@ -56,11 +59,12 @@ public class BairroDaoImpl implements BairroDao {
     @Override
     public List<Bairro> listar() {
         List<Bairro> bairros = new ArrayList<>();
-        PreparedStatement pst = null;
         Connection conn = HsConnection.getConnection();
+        PreparedStatement pst = null;
+        ResultSet rs = null;
         try {
             pst = conn.prepareStatement("select * from redeencarte.tb_bairro order by bairro.nome");
-            ResultSet rs = pst.executeQuery();
+            rs = pst.executeQuery();
             while (rs.next()) {
                 Bairro bairro = new Bairro();
                 bairro.setId(rs.getInt("id"));
@@ -77,6 +81,9 @@ public class BairroDaoImpl implements BairroDao {
                 if (pst != null) {
                     pst.close();
                 }
+                if (rs != null) {
+                    rs.close();
+                }
                 conn.close();
             } catch (SQLException ex) {
                 System.err.println(ex);
@@ -88,11 +95,12 @@ public class BairroDaoImpl implements BairroDao {
 
     public List<Bairro> listar(int id) {
         List<Bairro> bairros = new ArrayList<>();
-        PreparedStatement pst = null;
         Connection conn = HsConnection.getConnection();
+        PreparedStatement pst = null;
+        ResultSet rs = null;
         try {
             pst = conn.prepareStatement("select * from redeencarte.tb_bairro where idcidade = " + id + " ");
-            ResultSet rs = pst.executeQuery();
+            rs = pst.executeQuery();
             while (rs.next()) {
                 Bairro bairro = new Bairro();
                 bairro.setId(rs.getInt("id"));
@@ -108,6 +116,9 @@ public class BairroDaoImpl implements BairroDao {
             try {
                 if (pst != null) {
                     pst.close();
+                }
+                if (rs != null) {
+                    rs.close();
                 }
                 conn.close();
             } catch (SQLException ex) {
@@ -121,11 +132,12 @@ public class BairroDaoImpl implements BairroDao {
     @Override
     public List<Bairro> like(String s) {
         List<Bairro> bairros = new ArrayList<>();
-        PreparedStatement pst = null;
         Connection conn = HsConnection.getConnection();
+        PreparedStatement pst = null;
+        ResultSet rs = null;
         try {
             pst = conn.prepareStatement("select * from compras.bairro where bairro.nome like '%" + s + "%' order by bairro.name");
-            ResultSet rs = pst.executeQuery();
+            rs = pst.executeQuery();
             while (rs.next()) {
                 Bairro bairro = new Bairro();
                 bairro.setId(rs.getInt("id"));
@@ -142,6 +154,9 @@ public class BairroDaoImpl implements BairroDao {
                 if (pst != null) {
                     pst.close();
                 }
+                if (rs != null) {
+                    rs.close();
+                }
                 conn.close();
             } catch (SQLException ex) {
                 System.err.println(ex);
@@ -154,11 +169,12 @@ public class BairroDaoImpl implements BairroDao {
     @Override
     public boolean verificarNome(String nome) {
         boolean validado = false;
-        PreparedStatement pst = null;
         Connection conn = HsConnection.getConnection();
+        PreparedStatement pst = null;
+        ResultSet rs = null;
         try {
             pst = conn.prepareStatement("select * from compras.bairro where bairro.nome = '" + nome + "'");
-            ResultSet rs = pst.executeQuery();
+            rs = pst.executeQuery();
             while (rs.next()) {
                 validado = true;
             }
@@ -169,6 +185,9 @@ public class BairroDaoImpl implements BairroDao {
             try {
                 if (pst != null) {
                     pst.close();
+                }
+                if (rs != null) {
+                    rs.close();
                 }
                 conn.close();
             } catch (SQLException ex) {

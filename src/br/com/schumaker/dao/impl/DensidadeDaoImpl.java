@@ -24,22 +24,28 @@ public class DensidadeDaoImpl implements DensidadeDao {
 
     @Override
     public Densidade obter(Integer id) {
-        String sql = "select * from compras.densidade where densidade.id = " + id;
-        Connection conn = HsConnection.getConnection();
         Densidade densidade = new Densidade();
+        Connection conn = HsConnection.getConnection();
+        PreparedStatement pst = null;
+        ResultSet rs = null;
         try {
-            PreparedStatement pst = conn.prepareStatement(sql);
-            ResultSet rs = pst.executeQuery();
+            pst = conn.prepareStatement("select * from compras.densidade where densidade.id = " + id);
+            rs = pst.executeQuery();
             while (rs.next()) {
                 densidade.setId(rs.getInt("id"));
                 densidade.setNome(rs.getString("nome"));
             }
-            pst.close();
         } catch (SQLException ex) {
             System.err.println(ex);
             LogBsImpl.getInstance().inserirLog(this.getClass().getSimpleName(), ex.getMessage());
         } finally {
             try {
+                if (pst != null) {
+                    pst.close();
+                }
+                if (rs != null) {
+                    rs.close();
+                }
                 conn.close();
             } catch (SQLException ex) {
                 System.err.println(ex);//throw new RuntimeException(e);
@@ -52,11 +58,12 @@ public class DensidadeDaoImpl implements DensidadeDao {
     @Override
     public List<Densidade> listar() {
         List<Densidade> densidades = new ArrayList<>();
-        String sql = "select * from redeencarte.tb_densidade order by redeencarte.tb_densidade.id";
         Connection conn = HsConnection.getConnection();
+        PreparedStatement pst = null;
+        ResultSet rs = null;
         try {
-            PreparedStatement pst = conn.prepareStatement(sql);
-            ResultSet rs = pst.executeQuery();
+            pst = conn.prepareStatement("select * from redeencarte.tb_densidade order by redeencarte.tb_densidade.id");
+            rs = pst.executeQuery();
             while (rs.next()) {
                 Densidade densidade = new Densidade();
                 densidade.setId(rs.getInt("id"));
@@ -64,12 +71,17 @@ public class DensidadeDaoImpl implements DensidadeDao {
                 //---add na lista
                 densidades.add(densidade);
             }
-            pst.close();
         } catch (SQLException ex) {
             System.err.println(ex);
             LogBsImpl.getInstance().inserirLog(this.getClass().getSimpleName(), ex.getMessage());
         } finally {
             try {
+                if (pst != null) {
+                    pst.close();
+                }
+                if (rs != null) {
+                    rs.close();
+                }
                 conn.close();
             } catch (SQLException ex) {
                 System.err.println(ex);
@@ -81,11 +93,12 @@ public class DensidadeDaoImpl implements DensidadeDao {
 
     public List<Densidade> listar(int id) {
         List<Densidade> densidades = new ArrayList<>();
-        String sql = "select * from redeencarte.tb_densidade where id = " + id;
         Connection conn = HsConnection.getConnection();
+        PreparedStatement pst = null;
+        ResultSet rs = null;
         try {
-            PreparedStatement pst = conn.prepareStatement(sql);
-            ResultSet rs = pst.executeQuery();
+            pst = conn.prepareStatement("select * from redeencarte.tb_densidade where id = " + id);
+            rs = pst.executeQuery();
             while (rs.next()) {
                 Densidade densidade = new Densidade();
                 densidade.setId(rs.getInt("id"));
@@ -93,12 +106,17 @@ public class DensidadeDaoImpl implements DensidadeDao {
                 //---add na lista
                 densidades.add(densidade);
             }
-            pst.close();
         } catch (SQLException ex) {
             System.err.println(ex);
             LogBsImpl.getInstance().inserirLog(this.getClass().getSimpleName(), ex.getMessage());
         } finally {
             try {
+                if (pst != null) {
+                    pst.close();
+                }
+                if (rs != null) {
+                    rs.close();
+                }
                 conn.close();
             } catch (SQLException ex) {
                 System.err.println(ex);
@@ -111,11 +129,12 @@ public class DensidadeDaoImpl implements DensidadeDao {
     @Override
     public List<Densidade> like(String s) {
         List<Densidade> densidades = new ArrayList<>();
-        String sql = "select * from compras.densidade where densidade.nome like '%" + s + "%'";
         Connection conn = HsConnection.getConnection();
+        PreparedStatement pst = null;
+        ResultSet rs = null;
         try {
-            PreparedStatement pst = conn.prepareStatement(sql);
-            ResultSet rs = pst.executeQuery();
+            pst = conn.prepareStatement("select * from compras.densidade where densidade.nome like '%" + s + "%'");
+            rs = pst.executeQuery();
             while (rs.next()) {
                 Densidade densidade = new Densidade();
                 densidade.setId(rs.getInt("id"));
@@ -129,6 +148,12 @@ public class DensidadeDaoImpl implements DensidadeDao {
             LogBsImpl.getInstance().inserirLog(this.getClass().getSimpleName(), ex.getMessage());
         } finally {
             try {
+                if (pst != null) {
+                    pst.close();
+                }
+                if (rs != null) {
+                    rs.close();
+                }
                 conn.close();
             } catch (SQLException ex) {
                 System.err.println(ex);
@@ -140,11 +165,12 @@ public class DensidadeDaoImpl implements DensidadeDao {
     @Override
     public boolean verificarNome(String nome) {
         boolean validado = false;
-        String sql = "select * from compras.densidade where densidade.nome = '" + nome + "'";
         Connection conn = HsConnection.getConnection();
+        PreparedStatement pst = null;
+        ResultSet rs = null;
         try {
-            PreparedStatement pst = conn.prepareStatement(sql);
-            ResultSet rs = pst.executeQuery();
+            pst = conn.prepareStatement("select * from compras.densidade where densidade.nome = '" + nome + "'");
+            rs = pst.executeQuery();
             while (rs.next()) {
                 validado = true;
             }
@@ -153,6 +179,12 @@ public class DensidadeDaoImpl implements DensidadeDao {
             System.err.println(e);
         } finally {
             try {
+                if (pst != null) {
+                    pst.close();
+                }
+                if (rs != null) {
+                    rs.close();
+                }
                 conn.close();
             } catch (SQLException e) {
                 System.err.println(e);
